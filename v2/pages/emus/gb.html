@@ -1,0 +1,39 @@
+<div class="popup emulator-view popup-tablet-fullscreen">
+    <div class="content-block">
+      <div class="load">
+        <div class="emulator-name">GB</div>
+        <div class="screen" id="gbScreenContainer">
+          <center>
+            <div id="gfx">
+              <canvas id="mainCanvas">
+            </canvas></div>
+          </center>
+        </div>
+        <div class="controllers controls">
+          <div id="buttons">
+            <div style="display:none" id="desktopModeEnabledNotice">On-Screen Controls Hidden</div>
+            <div style="display:none" id="desktopModeEnabledNoticeL2">You can disable this in Settings.</div>
+   <div class="arrow-button-touchPad">
+    <div id="centerNES" class="arrow-button-center arrow-button-centerr"></div>
+    <div id="rightNES" class="arrow-button arrow-button-right"></div>
+    <div id="leftNES" class="arrow-button arrow-button-left"></div>
+    <div id="upNES" class="arrow-button arrow-button-up"></div>
+    <div id="downNES" class="arrow-button arrow-button-down"></div>
+  </div>
+</div>
+          </div>
+          <div id="portrait_settings_keys">
+            <div id="start_btn" class="menu-button menu-button-start">Start</div>
+            <div id="select_btn" class="menu-button menu-button-select">Select</div>
+            <a href="#" onclick="eclipse.methods.gbc.openEmulationMenu();">
+              <div class="menu-button menu-button-back">Menu</div>
+            </a>
+          </div>
+          <div id="portrait_action_keys">
+            <div id="bBtnGB" class="control-button button-b">B</div>
+            <div id="aBtnGB" class="control-button button-a">A</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

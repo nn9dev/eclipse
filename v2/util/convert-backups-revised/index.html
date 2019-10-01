@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <h1>Eclipse Backup Converter</h1>
+  <input type="text" id="go" name="" value="">
+  <button onclick="startProcess()">Upload</button>
+  <script type="text/javascript">
+    function startProcess() {
+      var output = btoa(document.getElementById('go').value);
+      getStuff(output);
+    }
+    function getStuff(output) {
+      var thing = "b64=" + output;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(JSON.parse(this.responseText));
+        }
+      };
+      xhttp.open("POST", "https://php.eclipseemu.me/states/", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send(thing);
+    }
+  </script>
+</body>
+
+</html>

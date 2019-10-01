@@ -1,0 +1,46 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title" id="mg_title">Manage Games</div>
+      <div class="right">
+        <!-- Link to toggle sortable -->
+        <a onclick="eclipse.methods.toggleEditLabel()" class="link sortable-toggle" data-sortable=".sortable"><span id="editGamesBtn">Edit</span></a>
+      </div>
+      <div class="subnavbar">
+        <form class="searchbar inline searchbar-init" data-search-in=".item-title" data-search-container=".manage-games">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input type="search" placeholder="Search Games">
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="tint searchbar-disable-button">Cancel</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+    <br>
+    <div class="manage-games inset list sortable" id="parent_manage_games_list">
+      <ul id="manage_games_list">
+      </ul>
+    </div>
+    <div id="no-games" class="searchbar-hide-on-search" style="text-align:center; display:none;">
+      <br>
+      <h1>No Games</h1>
+      <p>You can add games by going to the Game Hub.</p>
+    </div>
+    <div class="searchbar-not-found" style="text-align:center;">
+      <br>
+      <h1>Nothing Found</h1>
+      <p>No games with that name were found.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding tabBar">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Usage</div>
+    </div>
+  </div>
+    <div class="page-content">
+      <div class="block-title">Storage Usage</div>
+      <div class="list media-list inset">
+        <ul>
+          <li style="padding: 10px">
+            <center>
+              <div class="gauge storage-gauge"></div>
+            </center>
+          </li>
+        </ul>
+      </div>
+      <div class="block">
+        <p>Eclipse has a limited amount of storage that it can work with, assigned by the web browser.<txt style="display:none" id="safariStorageNotice"> Please note that the given values may not be totally accurate due to limitations in Safari.</txt></p>
+      </div>
+
+      <div class="block-title">Backup</div>
+      <div class="list inset">
+        <ul>
+          <li>
+            <a href="#" onclick="eclipse.methods.backups.import.menu();" class="list-button item-link color-blue">Restore from Backup</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.methods.backups.export();" class="list-button item-link color-blue">Export Backup</a>
+          </li>
+        </ul>
+      </div>
+      <div class="block-title">Restore</div>
+      <div class="list inset">
+        <ul>
+          <li>
+            <a href="#" onclick="eclipse.methods.storage.reset.repos();" class="list-button item-link color-red">Reset Repos</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.methods.storage.reset.games();" class="list-button item-link color-red">Reset Games</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.methods.storage.reset.skins();" class="list-button item-link color-red">Reset Skins</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.methods.storage.reset.controls();" id="resetControlsButton" class="list-button item-link color-red">Reset Controls</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.methods.storage.reset.all();" class="list-button item-link color-red">Reset All Content and Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="list inset">
+        <ul>
+          <li>
+            <a href="#" onclick="eclipse.methods.storage.nuke();" class="button button-big item-link button-fill color-red" style="font-weight:bold;">Initialize</a>
+          </li>
+        </ul>
+      </div>
+
+
+
+        </ul>
+      </div>
+    </div>
+  </div>

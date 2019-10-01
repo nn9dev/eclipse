@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html manifest="eclipse.manifest" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#f44336">
+  <meta name="background-color" content="#ffffff">
+  <meta name="msapplication-TileColor" content="#f44336">
+  <meta name="apple-mobile-web-app-title" content="Eclipse">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Eclipse</title>
+  <link rel="stylesheet" href="assets/css/framework7.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="apple-touch-icon" href="assets/img/icon_mobFull.png">
+  <link rel="icon" href="assets/img/icon_splash.png">
+  <link rel="mask-icon" size="any" href="assets/img/mask_icon.svg" color="red">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+  <!-- Splash screens -->
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-750x1294.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1242x2148.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="assets/img/splash/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+
+</head>
+
+<body onload="eclipse.methods.init.loaded()">
+  <div style="background-color: #DC3545" id="splashScreen">
+    <div id="verticalCenter">
+      <div id="splashContent">
+        <img src="data:image/png;base64,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"
+          id="splashIcon"><br>
+        <!-- <p style="font-family:sans-serif;color:black;font-weight:bold">Loading Eclipse<noscript> when JavaScript is enabled</noscript>...</p> -->
+      </div>
+    </div>
+  </div>
+  <div class="statusbar">&nbsp;</div>
+  <div class="sheet-open" href="#" data-sheet=".js-console" id="consoleToggle">Open Console</div>
+  <a href="#" class="external" style="display:none;" id="download_btn_link"></a>
+  <div id="app" class="color-theme-red">
+    <div style="display:none">
+      <span id="uploaded_rom_b64"></span>
+      <input id="romUpload" accept=".nes, .sms, .gg, .gba, .gb, .gbc, .sfc, .smc" name="romUpload" type="file">
+      <input id="backup_upload" name="backup_upload" type="file">
+    </div>
+    <div class="view view-main view-init ios-edges" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="/settings/" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">gear_fill</i>
+                <i class="icon material-icons md-only">settings</i>
+              </a>
+            </div>
+            <div class="title home">Eclipse</div>
+            <div class="right">
+              <a href="/settings/games/?title=Search" class="link icon-only online-only">
+                <i class="icon f7-icons ios-only">search_strong</i>
+                <i class="icon material-icons md-only">search</i>
+              </a>
+              <a href="#" onclick="eclipse.methods.games.addGamePopup();" class="link icon-only online-only">
+                <i class="icon f7-icons ios-only">add</i>
+                <i class="icon material-icons md-only">add</i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content">
+          <br>
+          <div class="searchbar-backdrop"></div>
+          <div class="block offline-blur" style="margin-top:0px;">
+            <div class="games">
+              <div class="no-games" style="text-align:center;">
+                <br>
+                <h1>No Games</h1>
+                <p>You can add games by pressing the + button in the top right corner.</p>
+              </div>
+            </div>
+          </div>
+          <div class="offline-only">
+            <div class="offline-games searchbar-hide-on-search" style="text-align:center;">
+              <br>
+              <h1>You are Offline!</h1>
+              <p>Your game shortcuts are only available when you are online. Please upload your ROM to play it.</p>
+              <p>Your game progress will be saved.</p>
+              <div class="list inset">
+                <ul>
+                  <li>
+                    <a href="#" onclick="eclipse.methods.games.uploadGame();" class="item-link button-list-red list-button">Upload ROM</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="link popup-open" id="open_emulator_popup" href="#" data-popup=".popup-emulator"></a>
+    <div class="popup popup-emulator emulator-view popup-tablet-fullscreen">
+      <span style="font-size: 0px; color: white; top: 0; font-family: arial; margin-top:0px; margin-right:0px; display:none;" id="tempMessage"></span>
+      <div class="screen" id="emu_screen_container">
+        <center>
+          <div id="emu_gfx">
+            <canvas id="emu_screen_canvas"></canvas>
+          </div>
+        </center>
+      </div>
+      <div id="desktop-notice" class="desktop-notice">
+        <h2>On-screen Controls Are Hidden</h2>
+        <p>You can enable them in settings.</p>
+      </div>
+      <div class="controls">
+        <div id="emu_system_name" class="emulator-name"></div>
+        <div id="emu_l_btn" class="btn-l">L</div>
+        <div id="emu_r_btn" class="btn-r">R</div>
+        <div id="dpad">
+          <div id="dpad_child"></div>
+          <div id="emu_up_btn" class="dpad-up"></div>
+          <div id="emu_down_btn" class="dpad-down"></div>
+          <div id="emu_left_btn" class="dpad-left"></div>
+          <div id="emu_right_btn" class="dpad-right"></div>
+          <div id="emu_center" class="dpad-center"></div>
+        </div>
+        <div class="btns">
+          <div id="emu_a_btn" class="btn-a">A</div>
+          <div id="emu_b_btn" class="btn-b">B</div>
+          <div id="emu_x_btn" class="btn-x">X</div>
+          <div id="emu_y_btn" class="btn-y">Y</div>
+        </div>
+        <a class="btn-menu" id="emu_menu_btn" onclick="eclipse.data.emu.menu.open()">Menu</a>
+        <div class="startselect">
+          <div id="emu_select_btn" class="btn-select">Select</div>
+          <div id="emu_start_btn" class="btn-start">Start</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet-modal js-console">
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <div class="left"><a onclick="document.getElementById('debugConsole').innerHTML=''" class="link" href="#">Clear</a></div>
+        <b>Console</b>
+        <div class="right"><a class="link sheet-close" href="#">Done</a></div>
+      </div>
+    </div>
+    <input type="text" placeholder="Run some JavaScript code..." onblur='eval(document.getElementById("execConsole").value);document.getElementById("execConsole").value=""' id="execConsole">
+    <div id="debugConsole" style="overflow:scroll;height:74%" class="sheet-modal-inner console page-content"></div>
+  </div>
+
+  <script src="assets/js/framework7.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script>
+    var openskin = "eclipse";
+  </script>
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="assets/js/openskin.js"></script>
+  <script src="assets/js/repos.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/inobounce.js"></script>
+  <script src="assets/js/nipplejs.min.js"></script>
+  <script src="assets/js/discord.js"></script>
+  <script src="assets/js/md5.min.js"></script>
+  <script src="assets/js/cloud.js"></script>
+  <script src="assets/js/markdown.js"></script>
+  <script src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="1ke24c07wzux7bn"></script>
+  <!-- JSNES -->
+  <script src="assets/js/cores/jsnes/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="assets/js/cores/jsnes.min.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding tabBar">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Game Hub</div>
+      <div class="right">
+        <a href="#" onclick="eclipse.methods.repos.addPrompt();" class="link icon-only">
+          <i class="icon f7-icons ios-only">add</i>
+          <i class="icon material-icons md-only">add</i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+    <br>
+    <br>
+    <div class="swiper-container demo-swiper demo-swiper-auto">
+      <div class="swiper-pagination"></div>
+      <div class="swiper-wrapper" id="featured-repos-sliders">
+      </div>
+    </div>
+    <div class="block-title">Cloud</div>
+    <div class="list inset" id="cloud-list">
+      <div class="no-cloud" style="text-align:center; padding:16px;">
+        <h2>No Cloud Services Connected</h2>
+        <p>Connect Google Drive, Dropbox, and more in Settings</p>
+      </div>
+    </div>
+    <div class="block-title">Repos</div>
+    <div class="list inset" id="repos-list">
+        <div class="no-repo" style="text-align:center; margin:16px;">
+          <h2>No Repos</h2>
+          <p>You can add games by pressing the + button in the top right</p>
+        </div>
+    </div>
+    <div class="block-title">Featured Repos</div>
+    <div class="list cards-list inset">
+      <ul>
+        <div class="row" id="featured-repos">
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>

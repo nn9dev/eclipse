@@ -1,0 +1,73 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Usage</div>
+    </div>
+  </div>
+    <div class="page-content">
+      <div class="list media-list inset">
+        <ul>
+          <li style="padding: 10px">
+            <div>Eclipse Storage</div>
+            <div style="background-color:lightgrey;border-radius:5px;margin:10px">
+              <div class="gradient" style="height:30px;border-radius:5px" id="progressBar"></div>
+            </div>
+            <div id="quotaLabel" style="color:grey"><txt id="quotaUsed">?</txt> of <txt id="quotaTotal">?</txt> MiB Used (<txt id="quotaPercent">?</txt>%)</div>
+          </li>
+        </ul>
+      </div>
+      <div class="block">
+        <p>Eclipse has a limited amount of storage that it can work with, assigned by the web browser.<txt style="display:none" id="safariStorageNotice"> Please note that the given values may not be totally accurate due to limitations in Safari.</txt></p>
+      </div>
+
+      <div class="block-title">Backup</div>
+      <div class="list inset">
+        <ul>
+          <li>
+            <a href="#" onclick="document.getElementById('onlineLI').click(); document.getElementById('onlineLI').children[0].click()" id="settingsLoadStateLink" class="list-button item-link color-blue popup-open" data-popup=".popup-loadState">Load State</a>
+          </li>
+          <li>
+            <a href="#" onclick="exportLocalStorage();" class="list-button item-link color-blue external">Export State</a>
+          </li>
+        </ul>
+      </div>
+      <div class="block-title">Restore</div>
+      <div class="list inset">
+        <ul>
+          <li>
+            <a href="#" onclick="eclipse.resetRepo();" class="list-button item-link color-red">Reset Repos</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.resetGames();" class="list-button item-link color-red">Reset Games</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.resetSkins();" class="list-button item-link color-red">Reset Skins</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.resetControls();" id="resetControlsButton" class="list-button item-link color-red">Reset Controls</a>
+          </li>
+          <li>
+            <a href="#" onclick="eclipse.resetAll();" class="list-button item-link color-red">Reset All Content and Settings</a>
+          </li>
+        </ul>
+      </div>
+      <div class="list inset">
+        <ul>
+          <li>
+            <a href="#" onclick="eclipse.purge();" class="button button-big item-link button-fill color-red">Initialize</a>
+          </li>
+        </ul>
+      </div>
+
+
+
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+{
+  "name": "We Are Number One",
+  "logo": "https://i1.sndcdn.com/avatars-000283354129-5s27v3-t500x500.jpg",
+  "author": "iGBA",
+  "styles": [{
+    "emulatorBackground": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "triggerL": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "triggerR": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "center": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "right": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "left": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "up": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "down": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "aBtn": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "bBtn": "background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "startBtn":"background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;",
+    "select":"background-image: url('https://upload.wikimedia.org/wikipedia/en/5/54/We_Are_Number_One.jpg'); color:#fff;"
+  }]
+}

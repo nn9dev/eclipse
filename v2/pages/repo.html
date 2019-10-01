@@ -1,0 +1,55 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner tabBar">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title" id="repoNameNavbar">Loading</div>
+      <div class="right">
+        <!-- Link to enable searchbar -->
+        <a class="link icon-only searchbar-enable" data-searchbar=".searchbar">
+          <i class="icon f7-icons ios-only">search_strong</i>
+          <i class="icon material-icons md-only">search</i>
+        </a>
+      </div>
+      <!-- Searchbar is a direct child of "navbar-inner" -->
+      <form class="searchbar searchbar-expandable searchbar-init" data-search-container=".roms-list" data-search-in=".item-title">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="Search" />
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button">Cancel</span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Scrollable page content -->
+  <div class="page-content">
+    <br><br>
+      <div class="block block-strong inset current-skin" style="margin-top:0px;margin-bottom:0px;" id="repoPageHead">
+        <img id="repoLogo" width="64px" height="64px" style="border-radius:100px;display:inline-grid;margin-bottom:20px;float:left" src="assets/img/default-cover">
+        <div style="display:inline-grid;margin-bottom:55px;padding-bottom:20px;margin-left:8px;width:70%">
+          <h2 id="repoName" class="repoLabel" style="margin:0px; margin-top:5px;">Loading Repo...</h2>
+          <h3 class="repoLabel" style="margin:0px; font-weight:500;">&nbsp;By <span id="repoAuthor">Eclipse</span></h3>
+        </div>
+      </div>
+    <p id="repoDesc" style="font-weight:normal;padding-left:20px"></p>
+    <div class="list inset roms-list faded-out-loading" id="repoPageList">
+      <ul id="categories">
+      </ul>
+    </div>
+    <span>
+  </span>
+    <div class="list simple-list searchbar-not-found">
+      <center>
+        <h1 style="color:#333;">Nothing Found</h1>
+        <p>No games with that name have been found in this repo.</p>
+      </center>
+    </div>
+  </div>
+</div>

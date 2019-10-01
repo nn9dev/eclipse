@@ -1,0 +1,9 @@
+{  
+   "name":"Default",
+   "logo":"https://eclipseemu.me/play/img/icons/icon_mobFull.png",
+   "author":"Eclipse Team",
+   "description":"The default theme for Eclipse.",
+   "styles":[  
+      {}
+   ]
+}
