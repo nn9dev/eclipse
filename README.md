@@ -31,3 +31,33 @@ Eclipse v4 will be the last complete refactor of Eclipse. Version 4 will focus o
 
 ## Design
 WIP -- A Sketch Cloud link can be found here once it's done.
+
+## Project Setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run Tests
+```
+npm run test
+```
+
+### Lints and Fixes files
+```
+npm run lint
+```
+
+### Run Unit Tests
+```
+npm run test:unit
+```
