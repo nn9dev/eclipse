@@ -22,16 +22,17 @@ Eclipse v3 will be the last complete refactor of Eclipse. Version 4 will focus o
 ## Design
 [Design](https://sketch.cloud/s/zkVKa) –– The general design for Eclipse.
 
-## Planned System Support
-- CHIP-8
-- NES
-- SNES
-- GB
-- GBC
-- GBA
-- Sega Master System
-- Game Gear
-- PlayStation 1
+## Planned Core Support
+
+| Core           | Systems | Link                                              |
+|----------------|---------|---------------------------------------------------|
+| Chip8-js       | CHIP8   | [Here](https://github.com/APTy/chip8-js)          |
+| JSNES          | NES     | [Here](https://github.com/tjwei/xnes)             |
+| XNES           | SNES    | [Here](https://github.com/tjwei/xnes)             |
+| GameBoy-Online | GB, GBC | [Here](https://github.com/taisel/GameBoy-Online)  |
+| IodineGBA      | GBA     | [Here](https://github.com/taisel/IodineGBA)       |
+| PCSXjs         | PSX     | [Here](https://github.com/tjwei/pcsxjs)           |
+| jsSMS          | SMS, GG | [Here](https://github.com/gmarty/jsSMS)           |
 
 ## Dependancies (Cores not Included)
 - TypeScript
