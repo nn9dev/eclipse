@@ -2,9 +2,9 @@
 	<div class="game">
 		<div class="boxart" :style="{ backgroundImage: `url(${boxart})`}">
 			<div class="items">
-				<a href="/game/UIHwd/play/" class="play" data-router-link="">
+				<router-link to="/game/UIHwd/play/" class="play">
 					<ion-icon name="ios-play"></ion-icon>
-				</a>
+				</router-link>
 				<a href="#" class="menu">
 					<ion-icon name="ios-more"></ion-icon>
 				</a>
