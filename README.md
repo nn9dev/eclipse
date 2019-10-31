@@ -19,6 +19,20 @@ Eclipse v3 will be the last complete refactor of Eclipse. Version 4 will focus o
 - Redesign
 - Redesigned Website
 
+## Design
+[Design](https://sketch.cloud/s/zkVKa) –– The general design for Eclipse.
+
+## Planned System Support
+- CHIP-8
+- NES
+- SNES
+- GB
+- GBC
+- GBA
+- Sega Master System
+- Game Gear
+- PlayStation 1
+
 ## Dependancies (Cores not Included)
 - TypeScript
 - Vue
@@ -28,9 +42,6 @@ Eclipse v3 will be the last complete refactor of Eclipse. Version 4 will focus o
 - TSLint
 - LocalForage
 - OpenSkin (v3)
-
-## Design
-[Design](https://sketch.cloud/s/zkVKa) –– The general design for Eclipse.
 
 ## Project Setup
 ```
