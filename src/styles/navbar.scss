@@ -1,0 +1,124 @@
+nav.navbar {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	width: calc(100% - 64px);
+	background-color: #fff;
+	box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.05);
+	// display: flex;
+	padding: 16px 32px;
+	padding-bottom: 0px;
+	z-index: 9999;
+
+	.top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+		.left {
+			font-size: 20px;
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			img {
+				border-radius: 15px;
+				width: 30px;
+				height: 30px;
+				margin-right: 8px;
+			}
+		}
+
+		.right {
+			display: flex;
+			a {
+				margin-left: 16px;
+				width: 30px;
+				height: 30px;
+				display: block;
+				// background-color: #D8D8D8;
+				font-size: 24px;
+				border-radius: 15px;
+				text-align: center;
+				line-height: 37.5px;
+			}
+		}
+	}
+
+	.searchbar {
+		pointer-events: none;
+		position: absolute;
+		display: flex;
+		top: 16px;
+		left: 0px;
+		right: 0px;
+		padding-left: 32px;
+		padding-right: 32px;
+		justify-content: center;
+		input {
+			pointer-events: initial;
+
+			appearance: none;
+			border: none;
+			height: 30px;
+			max-width: 500px;
+			width: 100%;
+			text-align: center;
+			display: block;
+			background-color: rgba(0,0,0,0.03);
+			font-size: 14px;
+			border-radius: 8px;
+		}
+	}
+	
+
+	.bottom {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		a {
+			height: 41px;
+			width: 120px;
+			text-align: center;
+			line-height: 41px;
+			margin: 0px;
+			margin-left: 8px;
+			margin-right: 8px;
+			opacity: 0.5;
+		}
+
+		a:not(.router-link-active):hover {
+			opacity: 0.8;
+		}
+
+		a.router-link-exact-active {
+			opacity: 1;
+			border-bottom: solid;
+			border-bottom-width: 2px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	nav.navbar .searchbar {
+		top: 55px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	nav.navbar {
+		width: calc(100% - 32px);
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	nav.navbar .bottom {
+		// position: absolute;
+		margin-top: 40px;
+	}
+
+	.content:not(.no-navbar) {
+		margin-top: 120px;
+	}
+}

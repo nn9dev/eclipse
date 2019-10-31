@@ -1,0 +1,27 @@
+.grid {
+	display: grid;
+	-webkit-box-align: start;
+	-webkit-align-items: start;
+	-ms-flex-align: start;
+	align-items: start;
+	grid-gap: 20px;
+	grid-template-columns: repeat(5, 1fr);
+}
+
+@media screen and (max-width: 768px) {
+	.grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media screen and (min-width: 769px) {
+	.grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.grid {
+		grid-template-columns: repeat(5, 1fr);
+	}
+}

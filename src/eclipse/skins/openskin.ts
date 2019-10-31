@@ -18,6 +18,7 @@ interface OpenSkinOptions {
 	storage?: LocalForage|Storage;
 	elements?: any;
 	init?: boolean;
+	defaults?: string[];
 }
 
 interface OpenSkinFetchedSkin {
@@ -27,15 +28,18 @@ interface OpenSkinFetchedSkin {
 }
 
 export default class OpenSkin {
-
+	public currentKey: string;
 	public key: string;
+	public defaults: string[];
 	public storage: LocalForage | Storage;
 	public elements: any;
 
-	constructor(key: string, { storage, elements, init }: OpenSkinOptions = {}) {
+	constructor(key: string, { storage, elements, defaults, init }: OpenSkinOptions = {}) {
 		this.key = key;
+		this.currentKey = `current${key.charAt(0).toUpperCase() + key.slice(1)}`;
 		this.storage = (storage) ? storage : localStorage;
 		this.elements = (elements) ? elements : {};
+		this.defaults = (defaults) ? defaults : [];
 		if (init === true) {
 			this.init();
 		}
@@ -45,6 +49,10 @@ export default class OpenSkin {
 		const skins = await this.storage.getItem(this.key);
 		if (skins == null) {
 			await this.storage.setItem(this.key, '[]');
+		}
+		const currentSkin = await this.storage.getItem(this.currentKey);
+		if (!!currentSkin) {
+			this.load(currentSkin);
 		}
 	}
 
@@ -61,6 +69,11 @@ export default class OpenSkin {
 		skins.splice(index, 1);
 		this.storage.setItem(this.key, JSON.stringify(skins));
 		return item;
+	}
+
+	public async reset() {
+		this.storage.setItem(this.key, JSON.stringify(this.defaults));
+		this.storage.removeItem(this.currentKey);
 	}
 
 	public async list(get: boolean = false) {
@@ -99,5 +112,11 @@ export default class OpenSkin {
 			const response = await fetch(skin);
 			skin = await response.json();
 		}
+		this.storage.setItem(this.currentKey, JSON.stringify(skin));
+		this.load(skin);
+	}
+
+	public async load(skin: any) {
+		console.log(skin);
 	}
 }

@@ -1,0 +1,74 @@
+.game {
+	white-space: normal;
+	position: relative;
+	vertical-align: baseline;
+	z-index: 1;
+	width: 100%;
+}
+
+.game:hover .boxart {
+	transition: 0.3s;
+	box-shadow: inset 0px -50px 48px -10px rgba(0,0,0,0.5);
+
+}
+
+.game:hover .boxart .items {
+	opacity: 1;
+}
+
+.game .boxart {
+	box-shadow: 0 5px 10px 0 rgba(0,0,0,0.15);
+	border-radius: 9px;
+	height: 0px;
+	width: 100%;
+	padding-top: calc(100% - 1px);
+	display: block;
+	background-image: url(http://s.emuparadise.org/GBA/boxart/1237.jpg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-color: #fff; */
+	border: 0.5px solid rgba(255, 255, 255, 0.1);
+	margin-bottom: 5px;
+}
+
+.game .boxart .items {
+	transition: 0.3s;
+	opacity: 0;
+	display: flex;
+	position: relative;
+	top: -40px;
+	justify-content: space-between;
+	padding: 0px 16px;
+}
+
+.game .boxart .items a {
+	text-decoration: none;
+	display: block;
+	box-shadow: 0 15px 15px 0 rgba(0,0,0,0.1);
+	overflow: hidden;
+	text-align: center;
+	color: #fff;
+	line-height: 38px;
+	border-radius: 16px;
+	background-color: rgba(255,255,255, 0.3);
+	width: 32px;
+	height: 32px;
+	transition: 0.15s;
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+}
+
+.game .boxart .items a:hover {
+	background-color: var(--eclipse-tint-color);
+}
+
+.game .name {
+	display: block;
+	margin-bottom: -3px;
+}
+
+.game .system {
+	display: block;
+	opacity: 0.5;
+}

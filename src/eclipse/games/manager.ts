@@ -1,5 +1,6 @@
 export default class EclipseGamesManager {
-	// constructor() {}
+	constructor() {}
+
 	async add() {
 
 	}
