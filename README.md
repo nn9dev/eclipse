@@ -30,7 +30,7 @@ Eclipse v3 will be the last complete refactor of Eclipse. Version 4 will focus o
 - OpenSkin (v3)
 
 ## Design
-WIP -- A Sketch Cloud link can be found here once it's done.
+[Design](https://sketch.cloud/s/zkVKa) –– The general design for Eclipse.
 
 ## Project Setup
 ```
