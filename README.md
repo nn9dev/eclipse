@@ -12,7 +12,6 @@ Eclipse v3 will be the last complete refactor of Eclipse. Version 4 will focus o
 - Unzip files
 - Cloud sync
 - Improved Import/Export of States
-- Custom HTML/CSS/JS framework (bye Framework7)
 - More streamlined interface
 - WebAssembly-based Core Support
 - Fix the controls better™
@@ -43,6 +42,7 @@ Eclipse v3 will be the last complete refactor of Eclipse. Version 4 will focus o
 - TSLint
 - LocalForage
 - OpenSkin (v3)
+- TailwindCSS
 
 ## Project Setup
 ```
