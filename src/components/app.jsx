@@ -25,7 +25,6 @@ import {
 	BlockFooter
 } from 'framework7-react';
 
-import cordovaApp from '../js/cordova-app';
 import routes from '../js/routes';
 
 export default class extends React.Component {
@@ -36,7 +35,7 @@ export default class extends React.Component {
 		let url = new URL(location.href);
 		let theme = url.searchParams.get('theme');
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-		let detectedTheme = (Device.ios) ? 'iOS' : (Device.android || Device.androidChrome) ? 'md' : 'aurora';
+		let detectedTheme = (Device.ios) ? 'ios' : (Device.android || Device.androidChrome) ? 'md' : 'aurora';
 		
 		this.state = {
 			// Framework7 Parameters
@@ -61,12 +60,12 @@ export default class extends React.Component {
 					leftBreakpoint: 980,
 				},
 				routes: routes,
-				serviceWorker: (this.$device.cordova || url.host === `localhost:${url.port}`) ? {} : {
+				serviceWorker: (url.host === `localhost:${url.port}`) ? {} : {
 					path: '/service-worker.js',
 				},
 				input: {
-					scrollIntoViewOnFocus: this.$device.cordova && !this.$device.electron,
-					scrollIntoViewCentered: this.$device.cordova && !this.$device.electron,
+					scrollIntoViewOnFocus: false,
+					scrollIntoViewCentered: false,
 				},
 				statusbar: {
 					iosOverlaysWebView: true,
@@ -102,10 +101,6 @@ export default class extends React.Component {
 
 	componentDidMount() {
 		this.$f7ready((f7) => {
-			// Init cordova APIs (see cordova-app.js)
-			if (f7.device.cordova) {
-				cordovaApp.init(f7);
-			}
 			// Call F7 APIs here
 		});
 	}

@@ -34,10 +34,6 @@
 	--f7-list-item-min-height: 44px;
 } */
 
-.device-cordova body, .device-cordova .panel.panel-left .page, .device-cordova {
-	background-color: transparent;
-}
-
 .aurora .sidebar-media {
 	width: 25px;
 	height: 25px;
