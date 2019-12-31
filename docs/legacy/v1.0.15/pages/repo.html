@@ -1,0 +1,56 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title" id="repoNameNavbar">Loading</div>
+      <div class="right">
+        <!-- Link to enable searchbar -->
+        <a class="link icon-only searchbar-enable" data-searchbar=".searchbar">
+          <i class="icon f7-icons ios-only">search_strong</i>
+          <i class="icon material-icons md-only">search</i>
+        </a>
+      </div>
+      <!-- Searchbar is a direct child of "navbar-inner" -->
+      <form class="searchbar searchbar-expandable searchbar-init" data-search-container=".roms-list" data-search-in=".item-title">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="Search" />
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button">Cancel</span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Scrollable page content -->
+  <div class="page-content">
+    <style>.faded-out-loading { opacity: 0.00 } .faded-in-loaded { opacity: 1.00 !important; transition: 500ms; -webkit-transition: 500ms; }</style>
+    <div class="searchbar-hide-on-search block block-strong inset eclipse-header faded-out-loading " style="color:#fff; background-image: linear-gradient(-180deg, #FF3546 0%, #9F0445 97%);" id="repoPageHead">
+      <br>
+      <img width="128px" height="128px" id="repoLogo" style="border-radius:128px;" src="//eclipseemu.me/play/img/icons/icon_mobFull.png">
+      <h1 id="repoName">Loading Repo...</h1>
+      <h3>Owned by <b id="repoAuthor">Eclipse</b></h3>
+      <div class="block inset">
+        <p id="repoDesc" style="text-align:center; color:#fff; font-weight:600;"></p>
+      </div>
+    </div>
+    <div class="list inset roms-list faded-out-loading " id="repoPageList">
+      <ul id="categories">
+      </ul>
+    </div>
+    <span>
+  </span>
+    <div class="list simple-list searchbar-not-found">
+      <center>
+        <h1 style="color:#333;" class="">Sorry,</h1>
+        <h2>No games with that name have been found</h2>
+      </center>
+    </div>
+  </div>
+</div>

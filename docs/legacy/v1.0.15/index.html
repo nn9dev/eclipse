@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html manifest="eclipse.manifest" lang="en">
+
+<head>
+  <style>
+    canvas {
+      border: none;
+      background-color: black;
+    }
+  </style>
+  <!-- Prevent issues with Electron wrapper -->
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+
+    function randomNumber(len) {
+      var returnValue = "";
+
+      function returnRandomNumberAsString() {
+        var returnInteger = Math.floor(Math.random() * 10);
+        if (returnInteger == 0) {
+          returnInteger = Math.floor(Math.random() * 9 + 1);
+        }
+        return returnInteger.toString();
+      }
+      for (i = 1; i <= len; i++) {
+        returnValue = returnRandomNumberAsString() + returnValue;
+      }
+
+      function getValueToReturn() {
+        if (len <= 0 || len == null) {
+          console.error("Invalid length.");
+          return undefined;
+        } else {
+          return parseInt(returnValue);
+        }
+      }
+      return getValueToReturn();
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    function reinstallEclipseUpdate() {
+      try {
+        window.applicationCache.update();
+        // eclipse.log(err);
+      } catch (err) {
+        alert("Eclipse Error\nPurging the application cache was unsuccessful. Please screenshot this page and send it to @HeyItsShuga on Twitter so we can resolve this.\n\n" + err);
+      }
+      location.reload(true);
+    }
+
+    function updateEclipse() {
+      try {
+        window.applicationCache.swapCache();
+      } catch (err) {
+        try {
+          window.applicationCache.update();
+          // eclipse.log(err);
+        } catch (err) {
+          alert("Eclipse Error\nPurging the application cache was unsuccessful. Please screenshot this page and send it to @HeyItsShuga on Twitter so we can resolve this.\n\n" + err);
+        }
+      }
+      location.reload(true);
+    }
+
+    function updateSite(event) {
+      eclipse.dialog.confirm('A new update is available, do you wish to update? (Any unsaved progress in a game will be lost)', function() {
+        try {
+          window.applicationCache.swapCache();
+        } catch (err) {
+          try {
+            window.applicationCache.update();
+            // eclipse.log(err);
+          } catch (err) {
+            alert("Eclipse Error\nPurging the application cache was unsuccessful. Please screenshot this page and send it to @HeyItsShuga on Twitter so we can resolve this.\n\n" + err);
+          }
+        }
+        location.reload(true);
+      });
+    }
+
+    window.applicationCache.addEventListener('updateready',
+      updateSite, false);
+
+    var errorCount = 0;
+    var errorTexts = "";
+    window.onerror = function(line, error) {
+      errorCount++;
+      errorTexts = errorTexts + "[" + errorCount.toString() + "] " + error + " (" + line + ")\n";
+      if (document.getElementById("splashScreen") != null && errorCount > 5) {
+        alert("*** STOP ***\nTOO MANY ERRORS, UNABLE TO CONTINUE.");
+        alert(errorTexts);
+        location.reload();
+      }
+    }
+
+    function loadJSFile(JSLink, callbackFunction) {
+      var JSElement = document.createElement('script');
+      JSElement.src = JSLink;
+      document.getElementsByTagName('head')[0].appendChild(JSElement);
+      if (callbackFunction != null) {
+        JSElement.onload = callbackFunction();
+      }
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" id="themeColor" content="#f44336">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Eclipse</title>
+  <link rel="stylesheet" href="css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="https://eclipseemu.me/play/img/icons/icon_mobFull.png">
+  <link rel="icon" href="img/icons/icon_mobFull.png">
+  <script>
+    var openskin = "eclipse"
+  </script>
+  <script src="js/openskin.js"></script>
+
+</head>
+
+<electronAccess id="discordGameName"></electronAccess>
+<electronAccess id="discordPlatformName"></electronAccess>
+<p id="uploadROMBase64" style="display:none;"></p>
+
+<body class="color-theme-red" onload="eclipse.load(); document.getElementById('onlineLI').click();" onselect="return false;" onselectstart="return false;" ondrag="return false;" ondragstart="return false;">
+  <div id="splashScreen">
+    <div id="verticalCenter">
+      <div id="splashContent">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAawAAADJCAYAAAB/hgbxAAAOYElEQVR4nO3df6xkZX3H8fe9ooAujWAI2h/euZHN2q1uq5QG2xUqKCAotiIRq9Fi/NlS22paTcU2YDSb/qCpNqVoW2ilMcXYlGqtIv6gYAuiaFYpGkrvXGkr3drVBKGWsjv945mTO3N35v6YOXO+z3Pm/Uo2M3fu3DkfZveeD885zzxnodfroZEWgB7wTuCy4Cyz9CrgL4DjgAeCs0jSWAsW1lhnATdFh2jQCcC3o0NI0jiL0QEy9YvMV1kBHAR2AY+ODiJJozjCGnYccAxwIDpIoIXoAJI0ioV1pHl/Qw4AJ0WHkKT1LKxhxwIPRYfIgKMsSdnxHNawN0QHyMTO6ACStJ6FNexZ0QEysTs6gCStZ2ENOyY6QCYORweQpPUsrGGHogNkwn8XkrLjjkmSVAQLa9ijogNIkkazsIZ5SFCSMmVhSZKKYGFJkopgYWkUp7VLyo6FJUkqgoUlSSqChSVJKoKFJUkqgoUlSSrCUdEBJEmN6Uzxs92aMkzMwpKk9uoM3H8t8GLgqRO8zm3A3wB/NfBYd+JUE7KwJKk9TgPu799/GfCb1HPZpNP6f/b1v14BLgdu7n/drWEbm7KwJKl8nf7tk4F/amB7y8C1/fsrwIuAB4DHA1+e1UYtLEkqV6d/eynwlqAMy8D+/v3XA98BTgJur3tDzhKUpPKcTiqrN5BGOFFltd7VpDwnk/KdV+eLO8KSpLJ0+rcrkSE2cV3/dpmUt1vHizrCkqQyPIe087+RtckOuVsB3k3KfcG0L2ZhSVL+OqSd/wqwMzbKtr2MlHs/cMo0L2RhSVLeOqydqyrZCmkyRmfSF7CwJClfHeB64K3BOeryd6QZjZ1JftjCkqT8vIS0U78bODU2Su3eAvwhE5SWhSVJeXkJ8AXSIbQ6VqnI0fnAB9hmaVlYkpSXqqzabi9wFdsoLQtLkvLRIU1bnxfnAm9mi6VlYUlSHjqkxWpLm7Y+rV8Cfhz4kc2eaGFplF50AGnOnAo8DbgkOkiQDwEPsslSTi7NJEmxLiB9qPbz0UGCrZCWchrLEZYkxdrPfEyy2IoNp7tbWJIU5ynAhdEhMnJ+//Z5o77pIUFJinMI+N3oEJkZe2jQEZYkxeiwdtVeDfsZ0jW1hlhYkhTnjOgAmfp94JH1D1pYktS8DmlRW433CtZNwLCwJClG2xa1rds71z9gYUlSszrA26NDFGL34BcWliQ17zXRAQrxYQYOC1pYktSsx0YHKMjQ5VUsrGGHowNIarUOcHV0iMK8tLpjYQ3z/ZA0a3ujAxTmMvqHBd1BD3OEJUl52VHdsbAkqTkv3fwpGsfCkqRmdICfiw5RqNeChSVJTdoTHaBQLwA6FpYkKXd7wBGWJKkQFpYkqQgWliQ142nRAUpnYUlSM464IKG2x8KSpGYcGx2gdBaWRnHFD0nZsbA0iv8upPr5P4JTcsekUfzFkup3f3SA0llYktSMO6MDlM7CGnZ0dIBMHLP5UyRt0wPRAUpnYQ27NzpAJvZHB5Ck9Y7a4HvnARcDyw1lifRo4BvARdFBMvE50uGLHZs9sXCHgEcB3wY+Cryv//jx/cck5eF7AAu9Xq96oPol/SxwRkwmKQsL0QHUSh3gHjYeKGi0vwYurA4JVmXVw7KSesCu6BBqnS7woegQhfogDI+weuOfK82lBeA4PFmu+uwFbokOUaBloFsNTa+PTCJlqoeHB1Wvf4sOULLqkKCTDaTRnhIdQJpzN1R3FvGSzdJGro0OoNZ5R3SAwvwK6fwfi8CzQ6NIedsbHUCt0gWuiw5RqkXa/1kbScrNwegAhbhm8ItFXOhUkprUBV4YHaIQV9A/HAguzSRJEf4jOkAB7ln/gIUlSc17HPDz0SEydzYDoytIS4RYWpLUrLuAB6NDZGxl1IOew5KkGE/EWdrjnMm60RU4upKkKLeRVr5wxuCwa8Z9w8KSpDhd4JToEJkZmhk4yMKSpHhvig6QiWU2uAajhSVJsbrAR4D7gnNEe2//9jPjnmBhSVK8LnB6dIhAB4ErGXMosGJhSVIedrHB4bCWO4VNygosLEnKxSeAk5i/0loGdm/liRaWJOXj9v7tvHw+q5pk8bGtPNnCkqS8dEmfzzozOMesLQM/yAaTLNazsCQpP13S8kRtPTxYldWt2/khC0uS8tQFnkD7SmsZ2Mk2ywosLEnK2RdJO/dl4LvBWab1cdJ/xx7gk5O8wFG1xpEk1a3auT8deDXwjsAskzqbdH2rLluYvj6OIyxJKkMX+DPKOkR4DynvAaYoqoojLEkqRxc4h1QCZwDXRobZRFWs3bpe0BGWJJXlE6QS+BypFN4dmuZIryDl+n5qLCuwsCSpVP9CKoT3kwoiesX3c/s5vkTK9Y91b8DCkqSydVlb8b1aOeLjDW37Twa2+a1+jn+e1cY8hyWpVEvbfP7qTFLkoztw/40D938ZeA2wo4Zt3AdcBXxwxHa7659cNwtLUgkGy+k04EWky3H8wBZ//uukUccNwL8OPN7WEusO3P9V4A8Gvj6RtOzTLtIq6ScCRwOPAR4G/pe0NNQdwNdII7dxr92ohV6v92vAb0cFkAqwEB1gTlUl9TzgMrY/otrMzcDlrBVYW8urNRxhScpJVUqnAdcx233UGcCn+/f3AxcMfM/yypCFJSkHVVFdRjrf0rQ9rB3q+gXWLndhcWXEwpIUqSqqfcDFkUEG/FH/9k3A3wJPAm6Li6OK09olRXguqawuJI1scimrQe8hZTtA/efPNAFHWJKatsTaQqgluJf0YdifBZ7I2lWB1bBF4HB0CElzYwl4OeWUVeUZpMz342grzCIeFpQ0e+eQdvQ3A+8KzjKNLunclqUVwLKSNGvPJn0AtUs7dvRvJi1AuwS8IDjLXPGQoKRZ+gngG5R3CHAzu0j/TV8Bzo+NMj8cYUmalVOB/6R9ZTWoC3wVOC84x1ywsCTNwl5quspsAbrAXXh4cOac1i6pbmeTFpvtBudoUhfoBGdoPUdYkuo2b2VV+TDtmFSSLQtLUp2WSJdun0enkD5jZmnNiIUlqS5LwCvZ+jWq2qj6jNnpoSlaysKSVIcz+7dXhKbIQxdXeZ8JC0tSHe5lPs9bjfN7eGiwdhaWpGktkedq65Eu7N8+JzRFyzitXVId9kUHyFAXp7rXyhGWpGksAb8THSJjJ5FW/FANLCxJ07ooOkDGbiet+KEaWFiSJrUE/FZ0CM0PC0vSNC6JDlCAO3HGYC0sLEmTelZ0gEKcEB2gLRaB/4oOIak4S8CfR4coyBtxlDW1ReBj0SGkjH0gOkDGHhMdoCBvjQ7QBovAt6JDSBl7ZXSATP10dADNn+oclidOJW3VEvAb0SEK5AUep7TQ6/Wq+72NnijNoQXSCfOD0UEys4TrBk7ibuD5uDDuxKoR1omkX87vBmaRcrIAHItlpfr8cHSA0lWFVc0UPA44JyiLlIOrSWW1A/if4Cy52hUdQPNp1OK3N5J+YSFdQfN44BCjP7N1eMzjW31eLj9/NHAXcAPwo1t4vbZ7G3AT8ATS333uf3/T/vz/Abf2v654tGG8c6MDaD5ttlr7FxtJkY8vYWEB/APz93evrTsrOkDBngv8aXSIUrnSxbDviw6QieOjAyhbS8BTo0MUbHd0gJJZWMMORQfIxCPRAZQ1PzA8uT3RAUpmYUlSc3ZGByiZhSVJzfEq71OwsCSpOe5zp+CbJ0nNObz5UzSOhSVJzfledICSWViS1JyvRQcomYUlabseig5QsK9EByiZhSVpO1ZJy5hpMl+NDlAyC0vSdn0yOkDBbo0OUDILS9J2fSQ6gOaThaVRnHqrjXwzOoDmk4UlSc24PTpA6SwsSZO4IzpAgd5LmrSiCVlYkrZrFbgiOkSBnHAxJQtL0iT8PJEaZ2FJmtS/RwcoyK9HB2gDC0vSJFaBi6NDFOR6PH81NQtL0qTuiw5QiLujA7SFhSVpGu+KDlCA5+PoqhYWlqRJrQLvjw6RuUeiA7SJhSVpWldGB8jYyTi6qo2FNcwliaTtWQXeEx0iU86irJmFNcz3Q5rMRdEBMvRTOLqq1VHRASQVr9opPwQ8NjJIRvZFB2gjRxSS6rAK7I4OkZE/xtFV7SysYZ7Dkqbz4ugAGeiQJluoZhaWpLqsAncCN0YHCfTC/u2nQlO0lIU1zPdDms4q8LroEEGuIS0K7KHAGXEHPcxDgtL0dpMOi82T/cDlWFYzZWFJqtvfk87hdIJzNOUgcAGW1cxZWJJm4VPAk2l/aX0HeCaWVSMsLEmzcgvtLq27gR/DsmqMhSVplm4BdpJKq00Lwf4lrsLeOAtL0qzdRNqxn0y6kGHpLgLejmXVOAtLUlNWSZeK/8noIFPoAHdgWYWwsCQ1aRU4QNrx3xsbZVuuImVexrIK4+K3kppWFdVZwOOBLwdm2cxDrK2RuIplFcoRlqQoq0CPNHK5NDbKSMuksrKoMmFhSYq0n1QGHyUV1yWhaeCBfo4OcAIWVVYsLI3Siw6guVONYj7DWmHc3OD239ff5tMHstzZ4Pa1BZ7DkpSTwRHNqwbu7wMurnE7DwNXkq5bNWrbypCFJSlXgwXytv6fynnA6aTL0P/QBq/xMLACfJo0YrttzOurABaWpBKsL5er+n+WJvhZFcrCklQyy2iOOOlCklQEC0uSVAQLS5JUBAtLklQEC0uSVAQLS5JUBAtLklQEC0uSVAQLS5JUBAtLklQEC0uSVAQLa9ih6ACZWIgOIEnrWVjDvh4dIBP/HR1AktZb6PW8uOyAk4F7okNkwBGWpOxYWEfyDbGwJGXIQ4JHujQ6QLAnRQeQpFEcYY02r2/KtcAl0SEkaRRHWEc6gXRI7EB0kIZdjWUlKWOOsDZ2KvD56BAN2AE8GB1CkjZiYW3d40ijrza8YQvAN4FH+l8vAofj4kjS5v4fzlwIYjeVQPAAAAAASUVORK5CYII="
+          id="splashIcon"><br>
+        <p style="font-family:sans-serif;">Loading Eclipse<noscript> when JavaScript is enabled</noscript>...</p>
+      </div>
+    </div>
+  </div>
+  <div id="app">
+    <!-- <div class="statusbar"></div> -->
+    <div class="view view-main view-init ios-edges" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="/settings/" class="link icon-only">
+                        <i class="icon f7-icons ios-only">gear_fill</i>
+                        <i class="icon material-icons md-only">settings</i>
+                        </a>
+            </div>
+            <div class="title sliding">
+              <div class="md-only"><img style="height:20px;display:inline-block;vertical-align:middle" src="img/icons/controller.png">
+                <txt style="visibility:hidden">-</txt>
+                <p style="display:inline-block;vertical-align:middle">Eclipse</p>
+              </div>
+              <div class="ios-only"><img style="height:20px;display:inline-block;vertical-align:middle" src="img/icons/controller_dark.png">
+                <txt style="visibility:hidden">-</txt>
+                <p style="display:inline-block;vertical-align:middle">Eclipse</p>
+              </div>
+            </div>
+            <div class="right">
+              <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-components" onclick="document.getElementById('searchROMsSearchTing').focus();">
+                        <i class="icon f7-icons ios-only">search_strong</i>
+                        <i class="icon material-icons md-only">search</i>
+                        </a>
+            </div>
+            <form data-search-container=".games-library" data-search-in=".card-footer" class="searchbar searchbar-expandable searchbar-components searchbar-init">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search ROMs" id="searchROMsSearchTing" />
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button">Cancel</span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="fab fab-right-bottom">
+          <a href="#" onclick="addROMs.open();">
+                    <i class="icon f7-icons">add</i>
+                  </a>
+        </div>
+        <div class="page-content">
+          <!-- <div class="searchbar-hide-on-search block block-strong inset eclipse-header gradient">
+                     <br>
+                     <img src="img/icons/icon_mobFull.png" class="app-icon">
+                     <h1 style="color:#fff;">Eclipse</h1> -->
+          <!--<div class="row">
+                        <div class="col-100 tablet-33"></div>
+                        <div class="col-100 tablet-33">
+                           <a href="#" onclick="addROMs.open();" class="button active button-big button-round" style="box-shadow: 0 5px 13px 0 rgba(0, 0, 0, .1); border:none; background-image: linear-gradient(45deg, #F1FFFF 0%, #FFFFFF 100%); color:#333; font-weight:bold; margin:16px;">ADD ROM</a>
+                        </div>
+                        <div class="col-100 tablet-33"></div>
+                     </div>-->
+          <!-- <a href="#" id="gbaPopupButton" class="popup-emu button active button-big button-round popup-open" data-popup=".popup-gba" style="display:none;">OPEN GBA POPUP</a>
+                     <a href="#" id="nesPopupButton" class="popup-emu button active button-big button-round popup-open" data-popup=".popup-nes" style="display:none;">OPEN NES POPUP</a>
+                     <a href="#" id="gbPopupButton" class="popup-emu button active button-big button-round popup-open" data-popup=".popup-gb"  style="display:none;">OPEN GB/GBC POPUP</a>
+                  </div> -->
+          <!-- <div class="searchbar-hide-on-search block block-strong inset eclipse-header gradient">
+                     <br>
+                     <img style="height: 50px;width:auto;" src="img/icons/controller.png">
+                     <h1 style="color:#fff;">Eclipse</h1>
+                  </div> -->
+
+          <div class="list games-library searchbar-found cards-list" style="margin-top: 0">
+            <ul id="games-list">
+              <div class="block">
+                <center>
+                  <h1 style="color:#333;" class="">Empty Library!</h1>
+                  <h2>Press "+" to add some games.</h2>
+                  
+      
+                </center>
+              </div>
+            </ul>
+          
+      </center>
+            <div id="offlineModeNotice">
+              <center>
+                <h1 style="color:#333;padding:20px">
+                                 Eclipse is offline!
+                              </h1>
+                <h2 style="font-size:30px;color:#555;padding:20px">Some features in Eclipse are disabled without an Internet connection. Press "+" to upload a ROM.</h2>
+              </center>
+            </div>
+            <br>
+          </div>
+          <div class="list simple-list searchbar-not-found">
+            <center>
+              <h1 style="color:#333;" class="">Sorry,</h1>
+              <h2>No games with that name have been found</h2>
+              <!--<div class="row">
+                           <div class="col-100 tablet-33">
+                           </div>
+                           <div class="col-100 tablet-33">
+                              <a href="#" onclick="addROMs.open();" class="button active button-big button-round" style="box-shadow: 0 5px 13px 0 rgba(0, 0, 0, .1); border:none; background-image: linear-gradient(-45deg, #FF3546 0%, #9F0445 97%); color:#fff; font-weight:bold; margin:16px;">ADD ROM</a>
+                           </div>
+                           <div class="col-100 tablet-33">
+                           </div>
+                        </div>-->
+
+    
+            </center>
+          </div>
+        </div>
+        <div class="popup popup-gba emulator-view popup-tablet-fullscreen" id="gbaPopup">
+          <div class="content-block">
+            <div class="load">
+              <span style="font-size: 0px; color: white; top: 0; font-family: arial; margin-top:0px; margin-right:0px; display:none;" id="tempMessage"></span>
+              <div class="emulator-name">GBA</div>
+              <div class="screen" id="gbaScreenContainer">
+                <center>
+                  <canvas id="gbaScreen" width="240px" height="160px"></canvas>
+                </center>
+              </div>
+              <div class="controllers controls">
+                <div id="buttons">
+                  <div style="display:none" id="desktopModeEnabledNotice">Desktop Mode Enabled</div>
+                  <div style="display:none" id="desktopModeEnabledNoticeL2">You can disable this in Settings.</div>
+                  <div id="triggerL" class="button-l">L</div>
+                  <div id="triggerR" class="button-r">R</div>
+                  <div id="center" class="arrow-button-center arrow-button-centerr"></div>
+                  <div id="right" class="arrow-button arrow-button-right"></div>
+                  <div id="left" class="arrow-button arrow-button-left"></div>
+                  <div id="up" class="arrow-button arrow-button-up"></div>
+                  <div id="down" class="arrow-button arrow-button-down"></div>
+                </div>
+                <div id="portrait_settings_keys">
+                  <div id="startbtn" class="menu-button menu-button-start">Start</div>
+                  <div id="select" class="menu-button menu-button-select">Select</div>
+                  <a href="#" onclick="eclipse.openEmulationMenu('GBA');">
+                    <div class="menu-button menu-button-back">Menu</div>
+                  </a>
+                </div>
+                <div id="portrait_action_keys">
+                  <div id="bBtn" class="control-button button-b">B</div>
+                  <div id="aBtn" class="control-button button-a">A</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup-gb emulator-view popup-tablet-fullscreen">
+    <div class="content-block">
+      <div class="load">
+        <div class="emulator-name" id="gb-title">GB</div>
+        <div class="screen" id="gbScreenContainer">
+          <center>
+            <div id="gfx">
+              <canvas id="mainCanvas" />
+            </div>
+          </center>
+        </div>
+        <div class="controllers controls">
+          <div id="buttons">
+            <div style="display:none" id="desktopModeEnabledNotice">Desktop Mode Enabled</div>
+            <div style="display:none" id="desktopModeEnabledNoticeL2">You can disable this in Settings.</div>
+            <div id="centerGB" class="arrow-button-center arrow-button-centerr"></div>
+            <div id="rightGB" class="arrow-button arrow-button-right"></div>
+            <div id="leftGB" class="arrow-button arrow-button-left"></div>
+            <div id="upGB" class="arrow-button arrow-button-up"></div>
+            <div id="downGB" class="arrow-button arrow-button-down"></div>
+          </div>
+          <div id="portrait_settings_keys">
+            <div id="startbtnGB" class="menu-button menu-button-start">Start</div>
+            <div id="selectGB" class="menu-button menu-button-select">Select</div>
+            <a href="#" onclick="eclipse.openEmulationMenu('GB');">
+              <div class="menu-button menu-button-back">Menu</div>
+            </a>
+          </div>
+          <div id="portrait_action_keys">
+            <div id="bBtnGB" class="control-button button-b">B</div>
+            <div id="aBtnGB" class="control-button button-a">A</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup-nes emulator-view popup-tablet-fullscreen">
+    <div class="content-block">
+      <div class="load">
+        <div class="emulator-name">NES</div>
+        <div class="screen" id="nesScreenContainer">
+          <center>
+            <div id="emulator"></div>
+          </center>
+        </div>
+        <div class="controllers controls">
+          <div id="buttons">
+            <div style="display:none" id="desktopModeEnabledNotice">Desktop Mode Enabled</div>
+            <div style="display:none" id="desktopModeEnabledNoticeL2">You can disable this in Settings.</div>
+            <div id="centerNES" class="arrow-button-center arrow-button-centerr"></div>
+            <div id="rightNES" class="arrow-button arrow-button-right"></div>
+            <div id="leftNES" class="arrow-button arrow-button-left"></div>
+            <div id="upNES" class="arrow-button arrow-button-up"></div>
+            <div id="downNES" class="arrow-button arrow-button-down"></div>
+          </div>
+          <div id="portrait_settings_keys">
+            <div id="startbtnNES" class="menu-button menu-button-start">Start</div>
+            <div id="selectNES" class="menu-button menu-button-select">Select</div>
+            <a href="#" onclick="eclipse.openEmulationMenu('NES');">
+              <div class="menu-button menu-button-back">Menu</div>
+            </a>
+          </div>
+          <div id="portrait_action_keys">
+            <div id="bBtnNES" class="control-button button-b">B</div>
+            <div id="aBtnNES" class="control-button button-a">A</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup popup-loadState popup-tablet-fullscreen" style="background-color: rgba(0, 0, 0, 0.2); -webkit-backdrop-filter: blur(3px); display: none;" id="loadState">
+    <div class="page-content">
+      <br>
+      <div style="width:100%;text-align:center;font-size:35px;font-weight:lighter;color:white">Load State</div>
+      <div class="content-block-title" style="color:#FFF;"><b>File Location</b></div>
+      <div class="list" style="background:rgba(250,250,250,0.8)">
+        <ul>
+          <li id="onlineLI" onclick="document.getElementById('fileURLContainer').style.display = 'block'; document.getElementById('localFileContainer').style.display = 'none'; document.getElementById('dataContainer').style.display = 'none'; fWL = 0;" class="">
+            <label class="item-radio item-content">
+
+        <input type="radio" name="fW" value="Online" checked="checked">
+
+        <i class="icon icon-radio"></i>
+        <div class="item-inner">
+
+          <div class="item-title">Online</div>
+        </div>
+      </label>
+          </li>
+          <li onclick="document.getElementById('fileURLContainer').style.display = 'none'; document.getElementById('localFileContainer').style.display = 'block'; document.getElementById('dataContainer').style.display = 'none'; fWL = 1;" class="">
+            <label class="item-radio item-content">
+
+        <input type="radio" value="Local" name="fW">
+
+        <i class="icon icon-radio"></i>
+        <div class="item-inner">
+
+          <div class="item-title">Local</div>
+        </div>
+      </label>
+          </li>
+          <li class="" onclick="document.getElementById('fileURLContainer').style.display = 'none'; document.getElementById('localFileContainer').style.display = 'none'; document.getElementById('dataContainer').style.display = 'block'; fWL = 2;">
+            <label class="item-radio item-content">
+
+        <input value="Manual" name="fW" type="radio">
+
+        <i class="icon icon-radio"></i>
+        <div class="item-inner">
+
+          <div class="item-title">Manually</div>
+        </div>
+      </label>
+          </li>
+        </ul>
+      </div>
+      <div class="content-block" style="margin-left: 3%; margin-right: 3%;">
+        <div id="fileURLContainer" style="background-color: rgb(241, 241, 241); box-shadow: white 0px 0px 5px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding: 8px; position: relative; display: block; background-position: initial initial; background-repeat: initial initial;"
+          class=""><input id="fileURL" placeholder="URL to State File" style="border-radius:50px;background:transparent;border:none;width:100%;position:relative;text-align:center;" class=""></div>
+        <div id="localFileContainer" style="background-color: rgb(241, 241, 241); box-shadow: white 0px 0px 5px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding: 8px; position: relative; display: none; background-position: initial initial; background-repeat: initial initial;"
+          class=""><input id="localFile" style="border-radius:50px;background:transparent;border:none;width:100%;position:relative;text-align:center;" type="file" class=""></div>
+        <div id="dataContainer" style="display: none"><textarea id="manualDataTextArea" placeholder="Paste data here" style="background-color: rgb(241, 241, 241); box-shadow: white 0px 0px 5px; border-radius: 10px; padding: 15px; position: relative; width: 100%"></textarea><!--<br><select class="input-with-value"
+            id="eclipseorigbaselect" style="background-color: rgb(241, 241, 241); box-shadow: white 0px 0px 5px; border-radius: 10px; padding: 15px; position: relative; display: block; width: 100%">
+          <option class="" disabled="" value="Type">Type</option><option value="Eclipse">Eclipse</option><option value="iGBA">iGBA</option>
+          </select>--></div>
+        <br><br>
+        <a href="#" onclick="if(fWL == 0){load_Eclipse_storage_file(null, document.getElementById('fileURL').value)}else{load_Eclipse_storage_file(1, null)}" class="button active button-big button-round" style="box-shadow: 0 5px 13px 0 rgba(0, 0, 0, .1); border:none; font-weight:bold; color: white; background-image: linear-gradient(-180deg, #FF3546 0%, #9F0445 97%)"
+          id="loadStateButton">LOAD</a><br><a href="#" class="button active button-big button-round popup-close" style="box-shadow: 0 5px 13px 0 rgba(0, 0, 0, .1); border:none; font-weight:bold; color: white; background-image: linear-gradient(-180deg, #FF3546 0%, #9F0445 97%)"
+          id="closeLoadStatePopupButton">CANCEL</a><br></div>
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/framework7.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/loadinggif.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controls.js"></script>
+  <script src="js/states.js"></script>
+
+  <!-- Iodine/GBA Library  -->
+  <script src="js/cores/gba.js"></script>
+  <script src="js/cores/IodineGBA/XAudioJS/swfobject.js"></script>
+  <script src="js/cores/IodineGBA/XAudioJS/resampler.js"></script>
+  <script src="js/cores/IodineGBA/XAudioJS/XAudioServer.js"></script>
+
+  <!-- JSNES/NES -->
+  <script src="js/cores/jsnes/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/nes.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/utils.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/cpu.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/keyboard.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/mappers.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/papu.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/ppu.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/rom.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/cores/jsnes/source/ui.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    var nes;
+    $(function() {
+      nes = new JSNES({
+        'ui': $('#emulator').JSNESUI({
+          "Games": [
+            ['Contra', 'https://fir.sh/projects/jsnes/roms/Contra%20(U)%20[!].nes'],
+          ]
+        })
+      });
+    });
+
+    function loadNESROM(link) {
+      var self = this;
+      var ajax = new XMLHttpRequest();
+      ajax.open("GET", "//php.eclipseemu.me/dl/dl.php?dl=" + link, true);
+      ajax.overrideMimeType("text/plain; charset=x-user-defined");
+      ajax.send(null);
+      ajax.onreadystatechange = function() {
+        if (ajax.readyState === XMLHttpRequest.DONE) {
+          console.log(ajax.status);
+          console.log(ajax.response);
+
+          // if (ajax.status === 404) {
+          // }
+          var i, data;
+          if (JSNES.Utils.isIE()) {
+            var charCodes = JSNESBinaryToArray(
+              ajax.responseBody
+            ).toArray();
+            data = String.fromCharCode.apply(
+              undefined,
+              charCodes
+            );
+          } else {
+            data = ajax.responseText;
+            self.nes.loadRom(data);
+            self.nes.start();
+          }
+        }
+      }
+    }
+
+    /*! iNoBounce - v0.1.1
+    * https://github.com/lazd/iNoBounce/
+    * Copyright (c) 2013 Larry Davis <lazdnet@gmail.com>; Licensed BSD */
+    (function(global) {
+      // Stores the Y position where the touch started
+      var startY = 0;
+
+      // Store enabled status
+      var enabled = false;
+
+      var supportsPassiveOption = false;
+          try {
+            var opts = Object.defineProperty({}, 'passive', {
+              get: function() {
+                supportsPassiveOption = true;
+              }
+            });
+            window.addEventListener('test', null, opts);
+          } catch (e) {}
+
+      var handleTouchmove = function(evt) {
+        // Get the element that was scrolled upon
+        var el = evt.target;
+
+        // Check all parent elements for scrollability
+        while (el !== document.body && el !== document) {
+          // Get some style properties
+          var style = window.getComputedStyle(el);
+
+          if (!style) {
+            // If we've encountered an element we can't compute the style for, get out
+            break;
+          }
+
+          // Ignore range input element
+          if (el.nodeName === 'INPUT' && el.getAttribute('type') === 'range') {
+            return;
+          }
+
+          var scrolling = style.getPropertyValue('-webkit-overflow-scrolling');
+          var overflowY = style.getPropertyValue('overflow-y');
+          var height = parseInt(style.getPropertyValue('height'), 10);
+
+          // Determine if the element should scroll
+          var isScrollable = scrolling === 'touch' && (overflowY === 'auto' || overflowY === 'scroll');
+          var canScroll = el.scrollHeight > el.offsetHeight;
+
+          if (isScrollable && canScroll) {
+            // Get the current Y position of the touch
+            var curY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+
+            // Determine if the user is trying to scroll past the top or bottom
+            // In this case, the window will bounce, so we have to prevent scrolling completely
+            var isAtTop = (startY <= curY && el.scrollTop === 0);
+            var isAtBottom = (startY >= curY && el.scrollHeight - el.scrollTop === height);
+
+            // Stop a bounce bug when at the bottom or top of the scrollable element
+            if (isAtTop || isAtBottom) {
+              evt.preventDefault();
+            }
+
+            // No need to continue up the DOM, we've done our job
+            return;
+          }
+
+          // Test the next parent
+          el = el.parentNode;
+        }
+
+        // Stop the bouncing -- no parents are scrollable
+        evt.preventDefault();
+      };
+
+      var handleTouchstart = function(evt) {
+        // Store the first Y position of the touch
+        startY = evt.touches ? evt.touches[0].screenY : evt.screenY;
+      };
+
+      var enable = function() {
+        // Listen to a couple key touch events
+        window.addEventListener('touchstart', handleTouchstart, supportsPassiveOption ? { passive : false } : false);
+        window.addEventListener('touchmove', handleTouchmove, supportsPassiveOption ? { passive : false } : false);
+        enabled = true;
+      };
+
+      var disable = function() {
+        // Stop listening
+        window.removeEventListener('touchstart', handleTouchstart, false);
+        window.removeEventListener('touchmove', handleTouchmove, false);
+        enabled = false;
+      };
+
+      var isEnabled = function() {
+        return enabled;
+      };
+
+      // Enable by default if the browser supports -webkit-overflow-scrolling
+      // Test this by setting the property with JavaScript on an element that exists in the DOM
+      // Then, see if the property is reflected in the computed style
+      var testDiv = document.createElement('div');
+      document.documentElement.appendChild(testDiv);
+      testDiv.style.WebkitOverflowScrolling = 'touch';
+      var scrollSupport = 'getComputedStyle' in window && window.getComputedStyle(testDiv)['-webkit-overflow-scrolling'] === 'touch';
+      document.documentElement.removeChild(testDiv);
+
+      if (scrollSupport) {
+        enable();
+      }
+
+      // A module to support enabling/disabling iNoBounce
+      var iNoBounce = {
+        enable: enable,
+        disable: disable,
+        isEnabled: isEnabled
+      };
+
+      if (typeof module !== 'undefined' && module.exports) {
+        // Node.js Support
+        module.exports = iNoBounce;
+      }
+      if (typeof global.define === 'function') {
+        // AMD Support
+        (function(define) {
+          define('iNoBounce', [], function() { return iNoBounce; });
+        }(global.define));
+      }
+      else {
+        // Browser support
+        global.iNoBounce = iNoBounce;
+      }
+    }(this));
+  </script>
+
+  <!-- GameBoy-Online/GBC&GB -->
+  <script type="text/javascript" src="js/cores/gbc.js"></script>
+  <!-- <script src="js/cores/GameBoy-Online/js/other/mobile.js"></script> -->
+  <!-- <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/terminal.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/gui.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/base64.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/json2.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/swfobject.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/resampler.js"></script> -->
+  <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/XAudioServer.js"></script>
+  <!-- <script type="text/javascript" src="js/cores/GameBoy-Online/js/other/resize.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/GameBoyCore.js"></script>
+      <script type="text/javascript" src="js/cores/GameBoy-Online/js/GameBoyIO.js"></script> -->
+
+  <!-- Eclipse: must run last! -->
+  <script src="js/popup.js"></script>
+
+
+</body>
+
+</html>

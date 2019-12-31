@@ -1,0 +1,200 @@
+<div class="page">
+  <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Debug</div>
+      </div>
+    </div>
+      <div class="page-content">
+
+      <div class="block">
+          <p>This screen is used to diagnose technical issues that may occur with Eclipse.</p>
+      </div>
+
+      <div class="block-title">States</div>
+        <div class="list inset">
+          <ul>
+
+            <!-- <li>
+                <div class="item-content">
+                  <div class="item-inner">Save States Initialized?
+                    <div id="debugSaveState" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li> -->
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Audio Enabled?
+                    <div id="debugAudio" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Auto-Save Enabled?
+                    <div id="debugAutoSave" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Current Skin Set?
+                    <div id="debugCurrentSkin" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Desktop Mode Enabled?
+                    <div id="debugDesktopMode" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Full Screen Enabled?
+                    <div id="debugFillScreen" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Game List Initialized?
+                    <div id="debugGameList" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Repo List Initialized?
+                    <div id="debugRepoList" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Skin List Initialized?
+                    <div id="debugSkinList" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Last Major Version
+                    <div id="debugSetup" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="block-title">Device</div>
+        <div class="list inset">
+          <ul>
+
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Device (F7)
+                    <div id="debugDeviceType" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">User Agent
+                    <div class="item-after"><div style="overflow:scroll;width:70vw" id="debugUA">No Data.</div></div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Do Not Track
+                    <div id="debugTrack" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Cookies Enabled?
+                    <div id="debugCookie" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">ServiceWorker Support
+                    <div id="debugServiceWorkers" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Languages
+                    <div id="debugLang" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Vendor
+                    <div id="debugVendor" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                  <div class="item-inner">Platform
+                    <div id="debugPlatform" class="item-after">No Data.</div>
+                  </div>
+                </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="block-title">Benchmarking</div>
+        <div class="block">
+          <p>Benchmarking has been removed from Eclipse as of version 2.0.0. This data was going to be used to limit underpowered devices from certain features, but other methods will probably be used to do this.</p>
+          <p>If you are having performance issues, please ensure <txt class="ios-only"> your battery wear is not bad enough to enable throttling and </txt>that power-saving features are disabled.</p>
+        </div>
+
+        <div class="block-title">Triggers</div>
+        <div class="list inset">
+          <ul>
+            <li>
+              <a onclick="console.toast('Test pop-up triggered by debugger.');" class="item-link list-button color-blue">Test Pop-up</a>
+            </li>
+            <li>
+              <a onclick="OpenSkin.load()" class="item-link list-button color-blue">Reload Skin</a>
+            </li>
+            <!-- <li>
+              <a onclick="let benchRun = new Promise((resolve, reject) => {prepareBenchmark();setTimeout((e) =>{resolve()},250)});benchRun.then((e) => benchmarkTest())" class="item-link list-button color-blue external">Start Benchmarking</a>
+            </li> -->
+            <li>
+              <a onclick="window.location = 'https://eclipseemu.me/play/index.html?theme=md'" class="item-link list-button color-blue external">MD Theme</a>
+            </li>
+            <li>
+              <a onclick="window.location = 'https://eclipseemu.me/play/index.html?theme=ios'" class="item-link list-button color-blue external">iOS Theme</a>
+            </li>
+            <li>
+              <a onclick="window.location += '';location.reload();" class="item-link list-button color-blue external">Refresh Eclipse</a>
+            </li>
+          </ul>
+        </div>
+
+    </div>

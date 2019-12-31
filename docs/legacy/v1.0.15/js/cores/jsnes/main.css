@@ -1,0 +1,25 @@
+
+
+body {
+  background: #f3f3f3;
+}
+
+/*
+  D-Pad
+ */
+ .up, .down, .left, .right {
+ 	position: absolute;
+ 	z-index: 1001;
+ 	margin-left: 50%;
+ 	font-size: 40px;
+ 	width: 50px;
+ 	height: 50px;
+ 	background: #FFA03A;
+ 	border: 1px solid #915515;
+ 	box-shadow: 0 3px 0 #52300E,
+ 		    inset 0 0 10px rgba(255,255,255,0.3);
+
+ 	appearance: none;
+ 	border-radius: 50px;
+ 	cursor: pointer;
+ }

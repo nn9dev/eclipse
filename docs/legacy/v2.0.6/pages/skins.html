@@ -1,0 +1,68 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Skins</div>
+      <div class="right">
+        <a href="#" onclick="eclipse.methods.skins.addSkinPrompt();" class="link icon-only">
+          <i class="icon f7-icons ios-only">add</i>
+          <i class="icon material-icons md-only">add</i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="page-content" style="opacity: 0">
+    <br>
+    <br>
+    <div class="swiper-container demo-swiper demo-swiper-auto">
+      <div class="swiper-pagination"></div>
+      <div class="swiper-wrapper" id="featured-skins-sliders">
+      </div>
+    </div>
+    <div class="block-title">Current Skin</div>
+    <div class="block block-strong inset current-skin" style="margin-top:0px;margin-bottom:0px;">
+      <img onerror="javascript:this.src='assets/img/default-cover.png'" id="currentSkinLogo" width="64px" height="64px" style="border-radius:100px;display:inline-grid;margin-bottom:20px;float:left" src="https://php.eclipseemu.me/twitter/twitter?id=TryEclipse">
+      <div style="display:inline-grid;margin-bottom:55px;padding-bottom:20px;margin-left:8px;">
+        <h2 id="currentSkinName" style="margin:0px; margin-top:5px;">Default Skin</h2>
+        <h3 style="margin:0px; font-weight:500;">&nbsp;By <span id="currentSkinArtist">Eclipse Team</span></h3>
+      </div>
+    </div>
+    <div class="block-title">Skins</div>
+    <div class="list inset" id="skins-list">
+      <div class="block">
+        <center>
+          <h1 style="color:#333;">No Skins!</h1>
+          <h2>Add some skins and they'll appear here.</h2>
+        </center>
+      </div>
+    </div>
+    <div class="block-title">Featured Skins</div>
+    <!-- <div class="list cards-list inset">
+      <ul id="featured-skins">
+        <div class="row">
+          <div class="col-50 tablet-25">
+            <a href="#" onclick="eclipse.addSkin('http://igba.shuga.co/theme/darkMode/index.json')">
+              <li class="card">
+                <div class="card-content"><img src="http://igba.shuga.co/theme/darkMode/icon.png" class="boxart"></div>
+                <div class="card-footer">Dark Mode</div>
+              </li>
+            </a>
+          </div>
+        </div>
+      </ul>
+    </div> -->
+    <div class="list cards-list inset">
+      <ul>
+        <div class="row" id="featured-skins">
+        </div>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>

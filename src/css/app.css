@@ -1,0 +1,109 @@
+/* 
+
+General
+
+*/
+div, p, h1, h2, span {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+/* Remove stupid iOS/macOS bouncing */
+body,
+html,
+#app {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;
+}
+
+body {
+	background-color: var(--f7-page-bg-color);
+}
+
+:root.ios {
+	--f7-popup-tablet-border-radius: 9px;
+}
+
+
+.theme-light .page {
+	--f7-page-bg-color: #fff;
+}
+
+/* 
+
+Sidebar
+
+*/
+
+.panel-left:before {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 1px;
+	background: rgba(144, 144, 144, 0.1);
+	content: '';
+	z-index: 6000;
+}
+
+/* Hide navbar link which opens left panel when it is visible by breakpoint */
+.panel-left.panel-in-breakpoint~.view .navbar .panel-open[data-panel="left"] {
+	display: none;
+}
+
+/* Sidebar icons */
+
+.sidebar-media {
+	color: #fff;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	line-height: 27.5px;
+	border-radius: 5px;
+}
+
+.sidebar-media .icon {
+	font-size: 20px;
+}
+
+
+/* 
+
+Game Card
+
+*/
+
+.game-card {
+	background-color: transparent;
+	/* pointer-events: none; */
+}
+
+.game-card .boxart {
+	width: 100%;
+	padding-top: 100%;
+	border: solid 0.1px var(--f7-bars-border-color);
+	border-radius: 5px;
+	/* pointer-events: none; */
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.game-card p {
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+	/* pointer-events: none; */
+}
+
+.game-card .name {
+	margin-block-start: 4px;
+}
+
+.game-card .system {
+	opacity: 0.5;
+}

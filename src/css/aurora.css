@@ -1,0 +1,49 @@
+:root.aurora {
+	--f7-list-inset-border-radius: 9px;
+}
+
+/* .theme-dark.aurora .panel.panel-left .page {
+	--f7-page-bg-color:rgba(3, 3, 3, 0.85);
+}
+
+.theme-dark.aurora .panel.panel-left .page {
+	--f7-page-bg-color:rgba(3, 3, 3, 0.85);
+} */
+
+.aurora .panel.panel-left .list {
+	--f7-list-bg-color: transparent;
+}
+
+.aurora .panel.panel-left .list.inset li.swipeout:first-child, .list.inset li:first-child > a,
+.aurora .panel.panel-left .list.inset li.swipeout, .list.inset li > a,
+.aurora .panel.panel-left .list.inset li.swipeout:last-child, .list.inset li:last-child > a {
+	border-radius: var(--f7-list-inset-border-radius);
+}
+
+.appbar {
+	background-color: var(--f7-page-bg-color);
+	-webkit-app-region: drag;
+}
+
+/* .aurora .list {
+	--f7-list-font-size: 17px;
+	--f7-list-chevron-icon-area: 20px;
+	--f7-list-item-subtitle-font-size: 15px;
+	--f7-list-item-text-font-size: 15px;
+	--f7-list-item-text-line-height: 21px;
+	--f7-list-item-min-height: 44px;
+} */
+
+.device-cordova body, .device-cordova .panel.panel-left .page, .device-cordova {
+	background-color: transparent;
+}
+
+.aurora .sidebar-media {
+	width: 25px;
+	height: 25px;
+	line-height: 22.5px;
+}
+
+.aurora .sidebar-media .icon {
+	font-size: 15px;
+}

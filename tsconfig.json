@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"module": "esnext",
+		"target": "es6",
+		"jsx": "react",
+		"typeRoots" : ["./src/types", "./node_modules/@types"],
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "node"
+	}
+}

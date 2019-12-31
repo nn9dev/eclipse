@@ -1,0 +1,100 @@
+CACHE MANIFEST
+# This is a comment.
+# Cache manifest version 1.0.15
+# If you change the version number in this comment,
+# the cache manifest is no longer byte-for-byte
+# identical.
+
+index.html
+pages/404.html
+pages/changelog.html
+pages/credits.html
+pages/gamehub.html
+pages/repo.html
+pages/settings.html
+pages/update.html
+pages/settings/controls.html
+pages/settings/donate.html
+pages/settings/skins.html
+
+img/icons/controller_dark.png
+img/icons/controller.png
+img/icons/icon_mobFull.png
+img/icons/icon_mobPreview.png
+img/icons/icon_osx.png
+img/icons/icon_win.png
+img/icons/loading.png
+img/fit.png
+img/gd.png
+img/stretch.png
+
+fonts/Framework7Icons-Regular.eot
+fonts/Framework7Icons-Regular.ttf
+fonts/Framework7Icons-Regular.woff
+fonts/Framework7Icons-Regular.woff2
+fonts/MaterialIcons-Regular.eot
+fonts/MaterialIcons-Regular.svg
+fonts/MaterialIcons-Regular.ttf
+fonts/MaterialIcons-Regular.woff
+fonts/MaterialIcons-Regular.woff2
+
+css/app.css
+css/framework7.min.css
+
+binaries/gba_bios.bin
+
+js/jquery.min.js
+js/loadinggif.js
+js/app.js
+js/autocomplete-languages.json
+js/changelog.js
+js/controls.js
+js/framework7.js
+js/inobounce.js
+js/openskin.js
+js/popup.js
+js/routes.js
+js/states.js
+
+js/cores/gba.js
+js/cores/gbc.js
+js/cores/GameBoy-Online/js/other/XAudioServer.js
+js/cores/jsnes/lib/dynamicaudio-min.js
+js/cores/jsnes/source/nes.js
+js/cores/jsnes/source/utils.js
+js/cores/jsnes/source/cpu.js
+js/cores/jsnes/source/keyboard.js
+js/cores/jsnes/source/mappers.js
+js/cores/jsnes/source/papu.js
+js/cores/jsnes/source/ppu.js
+js/cores/jsnes/source/rom.js
+js/cores/jsnes/source/ui.js
+
+js/cores/jsnes/lib/dynamicaudio.swf
+js/cores/GameBoy-Online/js/other/XAudioJS.swf
+
+js/cores/IodineGBA/XAudioJS/XAudioJS.swf
+js/cores/IodineGBA/XAudioJS/XAudioJS.as
+js/cores/IodineGBA/XAudioJS/XAudioServer.js
+js/cores/IodineGBA/XAudioJS/XAudioServerMediaStreamWorker.js
+js/cores/IodineGBA/XAudioJS/swfobject.js
+js/cores/IodineGBA/XAudioJS/resampler.js
+
+json/repos/featured.json
+json/repos/homebrew.json
+json/repos/repo-template.json
+
+json/skins/featured.json
+
+NETWORK:
+# All URLs that start with the following lines
+# are whitelisted.
+
+*
+http://*
+https://*
+
+CACHE:
+# Additional items to cache.
+
+FALLBACK:

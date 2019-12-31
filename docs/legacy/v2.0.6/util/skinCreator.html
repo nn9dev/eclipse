@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenSkin Skin Generator</title>
+    <script type="text/javascript">
+        function o() {
+            var name = document.getElementById("name").value;
+            var base = document.getElementById("base").value.replace("#","");
+            var g1 = document.getElementById("g1").value.replace("#","");
+            var g2 = document.getElementById("g2").value.replace("#","");
+
+            var r = parseInt(base.substring(0,2), 16);
+            var g = parseInt(base.substring(2,4), 16);
+            var b = parseInt(base.substring(4,6), 16);
+
+            document.getElementById("out").innerHTML = '{"name":"' + name + '","logo":"https://eclipseemu.me/play/img/skin/' + name.toLowerCase() + '.png","author":"Eclipse Team","description":"A ' + name.toLowerCase() + ' theme for Eclipse.","styles":[{"iOSicon":"color:#' + base + ';opacity:1","MDicon":"color:white;opacity:1","navbar":"background:#' + base + '!important","emulatorBackground":"background-image: linear-gradient(to bottom, #' + g1 + ', #' + g2 + ');","gradient":"background-image: linear-gradient(to bottom, #' + g1 + ', #' + g2 + ')!important;","iOSoutOfFocus":"color:#929292;","MDoutOfFocus":"","iOSinFocus":"color:#' + base + ';","MDinFocus":"","MDtoggleHead":"background:#' + base + ';","MDtoggleBody":"background:rgba(' + r + ',' + g + ',' + b + ',0.5);","iOStoggleHead":"","iOStoggleBody":"background:#' + base + ';","fab":"color:white;background:#' + base + '!important","tint":"color:#' + base + ';","mdHeader":"background:#' + base + '"}]}';
+        }
+
+        function baseC() {
+            document.getElementById("name").style.background = "url(https://eclipseemu.me/play/img/skin/" + document.getElementById("name").value.toLowerCase() + ".png)";
+            if(document.getElementById("name").value == "") {
+                document.getElementById("name").style.background = "white"
+            }
+        }
+
+        function baseU() {
+            document.getElementById("base").style.background = "#" + document.getElementById("base").value.replace("#","");
+            if(document.getElementById("base").value == "") {
+                document.getElementById("base").style.background = "white"
+            }
+        }
+
+        function baseG1() {
+            document.getElementById("g1").style.background = "#" + document.getElementById("g1").value.replace("#","");
+            if(document.getElementById("g1").value == "") {
+                document.getElementById("g1").style.background = "white"
+            }
+        }
+
+        function baseG2() {
+            document.getElementById("g2").style.background = "#" + document.getElementById("g2").value.replace("#","");
+            if(document.getElementById("g2").value == "") {
+                document.getElementById("g2").style.background = "white"
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>OpenSkin Skin Generator</h1>
+    <h3>Color Name:</h3>
+    <input type="text" onkeyup="baseC()" placeholder="Blue" id="name">
+    <h3>Base Color:</h3>
+    <input type="text" onkeyup="baseU()" placeholder="#00FF00" id="base">
+    <h3>Gradient Start:</h3>
+    <input type="text" onkeyup="baseG1()" placeholder="#00FF00" id="g1">
+    <h3>Gradient End:</h3>
+    <input type="text" onkeyup="baseG2()" placeholder="#00FF00" id="g2">
+    <br><br><button onclick="o()">Generate</button><br><br>
+    <textarea id="out" rows="10" cols="100" disabled="true"></textarea>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "PC Mode",
+  "logo": "https://igbaemu.com/beta-1134/icon-refresh.png",
+  "author": "iGBA",
+  "styles": [{
+    "emulatorBackground": "background-image: linear-gradient(-180deg, #FABE61 0%, #F76B1C 100%);",
+    "triggerL": "opacity:0;",
+    "triggerR": "opacity:0;",
+    "center": "opacity:0;",
+    "right": "opacity:0;",
+    "left": "opacity:0;",
+    "up": "opacity:0;",
+    "down": "opacity:0;",
+    "aBtn": "opacity:0;",
+    "bBtn": "opacity:0;",
+    "startBtn":"opacity:0;",
+    "select":"opacity:0;"
+  }]
+}

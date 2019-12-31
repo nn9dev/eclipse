@@ -1,0 +1,19 @@
+{
+  "name": "Binyot",
+  "logo": "https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg",
+  "author": "iGBA",
+  "styles": [{
+    "emulatorBackground": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg'); background-repeat: no-repeat; background-size:cover; background-position-y: bottom; background-position-x: center;",
+    "triggerL": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "triggerR": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "center": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "right": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "left": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "up": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "down": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "aBtn": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "bBtn": "background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "startBtn":"background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');",
+    "select":"background-image: url('https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg');"
+  }]
+}
