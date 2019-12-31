@@ -1,6 +1,8 @@
 # Eclipse
 Eclipse is a multi-web-emu focused on making emulation as simple as possible. You should be able to just play the games you want. The goal is for there to be as little configuration as possible and offer a wide array of system support. 
 
+This repo will serve as the beta version until v3.0.0 releases, where it will become the main site. For checking out the live beta, go to: [https://zenithdevs.github.io/eclipse/](https://zenithdevs.github.io/eclipse/)
+
 ## Systems
 - NES
 - SNES (Experiemental < v3)
