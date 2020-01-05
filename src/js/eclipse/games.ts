@@ -22,4 +22,10 @@ export default class {
 		let list = await this.list();
 		return list.filter(item => (item.id == id || item.system == system));
 	}
+
+	async add(game: EclipseGame) {
+		let games = await this.list();
+		games.push(game);
+		await this.storage.setItem('games', games);
+	}
 }

@@ -23,27 +23,27 @@ export default class extends React.Component {
 				<BlockTitle>General</BlockTitle>
 				<List inset={this.$f7.theme == 'aurora'} noHairlinesBetweenAurora>
 					<ListItem link="/" title="Library" view=".view-main" panelClose>
-						<div slot="media" className="bg-color-gray sidebar-media">
+						<div slot="media" className="sidebar-media sb-media-first">
 							<Icon ios="f7:square_grid_2x2_fill" md="material:add" aurora="f7:square_grid_2x2_fill"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/game-hub/" title="Game Hub" view=".view-main" panelClose>
-						<div slot="media" className="bg-color-gray sidebar-media">
+						<div slot="media" className="sidebar-media sb-media-second">
 							<Icon ios="f7:square_stack_3d_up_fill" md="material:add" aurora="f7:square_stack_3d_up_fill"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/skins/" title="Skins" view=".view-main" panelClose>
-						<div slot="media" className="bg-color-gray sidebar-media">
+						<div slot="media" className="sidebar-media sb-media-third">
 							<Icon ios="f7:wand_rays" md="material:add" aurora="f7:wand_rays"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/controls/" title="Controls" view=".view-main" panelClose>
-						<div slot="media" className="bg-color-gray sidebar-media">
+						<div slot="media" className="sidebar-media sb-media-fourth">
 							<Icon ios="f7:gamecontroller_fill" md="material:add" aurora="f7:gamecontroller_fill"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/settings/" title="Settings" view=".view-main" panelClose>
-						<div slot="media" className="bg-color-gray sidebar-media">
+						<div slot="media" className="sidebar-media sb-media-fifth">
 							<Icon ios="f7:gear" md="material:settings" aurora="f7:gear"></Icon>
 						</div>
 					</ListItem>
@@ -54,9 +54,9 @@ export default class extends React.Component {
 				<BlockTitle>Systems</BlockTitle>
 				<List inset={this.$f7.theme == 'aurora'} noHairlinesBetweenAurora>
 					{eclipse.systems.map(res => (
-						<ListItem key={res.id} link="#" title={res.name.long} view=".view-main" panelClose>
-							<div slot="media" className="bg-color-gray sidebar-media">
-								<Icon ios="f7:list" md="material:add" aurora="f7:list"></Icon>
+						<ListItem key={res.id} link="/game/aidjsiid/play/" title={res.name.short} view=".view-main" panelClose>
+							<div slot="media" className="sidebar-media sb-system-bg">
+								<Icon ios="f7:list_bullet" md="material:add" aurora="f7:list_bullet"></Icon>
 							</div>
 						</ListItem>
 					))}

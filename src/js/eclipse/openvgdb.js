@@ -7,6 +7,7 @@ export default class {
 		this.url = url;
 	}
 
+	// Initialize the DB
 	async init() {
 		let initSQL = await import('sql.js');
 		const SQL = await initSQL.default();
@@ -16,13 +17,11 @@ export default class {
 		return new SQL.Database(uint8);
 	}
 
+	// Run a SQL query
 	async run({db, query}) {
 		try {		
-			let blah = `SELECT * FROM RELEASES WHERE ${query};`;
-			console.log(blah);
-			let res = db.exec(blah);
-			// let res = db.exec(`SELECT * FROM RELEASES`);
-			console.log(blah, res);
+			let q = `SELECT * FROM RELEASES WHERE ${query};`;
+			let res = db.exec(q);
 			const games = res[0].values.map(
 				(game) => 
 					Object.assign({}, ...res[0].columns.map(
@@ -37,5 +36,10 @@ export default class {
 			console.error(err);
 			return [];
 		}
+	}
+
+	// 
+	fromFileName({ db, name }) {
+
 	}
 }

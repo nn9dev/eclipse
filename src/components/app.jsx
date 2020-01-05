@@ -4,25 +4,7 @@ import {
 	App,
 	Appbar,
 	Panel,
-	Views,
 	View,
-	Button,
-	Searchbar,
-	Popup,
-	Page,
-	Navbar,
-	Toolbar,
-	NavRight,
-	Link,
-	Block,
-	BlockTitle,
-	LoginScreen,
-	LoginScreenTitle,
-	List,
-	ListItem,
-	ListInput,
-	ListButton,
-	BlockFooter
 } from 'framework7-react';
 
 import routes from '../js/routes';
@@ -56,7 +38,7 @@ export default class extends React.Component {
 					};
 				},
 				panel: {
-					swipe: 'left',
+					// swipe: 'left',
 					leftBreakpoint: 980,
 				},
 				routes: routes,
@@ -66,10 +48,6 @@ export default class extends React.Component {
 				input: {
 					scrollIntoViewOnFocus: false,
 					scrollIntoViewCentered: false,
-				},
-				statusbar: {
-					iosOverlaysWebView: true,
-					androidOverlaysWebView: false,
 				},
 			},
 			username: '',
@@ -87,11 +65,11 @@ export default class extends React.Component {
 							<div className="center">
 								<p>Eclipse</p>
 							</div>
-							<div className="right"></div>
 						</Appbar>
 					) : null
 				}
-				<Panel left resizable={true} visibleBreakpoint={960}>
+				<div className="statusbar"></div>
+				<Panel left resizable={this.state.f7params.theme === 'aurora'} visibleBreakpoint={960}>
 					<View className="safe-areas" url="/menu/" />
 				</Panel>
 				<View main className="safe-areas" url="/" />
@@ -102,6 +80,8 @@ export default class extends React.Component {
 	componentDidMount() {
 		this.$f7ready((f7) => {
 			// Call F7 APIs here
+			console.log(this.$f7.statusbar);
+			this.$f7.statusbar.show();
 		});
 	}
 }

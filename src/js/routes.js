@@ -16,6 +16,24 @@ var routes = [{
 		component: MenuPage,
 	},
 	{
+		path: '/game/:id/',
+		routes: [
+			{
+				path: 'play/',
+				async(routeTo, routeFrom, resolve, reject) {
+					const reactComponent = () => import('../pages/Game/Play.jsx');
+					reactComponent().then((rc) => {
+						resolve({ 
+							popup: {
+								component: rc.default
+							} 
+						})
+					});
+				},
+			}
+		],
+	},
+	{
 		path: '(.*)',
 		component: NotFoundPage,
 	},

@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import {
 	Page,
 	Navbar,
@@ -7,13 +9,11 @@ import {
 	NavTitleLarge,
 	NavRight,
 	Link,
-	Subnavbar,
+	PageContent,
 	Searchbar,
-	List,
-	ListItem,
 	Card,
-	Row,
 	Col,
+	Block,
 } from 'framework7-react';
 // import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -58,31 +58,35 @@ export default class extends React.Component {
 					></Searchbar>
 				</Navbar>
 				{/* Page content */}
-				<div className="list no-hairlines" style={{ margin: '0px', marginBottom: '16px', padding: '0px 8px'}}>
-					<ul className="row no-gap" style={{ backgroundColor: 'transparent'}}>
-						{Array(25).fill({
-							id: this.$f7.utils.id(),
-							name: 'Pokémon Emerald',
-							system: 'GBA',
-							boxart: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn3.spong.com%2Fpack%2Fp%2Fo%2Fpokemoneme179293l%2F_-Pokemon-Emerald-GBA-_.jpg&f=1&nofb=1',
-						}).map((game, i) => (
-							<Col key={i.toString()} width="50" medium="33" large="25" xlarge="20">
-								<Link href={`/game/${game.id}/play/`} style={{ display: 'block', color: 'inherit' }}>
-									<Card className="game-card" noOutline noShadow>
-										<div className="boxart" data-id={game.id} style={{ backgroundImage: `url(${game.boxart})`}} onContextMenu={this.gameMenu.bind(this)}></div>
-										<p className="name">{ game.name }</p>
-										<p className="system">{ game.system }</p>
-									</Card>
-								</Link>
-							</Col>
-						))}
-						<Col width="50" medium="33" large="25" xlarge="20"></Col>
-						<Col width="50" medium="33" large="25" xlarge="20"></Col>
-						<Col width="50" medium="33" large="25" xlarge="20"></Col>
-						<Col width="50" medium="33" large="25" xlarge="20"></Col>
-						<Col width="50" medium="33" large="25" xlarge="20"></Col>
-					</ul>
-				</div>
+				{this.state.games.length > 0 ? 
+					(<div className="list no-hairlines" style={{ margin: '0px', marginBottom: '16px', padding: '0px 8px'}}>
+						<ul className="row no-gap" style={{ backgroundColor: 'transparent'}}>
+							{this.state.games.map((game, i) => (
+								<Col key={i.toString()} width="50" medium="33" large="25" xlarge="20">
+									<Link href={`/game/${game.id}/play/`} style={{ display: 'block', color: 'inherit' }}>
+										<Card className="game-card" noOutline noShadow>
+											<div className="boxart" data-id={game.id} style={{ backgroundImage: `url(${game.boxart})`}} onContextMenu={this.gameMenu.bind(this)}></div>
+											<p className="name">{ game.name }</p>
+											<p className="system">{ game.system }</p>
+										</Card>
+									</Link>
+								</Col>
+							))}
+							<Col width="50" medium="33" large="25" xlarge="20"></Col>
+							<Col width="50" medium="33" large="25" xlarge="20"></Col>
+							<Col width="50" medium="33" large="25" xlarge="20"></Col>
+							<Col width="50" medium="33" large="25" xlarge="20"></Col>
+							<Col width="50" medium="33" large="25" xlarge="20"></Col>
+						</ul>
+					</div>) : (
+					<PageContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0px',  height: 'calc(100% - calc(var(--f7-navbar-height) + var(--f7-navbar-large-title-height)))' }}>
+						<Block strong inset style={{textAlign: "center", backgroundColor: 'transparent'}}>
+							<h1>No Games</h1>
+							<p>You can add some games to your library by pressing + in the top right corner.</p>
+						</Block>
+					</PageContent>
+					)
+				}
 			</Page>
 		);
 	}
@@ -99,7 +103,7 @@ export default class extends React.Component {
 			})
 		);
 	}
-
+	
 	addButton() {
 		const app = this.$f7;
 
@@ -109,11 +113,17 @@ export default class extends React.Component {
 					text: 'Add Game',
 					label: true,
 				},
+
+				// Game Hub
+
 				{
 					text: 'Game Hub',
 					color: 'blue',
 					onClick: () => this.$f7router.navigate('/game-hub/')
 				},
+
+				// Upload Games
+
 				{
 					text: 'Upload',
 					color: 'blue',
@@ -166,13 +176,21 @@ export default class extends React.Component {
 						input.click();
 					}
 				},
+
+				// URL
+
 				{
 					text: 'URL',
 					color: 'blue',
 					onClick: () => {
-						app.dialog.prompt('Enter the direct URL for a game', (link) => {
+						app.dialog.prompt('Enter the direct URL for a game', async (link) => {
 							try {
 								let url = new URL(link);
+								app.preloader.show();
+
+								let res = await this.handleGameURL(url.href);
+								console.log(res);
+								app.preloader.hide();
 							} catch {
 								app.dialog.alert('Please enter a valid URL.');
 							}
@@ -194,38 +212,11 @@ export default class extends React.Component {
 
 	async handleUploadedGames(files) {
 		let db = await eclipse.openvgdb.init();
-		console.time(`${file.name}`);
 		let games = await Promise.all(
 			files.map(
 				async (file) => {
-					// Clean file name
 					let name = this.$f7.utils.removeDiacritics(file.name);
-
-					// Get file extension & system
-					let ext = name.split('.').pop();
-					let system = eclipse.system({ fileType: ext });
-					console.log('system')
-					
-					// Clean file name & split into parts
-					var parts = name.replace(/_/g, ' ').replace(/-/g, ' ').replace(`.${ext}`, '').toLowerCase().split(' ').map(res => {
-						return res.replace(/\[.*?\]/, "").replace(/\(.*?\)/, "")
-					}).filter(a => a != '');
-
-					// Convert into SQL query & run
-					let query = `system IS ${parts.map(part => `name LIKE '%${part}%' AND system IS '${system.name.short}'`).join('\nOR ')}`;
-					let sqlResponses = await eclipse.openvgdb.run({
-						query,
-						db,
-					});
-
-					// Reduce More
-					let games = sqlResponses.filter(item => {
-						var regex = new RegExp(`(?=.*${parts.join(')(?=.*')})`, 'i');
-						return regex.test(this.$f7.utils.removeDiacritics(item.name));
-					});
-
-					// Return response
-
+					let games = await this.gameFromFileName(name, db);
 					return {
 						file,
 						games,
@@ -233,8 +224,44 @@ export default class extends React.Component {
 				}
 			)
 		);
-		console.timeEnd(`${file.name}`);
-		console.log(games)
+		return games;
+	}
+
+	async handleGameURL(url) {
+		let db = await eclipse.openvgdb.init();
+		let fileName = url.split('/').pop();
+		let games = await this.gameFromFileName(fileName, db);
+		return [{
+			url,
+			games,
+		}]
+	}
+
+	async gameFromFileName(name, db) {
+		// Get file extension & system
+		let ext = name.split('.').pop();
+		let system = eclipse.system({ fileType: ext });
+		
+		// Clean file name & split into parts
+		var parts = name.replace(/_/g, ' ').replace(/-/g, ' ').replace('%20', ' ').replace(`.${ext}`, '').toLowerCase().split(' ').map(res => {
+			return res.replace(/\[.*?\]/, "").replace(/\(.*?\)/, "")
+		}).filter(a => a != '');
+
+		// Convert into SQL query & run
+		let query = `system IS ${parts.map(part => `name LIKE '%${part}%' AND system IS '${system.name.short}'`).join('\nOR ')}`;
+		let sqlResponses = await eclipse.openvgdb.run({
+			query,
+			db,
+		});
+
+		// Reduce More
+		let games = sqlResponses.filter(item => {
+			var regex = new RegExp(`(?=.*${parts.join(')(?=.*')})`, 'i');
+			return regex.test(this.$f7.utils.removeDiacritics(item.name));
+		});
+
+		// Return
+		return games;
 	}
 
 	async gameMenu(evt) {

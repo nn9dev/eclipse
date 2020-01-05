@@ -1,0 +1,186 @@
+.emulation-popup .page {
+	background-color: var(--f7-theme-color);
+	--eclipse-controls-height: calc(280px + var(--f7-safe-area-bottom));
+}
+
+div.emulation-menu-bar {
+	display: flex;
+	position: fixed;
+	bottom: 32px;
+	margin: auto;
+	width: 100%;
+	height: 40px;
+	/* background-color: #fff; */
+	/* background-image: url(https://images.unsplash.com/photo-1575805045199-84d41c95e2b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80); */
+	justify-content: center;
+	background-size: cover;
+}
+
+div.emulation-menu-bar div.emu-menu {
+	display: flex;
+	align-items: center;
+	padding: 0px 16px;
+	width: 500px;
+	margin: 16px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	background-color: rgba(44, 44, 44, 0.8);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 9px;
+}
+
+div.screen {
+	width: 100%;
+	height: calc(100% - var(--eclipse-controls-height));
+	background-color: #000;
+}
+
+div.screen canvas#screen {
+	background-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgamefabrique.com%2Fstorage%2Fscreenshots%2Fgba%2Fpokemon-emerald-10.png&f=1&nofb=1);
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin: auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+div.controls p.system {
+	display: block;
+	position: fixed;
+	bottom: calc(var(--eclipse-controls-height) - 44px);
+	background-color: rgb(43, 43, 43);
+	font-weight: 500;
+	line-height: 30px;
+	height: 30px;
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+}
+
+div.controls {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	padding: 0px calc(16px + var(--f7-safe-area-left));
+}
+
+div.controls .control {
+	color: #333;
+	background-color: #fff;
+}
+
+div.controls .control:active {
+	background-color: rgb(221, 221, 221);
+}
+
+/* 
+
+	Start/Select/Menu
+
+*/
+
+div.controls .bottom-controls {
+	position: fixed;
+	/* bottom: 16px; */
+	bottom: calc(16px + var(--f7-safe-area-bottom));
+}
+
+div.controls .bottom-controls .start-select {
+	display: flex;
+	position: fixed;
+	justify-content: space-between;
+	width: 166px;
+	margin: auto;
+	left: 0px;
+	right: 0px;
+	bottom: calc(16px + var(--f7-safe-area-bottom));
+}
+
+div.controls .bottom-controls .start-select .control {
+	width: 75px;
+}
+
+/* 
+
+	Shoulder Buttons
+
+*/
+
+div.controls .top-controls {
+	position: fixed;
+	bottom: calc(var(--eclipse-controls-height) - 35px);
+	left: 0px;
+	right: 0px;
+	display: flex;
+	justify-content: space-between;
+}
+
+div.controls .top-controls .shoulder {
+	width: 100px;
+	border-radius: 0px;
+	height: 35px;
+	line-height: 35px;
+}
+
+div.controls .top-controls .shoulder.left-shoulder {
+	/* padding-left: var(--f7-safe-area-left); */
+	border-radius: 0px 0px 15px 0px;
+}
+
+div.controls .top-controls .shoulder.right-shoulder {
+	/* padding-left: var(--f7-safe-area-left); */
+	border-radius: 0px 0px 0px 15px;
+}
+
+@media screen and (orientation: landscape) {
+	div.controls .control {
+		opacity: 0.6;
+	}
+
+	div.controls p.system {
+		display: none;
+	}
+
+	div.screen {
+		height: 100%;
+	}
+
+	div.controls .top-controls {
+		top: calc(16px + var(--f7-safe-area-top));
+		padding: 0px calc(16px + var(--f7-safe-area-left));
+	}
+
+	div.controls .control.menu-button {
+		position: fixed;
+		top: calc(16px + var(--f7-safe-area-top));
+		text-align: center;
+		width: 80px;
+		left: calc(50% - 40px);
+	}
+
+	div.controls .top-controls .shoulder.left-shoulder,
+	div.controls .top-controls .shoulder.right-shoulder  {
+		border-radius: 50px;
+	}
+
+	div.controls div.dpad .direction {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+@media screen and (max-width: 350px) and (orientation: portrait) {
+	div.controls .control.menu-button {
+		display: block;
+		min-width: 28px;
+		width: 25px;
+		padding: 0px;
+		font-size: 0px;
+	}
+}

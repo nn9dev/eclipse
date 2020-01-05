@@ -1,10 +1,10 @@
 let core: EclipseSystem = {
-	id: 'gh.taisel.GameBoy-Online.gb',
+	id: 'gh.twjel.jsnes',
 	name: {
-		short: 'GB',
-		long: 'Game Boy',
+		short: 'NES',
+		long: 'Nintendo Entertainment System',
 	},
-	fileTypes: ['gb'],
+	fileTypes: ['nes'],
 	developer: {
 		name: 'Grannt Galitz',
 		icon: 'https://avatars0.githubusercontent.com/u/13305116?s=460&v=4',
