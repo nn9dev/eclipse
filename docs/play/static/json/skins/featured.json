@@ -1,0 +1,122 @@
+[
+{
+  "name": "Default",
+  "link": "https://eclipseemu.me/play/json/skins/default.json",
+  "icon": "https://eclipseemu.me/play/img/icons/icon_mobFull.png"
+},
+{
+  "name": "Teal",
+  "link": "https://eclipseemu.me/play/json/skins/teal.json",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/teal.png"
+},
+{
+  "name": "Blue",
+  "link": "https://eclipseemu.me/play/json/skins/blue.json",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/blue.png"
+},
+{
+  "name": "Green",
+  "link": "https://eclipseemu.me/play/json/skins/green.json",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/green.png"
+},
+{
+  "name": "Grey",
+  "link": "https://eclipseemu.me/play/json/skins/grey.json",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/grey.png"
+},
+{
+  "name": "Magenta",
+  "link": "https://eclipseemu.me/play/json/skins/magenta.json",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/magenta.png"
+},
+{
+  "name": "Orange",
+  "link": "https://eclipseemu.me/play/json/skins/orange.json",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/orange.png"
+},
+{
+  "name": "Dark Mode",
+  "link": "https://igba.shuga.co/theme/darkMode/index.json",
+  "icon": "https://igba.shuga.co/theme/darkMode/icon.png"
+},
+{
+  "name": "iGBA Modern",
+  "link": "https://eclipseemu.me/play/json/skins/iGBAModern.json",
+  "icon": "https://eclipseemu.me/play/img/igba.jpeg"
+},
+{
+  "name": "iGBA Legacy",
+  "link": "https://eclipseemu.me/play/json/skins/iGBALegacy.json",
+  "icon": "https://igbaemu.com/beta-1134/icon-refresh.png"
+},
+{
+  "name": "Venom",
+  "link": "https://cyrusinstaller.com/Venom.json",
+  "icon": "https://cyrusinstaller.com/venom.png"
+},
+{
+  "name": "G.B.C.I",
+  "link": "https://hudu1118.github.io/Gameboy.json",
+  "icon": "https://app.dropapk.com/uploads/posts/apk/1476253677_dropapk.png"
+},
+{
+  "name": "N.E.S.C.I",
+  "link": "https://hudu1118.github.io/NEStheme.json",
+  "icon": "https://png.icons8.com/color/1600/nintendo-entertainment-system.png"
+},
+{
+  "name": "We Are Number One",
+  "icon": "https://i1.sndcdn.com/avatars-000283354129-5s27v3-t500x500.jpg",
+  "link": "https://eclipseemu.me/play/json/skins/igba/wearenumberone.json"
+},
+  {
+  "name": "OwO",
+  "icon": "https://eclipseemu.me/play/assets/img/skin/owo.png",
+  "link": "https://eclipseemu.me/play/json/skins/igba/owo.json"
+},
+{
+  "name": "Binyot",
+  "icon": "https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg",
+  "link": "https://eclipseemu.me/play/json/skins/igba/vinny.json"
+},
+{
+  "name": "Terminal 7",
+  "icon": "https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/p480x480/20766144_847716562070554_3115665269037465600_n.jpg?ig_cache_key=MTU4MTc2MzMwMzAxNTg5NDkzMA%3D%3D.2",
+  "link": "https://eclipseemu.me/play/json/skins/igba/terminal7.json"
+},
+{
+  "name": "Pikaskin",
+  "icon": "https://skins.karthik99999.cf/Pikaskin.png",
+  "link": "https://skins.karthik99999.cf/Pikaskin.json"
+},
+{
+  "name": "GBC Atomic",
+  "icon": "https://s3.amazonaws.com/wix-anyfile/4okA3nbeShqofbGbMJnM_AtomPurple.jpg",
+  "link": "https://hudu1118.github.io/AtomicPurple.json"
+},
+{
+  "name": "SNES (Purple)",
+  "icon": "https://icons.iconarchive.com/icons/sykonist/console/128/Snes-icon.png",
+  "link": "https://hudu1118.github.io/SuperNintendoEntertainment.json"
+},
+{
+  "name": "SFC (MuliColor)",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/d/de/Super_Famicom.png",
+  "link": "https://hudu1118.github.io/SFC.json"
+},
+{
+  "name": "Switch",
+  "icon": "https://s3.amazonaws.com/wix-anyfile/qFcXXH5OQduOnPVuvqBv_imageedit_6_4317205481_preview.png",
+  "link": "https://s3.amazonaws.com/wix-anyfile/bQ9m6LTMQLKc9RoyIejr_Switch.json"
+},
+{
+  "name": "iGBA + Dark Mode",
+  "icon": "https://skins.karthik99999.cf/iGBADark.png",
+  "link": "https://skins.karthik99999.cf/iGBADark.json"
+},
+{
+  "name": "Twitter Dark Mode",
+  "icon": "https://igba.shuga.co/img/twitterDark.png",
+  "link": "https://igba.shuga.co/theme/twitterDark/index.json"
+}
+]

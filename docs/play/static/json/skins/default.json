@@ -1,0 +1,9 @@
+{  
+   "name":"Default",
+   "logo":"https://tryeclipse.app/play/static/icons/apple-touch-icon.png",
+   "author":"Zenith Dev Team",
+   "description":"The default theme for Eclipse.",
+   "styles":[  
+      {}
+   ]
+}

@@ -1,0 +1,114 @@
+{
+	"developers": [
+		{
+			"name": "Magnetar",
+			"twitter": "magnetardev",
+			"role": "UI, Games, Repos, Controls, Emulation",
+			"paypal": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=magnetardev%40gmail%2ecom&lc=US&item_name=Donate%20to%20Magnetar&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"
+		},
+		{
+			"name": "Shuga",
+			"twitter": "HeyItsShuga",
+			"role": "Skins, Cloud Integration",
+			"paypal": "https://paypal.me/HeyItsShuga"
+		}
+	],
+	"libraries":  [
+		{
+			"name": "Framework7",
+			"role": "Web Framework",
+			"logo": "https://avatars0.githubusercontent.com/u/31954178?s=200&v=4",
+			"link": "https://framework7.io"
+		},
+		{
+			"name": "JSNES",
+			"role": "NES Support",
+			"logo": "https://avatars2.githubusercontent.com/u/40906?s=460&v=4",
+			"link": "https://github.com/bfirsh/jsnes"
+		},
+		{
+			"name": "XNES",
+			"role": "SNES Support",
+			"logo": "https://avatars2.githubusercontent.com/u/1032522?s=460&v=4",
+			"link": "https://github.com/tjwei/xnes"
+		},
+		{
+			"name": "GameBoy-Online",
+			"role": "GB & GBC Support",
+			"logo": "https://avatars0.githubusercontent.com/u/13305116?s=460&v=4",
+			"link": "https://github.com/taisel/GameBoy-Online"
+		},
+		{
+			"name": "IodineGBA",
+			"role": "GBA Support",
+			"logo": "https://avatars0.githubusercontent.com/u/13305116?s=460&v=4",
+			"link": "https://github.com/taisel/IodineGBA"
+		},
+		{
+			"name": "jsSMS",
+			"role": "SMS & SGG Support",
+			"logo": "https://avatars2.githubusercontent.com/u/333865?s=460&v=4",
+			"link": "https://github.com/gmarty/jsSMS"
+		},
+		{
+			"name": "SimplePresence",
+			"role": "Discord RPC Support",
+			"logo": "https://avatars2.githubusercontent.com/u/19729335?s=400&v=4",
+			"link": "https://github.com/justdotJS/SimplePresence"
+		}
+	],
+	"donors": [
+		{
+			"name": "Laur",
+			"twitter": "_notlaur"
+		},
+		{
+			"name": "Drew",
+			"twitter": "drewsucksatl1f3"
+		},
+		{
+			"name": "Lexus",
+			"twitter": "st_lexus_demon"
+		},
+		{
+			"name": "Ashley",
+			"twitter": "ashleycynicaI"
+		},
+		{
+			"name": "Tech Hax",
+			"twitter": "Tech_Hax_"
+		},
+		{
+			"name": "Ray",
+			"twitter": "RayFolf"
+		},
+		{
+			"name": "Cruize",
+			"twitter": "CruizeGraphics"
+		},
+		{
+			"name": "1p0wn",
+			"twitter": "1p0wn"
+		}
+	],
+	"thanks": [
+		{
+			"name": "NodePoint",
+			"role": "XSS Patching",
+			"twiter": "CoolApps45",
+			"link": "https://twitter.com/CoolApps45"
+		},
+		{
+			"name": "AJ170",
+			"role": "Promotion",
+			"twiter": "AjD3V",
+			"link": "https://www.youtube.com/c/AJ170"
+		},
+		{
+			"name": "OperationiDroid",
+			"role": "Promotion",
+			"twiter": "OPERATIONiDROID",
+			"link": "https://www.youtube.com/user/OPERATIONiDROID/"
+		}
+	]
+}

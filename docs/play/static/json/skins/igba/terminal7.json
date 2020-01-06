@@ -1,0 +1,19 @@
+{
+  "name": "Terminal 7",
+  "logo": "https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/p480x480/20766144_847716562070554_3115665269037465600_n.jpg?ig_cache_key=MTU4MTc2MzMwMzAxNTg5NDkzMA%3D%3D.2",
+  "author": "iGBA",
+  "styles": [{
+    "emulatorBackground": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png'); background-repeat: no-repeat; background-size:cover; background-position-y: bottom; background-position-x: center;",
+    "triggerL": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "triggerR": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "center": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "right": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "left": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "up": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "down": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "aBtn": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "bBtn": "background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "startBtn":"background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');",
+    "select":"background-image: url('http://i0.kym-cdn.com/photos/images/original/000/756/158/49a.png');"
+  }]
+}
