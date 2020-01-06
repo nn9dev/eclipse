@@ -1,6 +1,7 @@
 import localforage from 'localforage';
 import OpenVGDB from './openvgdb.js';
 import EclipseGamesManager from './games.ts';
+import EclipseSourcesManager from './sources.ts';
 export default class {
 
 	// Properties
@@ -14,7 +15,7 @@ export default class {
 	// Managers
 	public games: any; // Manages games
 	public skins: any; // Manages skins
-	public repos: any; // Manages repos
+	public sources: any; // Manages sources
 	public controls: any; // Manages controls
 
 	public migrator: any; // Manages migration from older versions
@@ -42,6 +43,8 @@ export default class {
 		});
 		this.storage = localforage;
 		this.games = new EclipseGamesManager({ storage: this.storage });
+		this.sources = new EclipseSourcesManager({ storage: this.storage });
+
 		// Run setup, and if necessary update old backup.
 		localforage.ready().then(() => {
 			this.setup().then(async ({ needsUpdating, originalVersion }: any) => {

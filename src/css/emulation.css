@@ -3,6 +3,12 @@
 	--eclipse-controls-height: calc(280px + var(--f7-safe-area-bottom));
 }
 
+/* 
+
+	Emulation Menu (Desktop)
+
+*/
+
 div.emulation-menu-bar {
 	display: flex;
 	position: fixed;
@@ -30,6 +36,12 @@ div.emulation-menu-bar div.emu-menu {
 	border-radius: 9px;
 }
 
+/* 
+
+	Screen
+
+*/
+
 div.screen {
 	width: 100%;
 	height: calc(100% - var(--eclipse-controls-height));
@@ -47,19 +59,11 @@ div.screen canvas#screen {
 	background-position: center;
 }
 
-div.controls p.system {
-	display: block;
-	position: fixed;
-	bottom: calc(var(--eclipse-controls-height) - 44px);
-	background-color: rgb(43, 43, 43);
-	font-weight: 500;
-	line-height: 30px;
-	height: 30px;
-	width: 100%;
-	left: 0px;
-	right: 0px;
-	text-align: center;
-}
+/* 
+
+	Controls Area
+
+*/
 
 div.controls {
 	position: absolute;
@@ -77,6 +81,27 @@ div.controls .control {
 
 div.controls .control:active {
 	background-color: rgb(221, 221, 221);
+}
+
+/* 
+
+	System Label
+
+*/
+
+div.controls p.system {
+	display: block;
+	position: fixed;
+	bottom: calc(var(--eclipse-controls-height) - 44px);
+	background-color: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	font-weight: 500;
+	line-height: 30px;
+	height: 30px;
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	text-align: center;
 }
 
 /* 

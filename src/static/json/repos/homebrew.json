@@ -1,0 +1,277 @@
+{
+  "reponame": "Homebrew",
+  "repologo": "https://igba.shuga.co/homebrewIcon.png",
+  "repoauthor": "Shuga",
+  "repodesc": "A collection of award-winning homebrew games from various systems, including entries to [GBAX Coding Competitions](https://gbax.gp2x.de).",
+  "categories": [
+    {
+      "categoryname": "Gameboy Advance",
+      "games": [
+        {
+          "name": "Mother 3",
+          "link": "https://igba.shuga.co/rom/mother3.gba",
+          "boxart": "https://igba.shuga.co/img/mother3.jpeg",
+          "system": "GBA"
+        },
+        {
+          "name": "PowerPig",
+          "link": "https://igba.shuga.co/rom/PowerPig.gba",
+          "boxart": "https://igba.shuga.co/img/PowerPig.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Beerjeweled",
+          "link": "https://igba.shuga.co/rom/Beerjeweled.gba",
+          "boxart": "https://igba.shuga.co/img/Beerjeweled.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Reaxion",
+          "link": "https://igba.shuga.co/rom/Reaxion.gba",
+          "boxart": "https://igba.shuga.co/img/Reaxion.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Absolute Zed",
+          "link": "https://igba.shuga.co/rom/AbsoluteZed.gba",
+          "boxart": "https://igba.shuga.co/img/AbsoluteZed.jpeg",
+          "system": "GBA"
+        },
+        {
+          "name": "Codename Hacker",
+          "link": "https://igba.shuga.co/rom/CodenameHacker.gba",
+          "boxart": "https://igba.shuga.co/img/CodenameHacker.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Beru",
+          "link": "https://igba.shuga.co/rom/Beru.gba",
+          "boxart": "https://igba.shuga.co/img/Beru.jpeg",
+          "system": "GBA"
+        },
+        {
+          "name": "5nake",
+          "link": "https://igba.shuga.co/rom/5nake.gba",
+          "boxart": "https://igba.shuga.co/img/5nake.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Critical Velocity",
+          "link": "https://igba.shuga.co/rom/CriticalVelocity.gba",
+          "boxart": "https://igba.shuga.co/img/CriticalVelocity.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Chopper",
+          "link": "https://igba.shuga.co/rom/Chopper.gba",
+          "boxart": "https://igba.shuga.co/img/Chopper.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "The Tragical Historie of Rodion and Rosalind",
+          "link": "https://igba.shuga.co/rom/Rodion.gba",
+          "boxart": "https://igba.shuga.co/img/Rodion.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "DangerousXmas",
+          "link": "https://igba.shuga.co/rom/DangerousXmas.gba",
+          "boxart": "https://igba.shuga.co/img/DangerousXmas.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Magik Tales",
+          "link": "https://igba.shuga.co/rom/MagikTales.gba",
+          "boxart": "https://igba.shuga.co/img/MagikTales.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "SuperGemSmashAdvance",
+          "link": "https://igba.shuga.co/rom/SuperGemSmashAdvance.gba",
+          "boxart": "https://igba.shuga.co/img/SuperGemSmashAdvance.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Android 2 Advance",
+          "link": "https://igba.shuga.co/rom/a2a.gba",
+          "boxart": "https://igba.shuga.co/img/a2a.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Arkanoid Advance",
+          "link": "https://igba.shuga.co/rom/ArkanoidAdvance.gba",
+          "boxart": "https://igba.shuga.co/img/ArkanoidAdvance.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Card Fighter Clash Advance",
+          "link": "https://igba.shuga.co/rom/cfcadvance.gba",
+          "boxart": "https://igba.shuga.co/img/cfcadvance.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Gunner",
+          "link": "https://igba.shuga.co/rom/gunner.gba",
+          "boxart": "https://igba.shuga.co/img/gunner.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Jetpack 2",
+          "link": "https://igba.shuga.co/rom/jetpack2.gba",
+          "boxart": "https://igba.shuga.co/img/jetpack2.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Kitchen Academy",
+          "link": "https://igba.shuga.co/rom/KA.gba",
+          "boxart": "https://igba.shuga.co/img/KA.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Looped",
+          "link": "https://igba.shuga.co/rom/looped.gba",
+          "boxart": "https://igba.shuga.co/img/looped.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Luland",
+          "link": "https://igba.shuga.co/rom/luland.gba",
+          "boxart": "https://igba.shuga.co/img/luland.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Ninja Sack",
+          "link": "https://igba.shuga.co/rom/ninjasack.gba",
+          "boxart": "https://igba.shuga.co/img/ninjasack.png",
+          "system": "GBA"
+        },
+        {
+          "name": "SnowFight",
+          "link": "https://igba.shuga.co/rom/SnowFight.gba",
+          "boxart": "https://igba.shuga.co/img/SnowFight.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Space Loonies",
+          "link": "https://igba.shuga.co/rom/SpaceLoonies.gba",
+          "boxart": "https://igba.shuga.co/img/SpaceLoonies.png",
+          "system": "GBA"
+        },
+        {
+          "name": "The Endless Tower",
+          "link": "https://igba.shuga.co/rom/thenendlesstower.gba",
+          "boxart": "https://igba.shuga.co/img/thenendlesstower.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Toundra",
+          "link": "https://igba.shuga.co/rom/toundra.gba",
+          "boxart": "https://igba.shuga.co/img/toundra.png",
+          "system": "GBA"
+        },
+        {
+          "name": "TrisFighter",
+          "link": "https://igba.shuga.co/rom/TrisFighter.gba",
+          "boxart": "https://igba.shuga.co/img/TrisFighter.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Holy Hell",
+          "link": "https://igba.shuga.co/rom/HolyHell.gba",
+          "boxart": "https://igba.shuga.co/img/HolyHell.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "GEMini",
+          "link": "https://igba.shuga.co/rom/Gemini.gba",
+          "boxart": "https://igba.shuga.co/img/Gemini.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Ballistic",
+          "link": "https://igba.shuga.co/rom/Ballistic.gba",
+          "boxart": "https://igba.shuga.co/img/Ballistic.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Don't Erase Me",
+          "link": "https://igba.shuga.co/rom/DontEraseMe.gba",
+          "boxart": "https://igba.shuga.co/img/DontEraseMe.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Uranus 2",
+          "link": "https://igba.shuga.co/rom/uranus2.gba",
+          "boxart": "https://igba.shuga.co/img/uranus2.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Eliminator",
+          "link": "https://igba.shuga.co/rom/Eliminator.gba",
+          "boxart": "https://igba.shuga.co/img/Eliminator.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Thrust",
+          "link": "https://igba.shuga.co/rom/thrust.gba",
+          "boxart": "https://igba.shuga.co/img/thrust.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Battleship",
+          "link": "https://igba.shuga.co/rom/battleship.gba",
+          "boxart": "https://igba.shuga.co/img/battleship.png",
+          "system": "GBA"
+        },
+        {
+          "name": "NightHawk",
+          "link": "https://igba.shuga.co/rom/NightHawk.gba",
+          "boxart": "https://igba.shuga.co/img/NightHawk.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Microshooter",
+          "link": "https://igba.shuga.co/rom/microshooter.gba",
+          "boxart": "https://igba.shuga.co/img/microshooter.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Hierogyphic Man",
+          "link": "https://igba.shuga.co/rom/HierogyphicMan.gba",
+          "boxart": "https://igba.shuga.co/img/HierogyphicMan.gif",
+          "system": "GBA"
+        },
+        {
+          "name": "Luminous",
+          "link": "https://igba.shuga.co/rom/Luminous.gba",
+          "boxart": "https://igba.shuga.co/img/Luminous.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Santa's Chimney Challenge",
+          "link": "https://igba.shuga.co/rom/SantasChimneyChallenge.gba",
+          "boxart": "https://igba.shuga.co/img/SantasChimneyChallenge.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Scanboy",
+          "link": "https://igba.shuga.co/rom/scanboy.gba",
+          "boxart": "https://igba.shuga.co/img/scanboy.png",
+          "system": "GBA"
+        },
+        {
+          "name": "Wonkie Guy",
+          "link": "https://igba.shuga.co/rom/WonkieGuy.gba",
+          "boxart": "https://igba.shuga.co/img/WonkieGuy.jpg",
+          "system": "GBA"
+        },
+        {
+          "name": "Snake",
+          "link": "https://igba.shuga.co/rom/Snake.gba",
+          "boxart": "https://igba.shuga.co/img/Snake.png",
+          "system": "GBA"
+        }
+      ]
+    }
+  ]
+}

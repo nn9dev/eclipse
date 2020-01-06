@@ -33,7 +33,7 @@ export default class extends React.Component {
 		return (
 			<Page name="home">
 				{/* Top Navbar */}
-				<Navbar sliding={false} large largeTransparent>
+				<Navbar sliding={false} large={!this.$theme.md} largeTransparent={!this.$theme.md}>
 					<NavLeft>
 						<Link iconIos="f7:bars" iconAurora="f7:bars" iconMd="material:menu" panelOpen="left" />
 					</NavLeft>
@@ -44,11 +44,11 @@ export default class extends React.Component {
 							className="add-game-button" 
 							iconIos="f7:plus" 
 							iconAurora="f7:plus" 
-							iconMd="material:menu" 
+							iconMd="material:add" 
 							onClick={this.addButton.bind(this)}
 						/>
 					</NavRight>
-					<NavTitleLarge>Library</NavTitleLarge>
+					{(!this.$theme.md) ? <NavTitleLarge>Library</NavTitleLarge> : null}
 					<Searchbar
 						className="searchbar-demo"
 						expandable
@@ -65,7 +65,7 @@ export default class extends React.Component {
 								<Col key={i.toString()} width="50" medium="33" large="25" xlarge="20">
 									<Link href={`/game/${game.id}/play/`} style={{ display: 'block', color: 'inherit' }}>
 										<Card className="game-card" noOutline noShadow>
-											<div className="boxart" data-id={game.id} style={{ backgroundImage: `url(${game.boxart})`}} onContextMenu={this.gameMenu.bind(this)}></div>
+											<div className="boxart" data-id={game.id} style={{ backgroundImage: 'url(' + (!!game.boxart ? game.boxart : 'static/img/default-cover.png') + ')'}} onContextMenu={this.gameMenu.bind(this)}></div>
 											<p className="name">{ game.name }</p>
 											<p className="system">{ game.system }</p>
 										</Card>
@@ -95,13 +95,7 @@ export default class extends React.Component {
 		Archive.init({
 			workerUrl: './static/libarchive/worker-bundle.js'
 		});
-		eclipse.games.init().then(() => eclipse.games.list().then(
-			games => {
-				this.setState({
-					games,
-				})
-			})
-		);
+		eclipse.games.list().then(games => this.setState({ games }));
 	}
 	
 	addButton() {
@@ -142,6 +136,7 @@ export default class extends React.Component {
 						
 						// Handle file upload
 						input.onchange = async (evt) => {
+							this.$f7.preloader.show();
 							let files = await Promise.all([...evt.target.files].map(async (file) => {
 								let filetype = file.name.split('.').pop();
 
@@ -191,7 +186,8 @@ export default class extends React.Component {
 								let res = await this.handleGameURL(url.href);
 								console.log(res);
 								app.preloader.hide();
-							} catch {
+							} catch (error) {
+								console.error(error);
 								app.dialog.alert('Please enter a valid URL.');
 							}
 						});
@@ -216,25 +212,41 @@ export default class extends React.Component {
 			files.map(
 				async (file) => {
 					let name = this.$f7.utils.removeDiacritics(file.name);
-					let games = await this.gameFromFileName(name, db);
+					let game = await this.gameFromFileName(name, db);
+					let data = await this.getFileData(file);
 					return {
-						file,
-						games,
+						file: data,
+						...game,
 					};
 				}
 			)
 		);
-		return games;
+		for (var i in games) {
+			await eclipse.games.add(games[i]);
+		}
+		this.$f7.preloader.hide();
+		let res = await eclipse.games.list();
+		this.setState({ res });
+	}
+
+	getFileData(file) {
+		return new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.onload = () => resolve(reader.result)
+			reader.onerror = (err) => reject(err);
+			reader.readAsBinaryString(file);
+		});
 	}
 
 	async handleGameURL(url) {
 		let db = await eclipse.openvgdb.init();
 		let fileName = url.split('/').pop();
-		let games = await this.gameFromFileName(fileName, db);
-		return [{
+		let game = await this.gameFromFileName(fileName, db);
+		eclipse.games.add({
 			url,
-			games,
-		}]
+			...game,
+		})
+		// games[0];
 	}
 
 	async gameFromFileName(name, db) {
@@ -261,7 +273,11 @@ export default class extends React.Component {
 		});
 
 		// Return
-		return games;
+		return (games.length > 0) ? games[0] : {
+			boxart: '',
+			name: name.replace(`.${ext}`, ''),
+			system: system.name.short,
+		};
 	}
 
 	async gameMenu(evt) {

@@ -1,0 +1,27 @@
+{
+	"info": {
+		"logo": "",
+	    "banner": "",
+		"name": "",
+		"maintainer": "",
+		"description": ""
+	},
+	"categories": [
+		{
+			"name": "",
+			"games": [
+				{
+					"name": "",
+					"boxart": "",
+					"link": "",
+				},
+				{
+					"name": "",
+					"boxart": "",
+					"link": "",
+					"system": ""
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+  "reponame":"Repo Name",
+  "repologo":"https://igbaemu.com/twitter?id=igbaemu",
+  "repoauthor":"Repo Author",
+  "repodesc":"Consequat ullamco ut commodo pariatur officia cillum laboris aliquip. Magna esse irure sint cillum eiusmod laboris et sunt elit reprehenderit reprehenderit magna sit ea minim in quis. Aliquip aute exercitation cillum eiusmod et est consequat excepteur voluptate ut excepteur anim. Pariatur voluptate proident quis id sunt ut non est.",
+  "categories":[
+    {
+      "categoryname":"Category Name",
+      "games":[
+        {
+          "name":"Game Name",
+          "link":"https://google.com/gba.gba",
+          "boxart":"Game Boxart",
+          "system":"GBA"
+        }
+      ]
+    }
+  ]
+}

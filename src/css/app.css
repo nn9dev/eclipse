@@ -32,8 +32,33 @@ body {
 	--f7-popup-tablet-border-radius: 9px;
 }
 
+:root.aurora {
+	--f7-page-transition-duration: 300ms;
+}
+
 .theme-light .page {
 	--f7-page-bg-color: #fff;
+}
+
+:root.md.theme-dark {
+	--f7-bars-bg-color: var(--f7-theme-color);
+	--f7-bars-text-color: #fff;
+	--f7-bars-link-color: #fff;
+}
+
+:root.md:not(.theme-dark) {
+	--f7-bars-bg-color: var(--f7-theme-color);
+	--f7-bars-text-color: #fff;
+	--f7-bars-link-color: #fff;
+	--f7-navbar-subtitle-text-color: rgba(255, 255, 255, 0.85);
+	--f7-bars-border-color: transparent;
+	--f7-tabbar-link-active-color: #fff;
+	--f7-tabbar-link-inactive-color: rgba(255, 255, 255, 0.54);
+	--f7-searchbar-bg-color: var(--f7-bars-bg-color);
+	--f7-searchbar-input-bg-color: #fff;
+	--f7-searchbar-input-text-color: #000;
+	--f7-sheet-border-color: transparent;
+	--f7-tabbar-link-active-border-color: #fff;
 }
 
 /* 
@@ -137,6 +162,7 @@ Game Card
 .game-card {
 	background-color: transparent;
 	/* pointer-events: none; */
+	/* overflow: hidden; */
 }
 
 .game-card .boxart {
@@ -153,6 +179,10 @@ Game Card
 .game-card p {
 	margin-block-start: 0em;
 	margin-block-end: 0em;
+	word-wrap: none;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	/* pointer-events: none; */
 }
 
@@ -162,4 +192,64 @@ Game Card
 
 .game-card .system {
 	opacity: 0.5;
+}
+
+
+/* 
+
+	List
+
+*/
+
+.item-content .item-media img {
+	width: 44px;
+	border-radius: 100px;
+}
+
+.item-content .item-media img.social-icons {
+	width: 35px;
+	border-radius: 7px;
+}
+
+.game-item .item-content .item-media img {
+	border-radius: 3px;
+}
+
+/* 
+
+	Featured Slider
+
+*/
+
+div.featured-items-slider {
+	margin: 0;
+	padding: 0 calc(16px + var(--f7-safe-area-left)) 16px;
+	display: flex;
+	flex-flow: row nowrap;
+	overflow: hidden;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling:touch !important;
+}
+
+div.featured-items-slider a.item {
+	background-color: red;
+	display: inline-block;
+	flex-wrap: nowrap;
+	color: #fff !important;
+	min-width: 288px;
+	max-width: 288px;
+	height: 161px;
+	margin-right: 16px;
+	border-radius: 9px;
+	background-position: 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	box-shadow:inset 0 -100px 100px -100px rgba(0, 0, 0, .5);
+}
+
+div.featured-items-slider a.item h2 {
+	position: relative;
+	top: 100px;
+	left:16px
 }

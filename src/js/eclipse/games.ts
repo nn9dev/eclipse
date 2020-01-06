@@ -1,3 +1,5 @@
+import { Utils } from 'framework7';
+
 export default class {
 
 	private storage: any;
@@ -6,15 +8,8 @@ export default class {
 		this.storage = storage;
 	}
 
-	async init() {
-		let games = await this.storage.getItem('games');
-		if (!games) {
-			await this.storage.setItem('games', []);
-		}
-	}
-
 	async list(): Promise<EclipseGame[]> {
-		let games = await this.storage.getItem('games');
+		let games = await this.storage.getItem('games') ?? [];
 		return games;
 	}
 
@@ -24,8 +19,21 @@ export default class {
 	}
 
 	async add(game: EclipseGame) {
+		let { boxart, file, url, name, system } = game;
+		let res: any = {
+			id: Utils.id('xxxxxxxx', '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+			name,
+			boxart: (!!boxart) ? boxart.replace('img.gamefaqs.net', 'gamefaqs1.cbsistatic.com').replace('http://', 'https://') : boxart,
+			system,
+			url,
+		}
+		if (!!file) {
+			res.file = `${res.id}-GameFile`;
+			await this.storage.setItem(`${res.id}-GameFile`, file);
+		}
+		console.log(res);
 		let games = await this.list();
-		games.push(game);
+		games.push(res);
 		await this.storage.setItem('games', games);
 	}
 }

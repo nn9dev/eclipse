@@ -1,0 +1,302 @@
+[{
+    "name": "The Basics",
+    "id": "boUawdi",
+    "description": "Keep the general look of Eclipse but with varied accent colors.",
+    "banner": "static/img/featured_skins/basics.png",
+    "skins": [{
+        "name": "Default",
+        "link": "https://eclipseemu.me/play/json/skins/default.json",
+        "icon": "static/img/skin/red.png"
+      }, {
+        "name": "Teal",
+        "link": "https://eclipseemu.me/play/json/skins/teal.json",
+        "icon": "static/img/skin/teal.png"
+      }, {
+        "name": "Blue",
+        "link": "https://eclipseemu.me/play/json/skins/blue.json",
+        "icon": "static/img/skin/blue.png"
+      }, {
+        "name": "Green",
+        "link": "https://eclipseemu.me/play/json/skins/green.json",
+        "icon": "static/img/skin/green.png"
+      }, {
+        "name": "Grey",
+        "link": "https://eclipseemu.me/play/json/skins/grey.json",
+        "icon": "static/img/skin/grey.png"
+      }, {
+        "name": "Magenta",
+        "link": "https://eclipseemu.me/play/json/skins/magenta.json",
+        "icon": "static/img/skin/magenta.png"
+      }, {
+        "name": "Orange",
+        "link": "https://eclipseemu.me/play/json/skins/orange.json",
+        "icon": "static/img/skin/orange.png"
+      }, {
+        "name": "iGBA Modern",
+        "link": "https://eclipseemu.me/play/json/skins/iGBAModern.json",
+        "icon": "static/img/skin/igba.jpeg"
+      }, {
+        "name": "iGBA Legacy",
+        "link": "https://eclipseemu.me/play/json/skins/iGBALegacy.json",
+        "icon": "static/img/skin/igba.png"
+      }
+    ]
+  }, {
+    "name": "Dark Modes",
+    "id": "DAWHOik",
+    "description": "Darken up your Eclipse experience, perfect for the late-night gamer.",
+    "banner": "static/img/featured_skins/dark.png",
+    "skins": [{
+        "name": "Dark Mode",
+        "link": "https://igba.shuga.co/theme/darkMode/index.json",
+        "icon": "https://igba.shuga.co/theme/darkMode/icon.png"
+      }, {
+        "name": "Twitter Dark Mode",
+        "icon": "https://igba.shuga.co/img/twitterDark.png",
+        "link": "https://igba.shuga.co/theme/twitterDark/index.json"
+      }
+    ]
+  }, {
+    "name": "Retro Aestetics",
+    "id": "LJLHkhi",
+    "description": "Eclipse is all about reliving your childhood. Swap your joy-pads with those of beloved consoles and feel like a kid again.",
+    "banner": "static/img/featured_skins/retro.png",
+    "skins": [{
+        "name": "G.B.C.I",
+        "link": "https://hudu1118.github.io/Gameboy.json",
+        "icon": "https://app.dropapk.com/uploads/posts/apk/1476253677_dropapk.png"
+      }, {
+        "name": "N.E.S.C.I",
+        "link": "https://hudu1118.github.io/NEStheme.json",
+        "icon": "https://png.icons8.com/color/1600/nintendo-entertainment-system.png"
+      }, {
+        "name": "GBC Atomic",
+        "icon": "https://s3.amazonaws.com/wix-anyfile/4okA3nbeShqofbGbMJnM_AtomPurple.jpg",
+        "link": "https://hudu1118.github.io/AtomicPurple.json"
+      }, {
+        "name": "SNES (Purple)",
+        "icon": "https://icons.iconarchive.com/icons/sykonist/console/128/Snes-icon.png",
+        "link": "https://hudu1118.github.io/SuperNintendoEntertainment.json"
+      }, {
+        "name": "SFC (MuliColor)",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/d/de/Super_Famicom.png",
+        "link": "https://hudu1118.github.io/SFC.json"
+      }, {
+        "name": "Switch",
+        "icon": "https://s3.amazonaws.com/wix-anyfile/qFcXXH5OQduOnPVuvqBv_imageedit_6_4317205481_preview.png",
+        "link": "https://s3.amazonaws.com/wix-anyfile/bQ9m6LTMQLKc9RoyIejr_Switch.json"
+      }
+    ]
+  }, {
+    "name": "Hōkō Legacy",
+    "id": "GHnigti",
+    "description": "The Hōkō skin collection is one of the finest controller skins. The Hōkō Legacy collection provides an elegant skeumorphic experience for gamers of all calibers.",
+    "banner": "static/img/featured_skins/hoko_legacy.png",
+    "skins": [{
+        "name": "White",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/white.json"
+      }, {
+        "name": "Grey",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/grey.json"
+      }, {
+        "name": "Orange",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/orange.json"
+      }, {
+        "name": "Red",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/red.json"
+      }, {
+        "name": "Teal",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/teal.json"
+      }, {
+        "name": "Blue",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/blue.json"
+      }, {
+        "name": "Navy",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/navy.json"
+      }, {
+        "name": "Green",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/green.json"
+      }, {
+        "name": "Yellow",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/yellow.json"
+      }, {
+        "name": "Purple",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v1/purple.json"
+      }
+
+    ]
+  }, {
+    "name": "Hōkō Tactile",
+    "id": "bGiuqw",
+    "description": "These follow the tradition of the Hōkō collection, but have a more tactile d-pad design.",
+    "banner": "static/img/featured_skins/hoko_tactile.png",
+    "skins": [{
+        "name": "White",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/white.json"
+      }, {
+        "name": "Grey",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/grey.json"
+      }, {
+        "name": "Orange",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/orange.json"
+      }, {
+        "name": "Red",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/red.json"
+      }, {
+        "name": "Teal",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/teal.json"
+      }, {
+        "name": "Blue",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/blue.json"
+      }, {
+        "name": "Navy",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/navy.json"
+      }, {
+        "name": "Green",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/green.json"
+      }, {
+        "name": "Yellow",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/yellow.json"
+      }, {
+        "name": "Purple",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v2/purple.json"
+      }
+    ]
+  }, {
+    "name": "Hōkō Flat",
+    "id": "IGOqwrm",
+    "description": "These Hōkō skins ditch skeumorphism and opt for flat buttons.",
+    "banner": "static/img/featured_skins/hoko_flat.png",
+    "skins": [{
+        "name": "White",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/white.json"
+      }, {
+        "name": "Grey",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/grey.json"
+      }, {
+        "name": "Orange",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/orange.json"
+      }, {
+        "name": "Red",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/red.json"
+      }, {
+        "name": "Teal",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/teal.json"
+      }, {
+        "name": "Blue",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/blue.json"
+      }, {
+        "name": "Navy",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/navy.json"
+      }, {
+        "name": "Green",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/green.json"
+      }, {
+        "name": "Yellow",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/yellow.json"
+      }, {
+        "name": "Purple",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/v3/purple.json"
+      }
+    ]
+  }, {
+    "name": "Hōkō Special",
+    "id": "Bkug82s",
+    "description": "Combine the elegance of the Hōkō collection with nostalgia to create a truly unique gaming experience.",
+    "banner": "static/img/featured_skins/hoko_special.png",
+    "skins": [{
+        "name": "Atomic Purple",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v2ap.json"
+      }, {
+        "name": "Game Boy",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v2gb.json"
+      }, {
+        "name": "NES",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v2nes.json"
+      }, {
+        "name": "Flat NES",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v3nes.json"
+      }, {
+        "name": "SNES",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v2snes.json"
+      }, {
+        "name": "Borealis",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v2ab.json"
+      }, {
+        "name": "PS2",
+        "icon": "static/img/featured_skins/basics.png",
+        "link": "https://wesleyblack.github.io/hoko/special/v2ps2.json"
+      }
+    ]
+  }, {
+    "name": "Dank Memes",
+    "id": "98jadgu",
+    "description": "Okay, maybe these skins are anything but dank, but maybe you can have a laugh while playing horrible bootlegs or shovelware you have lying around.",
+    "banner": "static/img/featured_skins/meme.png",
+    "skins": [{
+        "name": "We Are Number One",
+        "icon": "https://i1.sndcdn.com/avatars-000283354129-5s27v3-t500x500.jpg",
+        "link": "https://eclipseemu.me/play/json/skins/igba/wearenumberone.json"
+      }, {
+        "name": "OwO",
+        "icon": "static/img/skin/owo.png",
+        "link": "https://eclipseemu.me/play/json/skins/igba/owo.json"
+      }, {
+        "name": "Binyot",
+        "icon": "https://68.media.tumblr.com/tumblr_o8xgmgU4kK1s4rppoo1_1466186344_cover.jpg",
+        "link": "https://eclipseemu.me/play/json/skins/igba/vinny.json"
+      }, {
+        "name": "Terminal 7",
+        "icon": "https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/p480x480/20766144_847716562070554_3115665269037465600_n.jpg?ig_cache_key=MTU4MTc2MzMwMzAxNTg5NDkzMA%3D%3D.2",
+        "link": "https://eclipseemu.me/play/json/skins/igba/terminal7.json"
+      }
+    ]
+  }, {
+    "name": "Inspired by Games",
+    "id": "Dm8uh123",
+    "description": "Many have a game that they can't help but admire. Some take that passion to the drawing board and create skins inspired by franchises they love.",
+    "banner": "static/img/featured_skins/inspired_by_games.png",
+    "skins": [{
+        "name": "Pikaskin",
+        "icon": "https://skins.karthik99999.cf/Pikaskin.png",
+        "link": "https://skins.karthik99999.cf/Pikaskin.json"
+      }
+    ]
+  }
+]
