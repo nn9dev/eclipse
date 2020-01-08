@@ -11,7 +11,7 @@ export default class {
 	}
 
 	auth() {
-		let url = this.dbx.getAuthenticationUrl('https://zenithdevs.github.io/eclipse/auth/discord/');
+		let url = this.dbx.getAuthenticationUrl('https://zenithdevs.github.io/eclipse/auth/dropbox/');
 		window.open(url);
 	}
 

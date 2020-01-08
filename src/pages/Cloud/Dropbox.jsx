@@ -19,7 +19,8 @@ export default class extends React.Component {
 						<ListButton color="blue" onClick={eclipse.cloud.dropbox.setData.bind(eclipse.cloud.dropbox)}>Set Data</ListButton>
 						<ListButton color="blue" onClick={async() => {
 							let data = await eclipse.cloud.dropbox.getData.bind(eclipse.cloud.dropbox);
-							data
+							console.log(data);
+							alert(`Fetched data: ${JSON.stringify(data)}`);
 						}}>Get Data</ListButton>
 					</List>
 					<Button popupClose>Close</Button>
