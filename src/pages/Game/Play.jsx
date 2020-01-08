@@ -2,6 +2,55 @@ import React, { Component } from 'react';
 import { Popup, Page, Navbar, Block, Link, Button } from 'framework7-react';
 
 export default class DynamicRoutePage extends Component {
+
+	constructor(props) {
+		super(props);
+
+		// Setup Emulation Menu
+		this.state = {menu: this.$f7.actions.create({
+			buttons: [
+				[
+					{
+						text: 'Game',
+						label: true,
+					},
+					{
+						text: 'Enable Audio',
+						color: 'blue',
+						// icon: '<i class="f7-icons if-not-md">home</i><i class="material-icons md-only">home</i>',
+						onClick: () => {
+						}
+					},
+					{
+						text: 'Fast Forward',
+						color: 'blue',
+						onClick: () => {
+						}
+					},
+					{
+						text: 'Enable Cheats',
+						color: 'blue',
+						onClick: () => {
+						}
+					},
+					{
+						text: 'Quit',
+						color: 'red',
+						onClick: () => this.closeHandler()
+					},
+				].filter(v => !!v),
+				[
+					{
+						text: 'Cancel',
+						color: 'blue',
+						bold: true,
+					}
+				]
+			],
+		})}
+		console.log(this.state.menu)
+	}
+
 	render() {
 		return (
 			<Popup className="emulation-popup" tabletFullscreen>
@@ -13,7 +62,9 @@ export default class DynamicRoutePage extends Component {
 						// Load emulation menu
 						(<div className="emulation-menu-bar">
 							<div className="emu-menu">
-								<Button onClick={this.closeHandler.bind(this)}>Quit</Button>
+								{this.state.menu.groups[0].filter(v => !v.label).reverse().map((item) => {
+								return <Button color={item.color} onClick={item.onClick}>{item.text}</Button>
+								})}
 							</div>
 						</div>) :
 						// Load Controls
@@ -47,59 +98,21 @@ export default class DynamicRoutePage extends Component {
 	}
 
 	componentDidMount() {
+		
+		// Set Event Listeners
 		window.addEventListener('beforeunload', this.unloadHandler);
 		document.querySelector('canvas#screen').addEventListener('mousemove', this.handleMouseMove);
 		document.querySelector('canvas#screen').style.cursor = 'default';
 	}
+
 	componentWillUnmount() {
 		window.removeEventListener('beforeunload', this.unloadHandler);
 		document.querySelector('canvas#screen').removeEventListener('mousemove', this.handleMouseMove);
 	}
 
 	emulationMenu() {
-		let app = this.$f7;
-		let menu = app.actions.create({
-			buttons: [
-				[
-					{
-						text: 'Game',
-						label: true,
-					},
-					{
-						text: 'Enable Audio',
-						color: 'blue',
-						onClick: () => {
-						}
-					},
-					{
-						text: 'Fast Forward',
-						color: 'blue',
-						onClick: () => {
-						}
-					},
-					{
-						text: 'Enable Cheats',
-						color: 'blue',
-						onClick: () => {
-						}
-					},
-					{
-						text: 'Quit',
-						color: 'red',
-						onClick: () => this.closeHandler()
-					},
-				].filter(v => !!v),
-				[
-					{
-						text: 'Cancel',
-						color: 'red',
-					},
-				]
-			],
-		});
-	
 		// Open
-		menu.open();
+		this.state.menu.open();
 	}
 
 	closeHandler() {
@@ -109,31 +122,23 @@ export default class DynamicRoutePage extends Component {
 	}
 
 
-	handleMouseMove() {
-		var timer;
-		var fadeInBuffer = false;
-		if (!fadeInBuffer && timer) {
-			clearTimeout(timer);
-			timer = 0;
-			document.querySelector('canvas#screen').style.cursor = '';
-			document.querySelector('div.emu-menu').style.opacity = '';
-			document.querySelector('div.emu-menu').style.pointerEvents = '';
-			document.querySelector('div.emulation-menu-bar').style.pointerEvents = '';
-		} else {
-			document.querySelector('canvas#screen').style.cursor = 'default';
-			document.querySelector('div.emu-menu').style.opacity = '1';
-			document.querySelector('div.emu-menu').style.pointerEvents = 'initial';
-			document.querySelector('div.emulation-menu-bar').style.pointerEvents = 'initial';
-			fadeInBuffer = false;
-		}
+	handleMouseMove(evt) {
 
-		timer = setTimeout(function() {
+		// Clear Timeout		
+		clearTimeout(this.mouseHoverTimer);
+
+		document.querySelector('canvas#screen').style.cursor = '';
+		document.querySelector('div.emu-menu').style.opacity = '';
+		document.querySelector('div.emu-menu').style.pointerEvents = '';
+		document.querySelector('div.emulation-menu-bar').style.pointerEvents = '';
+		
+		// Set Timeout		
+		this.mouseHoverTimer = setTimeout(() => {
 			document.querySelector('canvas#screen').style.cursor = 'none';
 			document.querySelector('div.emu-menu').style.opacity = '0';
 			document.querySelector('div.emu-menu').style.pointerEvents = 'none';
 			document.querySelector('div.emulation-menu-bar').style.pointerEvents = 'none';
-			fadeInBuffer = true;
-		}, 5000);
+		}, 3000);
 	};
 
 	unloadHandler(evt) {

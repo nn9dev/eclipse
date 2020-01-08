@@ -77,11 +77,11 @@ export default class extends React.Component {
 						<div slot="media" className="sidebar-media sb-system-bg">
 							<Icon ios="f7:sort_down" md="material:add" aurora="f7:sort_down"></Icon>
 						</div>
-						<select name="sortlibraryby" defaultValue={['name']}>
+						<select name="sortlibraryby" defaultValue={'name'}>
 							<option value="name">Name</option>
 							<option value="system">System</option>
-							<option value="system">Recently Added</option>
-							<option value="system">Recently Played</option>
+							<option value="recentlyAdded">Recently Added</option>
+							<option value="recentlyPlayed">Recently Played</option>
 						</select>
 					</ListItem>
 				</List>
@@ -102,7 +102,7 @@ export default class extends React.Component {
 						<div slot="media" className="sidebar-media sb-system-bg">
 							<Icon ios="f7:floppy_disk" md="material:save" aurora="f7:floppy_disk"></Icon>
 						</div>
-						<select name="autosaverate" defaultValue={['name']}>
+						<select name="autosaverate" defaultValue={'60000'}>
 							<option value="never">Never</option>
 							<option value="1000">1s</option>
 							<option value="5000">5s</option>
@@ -156,6 +156,11 @@ export default class extends React.Component {
 					<ListItem link="#" title="Google Drive" footer="Importing games from Google Drive">
 						<div slot="media" className="sidebar-media sb-system-bg">
 							<Icon f7="logo_google"></Icon>
+						</div>
+					</ListItem>
+					<ListItem link="/cloud/dropbox/" title="Dropbox" footer="Sync saves, games, and other settings.">
+						<div slot="media" className="sidebar-media sb-system-bg">
+							<Icon f7="cube_fill"></Icon>
 						</div>
 					</ListItem>
 				</List>

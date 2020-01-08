@@ -60,6 +60,24 @@ var routes = [{
 		],
 	},
 	{
+		path: '/cloud/',
+		routes: [
+			{
+				path: 'dropbox/',
+				async(routeTo, routeFrom, resolve, reject) {
+					const component = () => import('../pages/Cloud/Dropbox.jsx');
+					component().then((vc) => {
+						resolve({ 
+							popup: {
+								component: vc.default
+							}
+						})
+					});
+				},
+			}
+		]
+	},
+	{
 		path: '(.*)',
 		component: NotFoundPage,
 	},

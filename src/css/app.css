@@ -33,11 +33,13 @@ body {
 }
 
 :root.aurora {
+	--f7-popup-tablet-border-radius: 9px;
 	--f7-page-transition-duration: 300ms;
 }
 
-.theme-light .page {
-	--f7-page-bg-color: #fff;
+.ios:not(.theme-dark),
+.aurora:not(.theme-dark) {
+	--f7-page-bg-color: #faf9f9;
 }
 
 :root.md.theme-dark {
@@ -77,7 +79,7 @@ div.statusbar {
 }
 
 :root:not(.theme-dark) div.statusbar {
-	background-color: rgba(0, 0, 0, 0.22);
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* 

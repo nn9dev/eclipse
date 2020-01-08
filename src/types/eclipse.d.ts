@@ -1,6 +1,5 @@
 declare module '*';
 
-
 declare interface EclipseOptions {
 	version?: string;
 	systems?: EclipseSystem[];

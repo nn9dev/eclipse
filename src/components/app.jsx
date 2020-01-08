@@ -82,6 +82,7 @@ export default class extends React.Component {
 			// Call F7 APIs here
 			console.log(this.$f7.statusbar);
 			this.$f7.statusbar.show();
+			globalThis.f7 = f7;
 		});
 	}
 }

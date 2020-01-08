@@ -1,4 +1,5 @@
 import { Utils } from 'framework7';
+import { binaryStringToBlob } from 'blob-util';
 
 export default class {
 
@@ -29,11 +30,33 @@ export default class {
 		}
 		if (!!file) {
 			res.file = `${res.id}-GameFile`;
-			await this.storage.setItem(`${res.id}-GameFile`, file);
+			let blob = binaryStringToBlob(file);
+			await this.storage.setItem(`${res.id}-GameFile`, blob);
 		}
 		console.log(res);
 		let games = await this.list();
 		games.push(res);
+		await this.storage.setItem('games', games);
+	}
+
+	async update(game: EclipseGame) {
+		let games = await this.list();
+		let ids = games.map(g => g.id);
+		let index = ids.indexOf(game.id);
+		games[index] = game;
+		await this.storage.setItem('games', games);
+	}
+
+	async remove(id: string) {
+		let games = await this.list();
+		let ids = games.map(game => game.id);
+		let index = ids.indexOf(id);
+		if (index > -1) {
+			let game = games.splice(index, 1);
+			if (!!game[0].file) {
+				await this.storage.removeItem(game[0].file);
+			}
+		}
 		await this.storage.setItem('games', games);
 	}
 }

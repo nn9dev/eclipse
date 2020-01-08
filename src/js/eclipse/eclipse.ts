@@ -2,6 +2,8 @@ import localforage from 'localforage';
 import OpenVGDB from './openvgdb.js';
 import EclipseGamesManager from './games.ts';
 import EclipseSourcesManager from './sources.ts';
+import EclipseCloud from './cloud/cloud.ts';
+import EclipseBackups from './backups.js';
 export default class {
 
 	// Properties
@@ -17,7 +19,8 @@ export default class {
 	public skins: any; // Manages skins
 	public sources: any; // Manages sources
 	public controls: any; // Manages controls
-
+	public cloud: any = EclipseCloud;
+	public backups: any = EclipseBackups
 	public migrator: any; // Manages migration from older versions
 	public openvgdb: any = new OpenVGDB();
 

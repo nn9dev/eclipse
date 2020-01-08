@@ -24,7 +24,11 @@ div.emulation-menu-bar {
 
 div.emulation-menu-bar div.emu-menu {
 	display: flex;
+	/* flex-direction: row-reverse; */
+	/* justify-content: start; */
 	align-items: center;
+	flex-wrap: nowrap;
+	overflow-x: scroll;
 	padding: 0px 16px;
 	width: 500px;
 	margin: 16px;
@@ -34,6 +38,13 @@ div.emulation-menu-bar div.emu-menu {
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	border-radius: 9px;
+	transition: .2s ease;
+}
+
+div.emulation-menu-bar div.emu-menu .button {
+	display: block;
+	/* justify-items: end; */
+	justify-self: self-end;
 }
 
 /* 
@@ -46,6 +57,10 @@ div.screen {
 	width: 100%;
 	height: calc(100% - var(--eclipse-controls-height));
 	background-color: #000;
+}
+
+.aurora div.screen {
+	height: 100%;
 }
 
 div.screen canvas#screen {
