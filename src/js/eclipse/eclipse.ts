@@ -32,12 +32,14 @@ export default class {
 		this.version = version ?? '1.0.0';
 		this.systems = systems ?? [];
 		this.defaultSettings = defaultSettings ?? {
+			libraryListView: false,
+			sortLibraryBy: 'name',
 			audio: true,
-			doAutosave: true,
-			autosaveRate: 60000,
+			autosaveRate: '60000',
 			desktopMode: false,
 			fillScreen: false,
 			showFPS: false,
+			controllerOpacity: 60,
 		};
 
 		// Setup Storage
@@ -45,19 +47,25 @@ export default class {
 			name: 'Eclipse',
 		});
 		this.storage = localforage;
-		this.games = new EclipseGamesManager({ storage: this.storage });
-		this.sources = new EclipseSourcesManager({ storage: this.storage });
+		this.games = new EclipseGamesManager({
+			storage: this.storage
+		});
+		this.sources = new EclipseSourcesManager({
+			storage: this.storage
+		});
 
 		// Run setup, and if necessary update old backup.
 		localforage.ready().then(() => {
-			this.setup().then(async ({ needsUpdating, originalVersion }: any) => {
-					if (needsUpdating) {
-						// await this.migrator.from(originalVersion);
-						console.log('');
-					}
-					console.log('Setup Eclipse');
+			this.setup().then(async ({
+				needsUpdating,
+				originalVersion
+			}: any) => {
+				if (needsUpdating) {
+					// await this.migrator.from(originalVersion);
+					console.log('');
 				}
-			);
+				console.log('Setup Eclipse');
+			});
 		});
 	}
 
@@ -67,7 +75,7 @@ export default class {
 		let setup = await this.storage.getItem('setup');
 		if (!ogSetup && !setup) {
 			console.log('howdy')
-			this.settings = this.defaultSettings;
+			this.setSettings(this.defaultSettings);
 			await this.storage.setItem('setup', this.version);
 		} else if (!!ogSetup && setup != this.version) {
 			return {
@@ -79,20 +87,27 @@ export default class {
 	}
 
 	// Get System for ID
-	system({ id, short, long, fileType }: any) {
+	system({
+		id,
+		short,
+		long,
+		fileType
+	}: any) {
 		return this.systems.filter(system => (system.id == id || system.name.short == short || system.name.long == long || system.fileTypes.indexOf(fileType) > -1))[0];
 	}
 
 	// Get Settings
-	get settings() {
-		return (async () => {
-			let settings = await this.storage.getItem('settings');
-			return settings;
-		})();
+	async settings() {
+		let settings = await this.storage.getItem('settings') ?? this.defaultSettings;
+		return settings;
 	}
 
 	// Set Settings
-	set settings(v: any) {
-		this.storage.setItem('settings', v);
+	async setSettings(settings: any) {
+		let old = await this.settings();
+		Object.keys(settings).forEach(key => {
+			old[key] = settings[key];
+		});
+		this.storage.setItem('settings', old);
 	}
 }

@@ -6,15 +6,6 @@ declare interface EclipseOptions {
 	defaultSettings?: any;
 }
 
-// declare interface EclipseSettings extends Promise<any> {
-// 	audio: boolean; 			// Audio?
-// 	doAutosave: boolean;		// Autosave?
-// 	autosaveRate: number;		// The frequency of autosaves
-// 	desktopMode: boolean;		// Hide controls in the game view & enable the menu bar?
-// 	fillScreen: boolean; 		// Disregard aspect ratio?
-// 	showFPS: boolean; 			// Show FPS?
-// }
-
 declare interface EclipseSystem {
 	id: string;
 	name: {

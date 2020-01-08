@@ -12,4 +12,11 @@ export default class {
 		});
 		return json;
 	}
+
+	static async import(json) {
+		let keys = Object.keys(json);
+		for (var i in keys) {
+			await eclipse.storage.setItem(keys[i], json[keys[i]]);
+		}
+	}
 }

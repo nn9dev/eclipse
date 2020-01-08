@@ -14,9 +14,12 @@
 	--f7-list-bg-color: transparent;
 }
 
-.aurora .panel.panel-left .list.inset li.swipeout:first-child, .list.inset li:first-child > a,
-.aurora .panel.panel-left .list.inset li.swipeout, .list.inset li > a,
-.aurora .panel.panel-left .list.inset li.swipeout:last-child, .list.inset li:last-child > a {
+.aurora .panel.panel-left .list.inset li.swipeout:first-child,
+.aurora .panel.panel-left .list.inset li:first-child>a,
+.aurora .panel.panel-left .list.inset li.swipeout,
+.aurora .panel.panel-left .list.inset li>a,
+.aurora .panel.panel-left .list.inset li.swipeout:last-child,
+.aurora .panel.panel-left .list.inset li:last-child>a {
 	border-radius: var(--f7-list-inset-border-radius);
 }
 

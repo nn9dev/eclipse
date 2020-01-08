@@ -37,6 +37,10 @@ export default class extends React.Component {
 						},
 					};
 				},
+				touch: {
+					fastClicks: true,
+					tapHold: true //enable tap hold events
+				},
 				panel: {
 					// swipe: 'left',
 					leftBreakpoint: 980,
@@ -84,5 +88,17 @@ export default class extends React.Component {
 			this.$f7.statusbar.show();
 			globalThis.f7 = f7;
 		});
+		window.onpagehide = () => {
+			console.log('howdy?');
+			if (!!eclipse.cloud.dropbox.dbx.accessToken) {
+				eclipse.cloud.dropbox.setData().then(res => {
+					f7.toast.create({
+						text: 'Saved to Dropbox.',
+						closeTimeout: 1000,
+					}).open();
+				});
+			}
+			// return 'false';
+		};
 	}
 }

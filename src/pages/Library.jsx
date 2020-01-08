@@ -19,6 +19,7 @@ import {
 import 'regenerator-runtime/runtime';
 
 import { Archive } from 'libarchive.js/main.js';
+import Dom7 from 'dom7';
 
 export default class extends React.Component {
 
@@ -96,6 +97,12 @@ export default class extends React.Component {
 			workerUrl: './static/libarchive/worker-bundle.js'
 		});
 		eclipse.games.list().then(games => this.setState({ games }));
+		[...document.querySelectorAll('.game-card .boxart')].forEach(el => {
+			el.addEventListener('taphold', (evt) => {
+				console.log('ok');
+				this.gameMenu(evt);
+			});
+		});
 	}
 	
 	addButton() {

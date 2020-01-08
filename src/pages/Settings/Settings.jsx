@@ -11,9 +11,24 @@ import {
 	Icon,
 	Toggle,
 	ListButton,
+	f7,
 } from 'framework7-react';
 
 export default class extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			settings: eclipse.defaultSettings
+		}
+	}
+
+	async componentDidMount() {
+		let settings = await eclipse.settings();
+		this.setState({
+			settings,
+		});
+	}
+
 	render() {
 		return (
 			<Page>
@@ -28,27 +43,27 @@ export default class extends React.Component {
 				<BlockTitle>About</BlockTitle>
 				<List inset>
 					<ListItem title="Version" after={this.$f7.version}>
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-blue">
 							<Icon ios="f7:info" md="material:add" aurora="f7:info"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/settings/versions/" title="Version History">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon ios="f7:clock" md="material:add" aurora="f7:clock"></Icon>
+						<div slot="media" className="sidebar-media bg-color-blue">
+							<Icon ios="f7:clock_fill" md="material:add" aurora="f7:clock_fill"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/settings/help/" title="Help">
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-blue">
 							<Icon ios="f7:question" md="material:help" aurora="f7:question"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/settings/credits/" title="Credits & Support">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon ios="f7:person_2" md="material:add" aurora="f7:person_2"></Icon>
+						<div slot="media" className="sidebar-media bg-color-blue">
+							<Icon ios="f7:person_2_fill" md="material:add" aurora="f7:person_2_fill"></Icon>
 						</div>
 					</ListItem>
 					<ListItem link="/settings/credits/" title="Issue Tracker">
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-black">
 							<Icon ios="f7:logo_github" md="material:add" aurora="f7:logo_github"></Icon>
 						</div>
 					</ListItem>
@@ -64,20 +79,20 @@ export default class extends React.Component {
 				<BlockTitle>Library</BlockTitle>
 				<List inset color="green">
 					<ListItem title="List View">
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-red">
 							<Icon ios="f7:list_bullet" md="material:add" aurora="f7:list_bullet"></Icon>
 						</div>
-						<Toggle slot="after" defaultChecked={false} />
+						<Toggle slot="after" name="libraryListView" onChange={this.toggleChanged.bind(this)} defaultChecked={!!this.state.settings.libraryListView} />
 					</ListItem>
 					<ListItem
 						title="Sort Library"
 						smartSelect
 						smartSelectParams={{openIn: 'popover'}}
 					>
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-red">
 							<Icon ios="f7:sort_down" md="material:add" aurora="f7:sort_down"></Icon>
 						</div>
-						<select name="sortlibraryby" defaultValue={'name'}>
+						<select name="sortlibraryby" defaultValue={this.state.settings.sortLibraryBy}>
 							<option value="name">Name</option>
 							<option value="system">System</option>
 							<option value="recentlyAdded">Recently Added</option>
@@ -99,10 +114,10 @@ export default class extends React.Component {
 						smartSelect
 						smartSelectParams={{openIn: 'sheet'}}
 					>
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-red">
 							<Icon ios="f7:floppy_disk" md="material:save" aurora="f7:floppy_disk"></Icon>
 						</div>
-						<select name="autosaverate" defaultValue={'60000'}>
+						<select name="autosaverate" defaultValue={this.state.settings.autosaveRate}>
 							<option value="never">Never</option>
 							<option value="1000">1s</option>
 							<option value="5000">5s</option>
@@ -120,28 +135,28 @@ export default class extends React.Component {
 						</select>
 					</ListItem>
 					<ListItem title="Audio">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon ios="f7:speaker_2" md="material:add" aurora="f7:speaker_2"></Icon>
+						<div slot="media" className="sidebar-media bg-color-red">
+							<Icon ios="f7:speaker_2_fill" md="material:add" aurora="f7:speaker_2_fill"></Icon>
 						</div>
-						<Toggle slot="after" defaultChecked />
+						<Toggle slot="after" name="audio" onChange={this.toggleChanged.bind(this)} defaultChecked={this.state.settings.audio} />
 					</ListItem>
 					<ListItem title="Aspect Ratio">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon ios="f7:tv" md="material:add" aurora="f7:tv"></Icon>
+						<div slot="media" className="sidebar-media bg-color-red">
+							<Icon ios="f7:tv_fill" md="material:add" aurora="f7:tv_fill"></Icon>
 						</div>
-						<Toggle slot="after" defaultChecked={!false} />
+						<Toggle slot="after" name="fillScreen" onChange={this.toggleChanged.bind(this)} defaultChecked={!this.state.settings.fillScreen} />
 					</ListItem>
 					<ListItem title="Hide Controls">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon ios="f7:eye_slash" md="material:add" aurora="f7:eye_slash"></Icon>
+						<div slot="media" className="sidebar-media bg-color-red">
+							<Icon ios="f7:eye_slash_fill" md="material:add" aurora="f7:eye_slash_fill"></Icon>
 						</div>
-						<Toggle slot="after" defaultChecked={false} />
+						<Toggle slot="after" name="desktopMode" onChange={this.toggleChanged.bind(this)} defaultChecked={this.state.settings.desktopMode} />
 					</ListItem>
 					<ListInput label="Controller Opacity" input={false}>
-						<div slot="media" className="sidebar-media sb-system-bg">
+						<div slot="media" className="sidebar-media bg-color-red">
 							<Icon ios="f7:eyeglasses" md="material:add" aurora="f7:eyeglasses"></Icon>
 						</div>
-						<Range color="blue" slot="input" label={true} value={60} min={0} max={100} step={1}/>
+						<Range color="blue" slot="input" label={true} value={this.state.settings.controllerOpacity} min={0} max={100} step={1}/>
 					</ListInput>
 				</List>
 				
@@ -154,14 +169,10 @@ export default class extends React.Component {
 				<BlockTitle>Cloud</BlockTitle>
 				<List inset>
 					<ListItem link="#" title="Google Drive" footer="Importing games from Google Drive">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon f7="logo_google"></Icon>
-						</div>
+						<img slot="media" className="social-icons" src="static/img/google-drive.jpg" />
 					</ListItem>
 					<ListItem link="/cloud/dropbox/" title="Dropbox" footer="Sync saves, games, and other settings.">
-						<div slot="media" className="sidebar-media sb-system-bg">
-							<Icon f7="cube_fill"></Icon>
-						</div>
+						<img slot="media" className="social-icons" src="static/img/dropbox.jpg" />
 					</ListItem>
 				</List>
 				
@@ -204,12 +215,80 @@ export default class extends React.Component {
 
 				<BlockTitle>Reset</BlockTitle>
 				<List inset>
-					<ListButton title="Reset Games" />
-					<ListButton title="Reset Sources" />
-					<ListButton title="Reset Skins" />
-					<ListButton title="Reset All Content & Settings" />
+					<ListButton onClick={this.resetGames} title="Reset Games" />
+					<ListButton onClick={this.resetSources} title="Reset Sources" />
+					<ListButton onClick={this.resetSkins} title="Reset Skins" />
+					<ListButton onClick={this.resetEverything} title="Reset All Content & Settings" />
 				</List>
 			</Page>
 		);
+	}
+
+	/* 
+	
+		Set Settings
+	
+	*/
+
+	async toggleChanged(evt) {
+		let settingsChanged = {}
+		let el = evt.target;
+		let key = el.getAttribute('name');
+		settingsChanged[key] = el.checked;
+		console.log(settingsChanged);
+		await eclipse.setSettings(settingsChanged);
+		let settings = await eclipse.settings();
+		this.setState({
+			settings,
+		});
+	}
+
+	/* 
+
+		Reset
+
+	*/
+
+	async resetGames() {
+		f7.dialog.confirm('Are you sure you want to reset your games?', async() => {
+			let games = await eclipse.games.list();
+			let files = games.map(g => g.file).filter(v => !!v);
+			await eclipse.storage.removeItem('games');
+			files.forEach(async file => {
+				await eclipse.storage.removeItem(file);
+			});
+			f7.toast.create({
+				text: 'Games successfully reset.',
+				closeTimeout: 4000,
+			}).open();
+		});
+	}
+
+	async resetSources() {
+		f7.dialog.confirm('Are you sure you want to reset your sources?', async () => {
+			await eclipse.storage.removeItem('repos');
+			f7.toast.create({
+				text: 'Sources successfully reset.',
+				closeTimeout: 4000,
+			}).open();
+		});
+	}
+
+	async resetSkins() {
+		f7.dialog.confirm('Are you sure you want to reset your skins?', async () => {
+			await eclipse.storage.removeItem('skins');
+			f7.toast.create({
+				text: 'Skins successfully reset.',
+				closeTimeout: 4000,
+			}).open();
+		});
+	}
+
+	async resetEverything() {
+		f7.dialog.confirm('Are you sure you want to reset Eclipse to its default settings?', async () => {
+			await eclipse.storage.clear();
+			await localStorage.clear();
+			location.reload(true);
+		});
 	}
 }
