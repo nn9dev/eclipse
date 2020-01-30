@@ -1,12 +1,8 @@
 export default class {
 	static async export() {
-		let json = {};
-		await eclipse.storage.iterate((value, key) => {
-			// Resulting key/value pair -- this callback
-			// will be executed for every item in the
-			// database.
-			// console.log(key, value);
-			if (key.indexOf('-GameFile') > -1) {} else {
+		const json = {};
+		await global.eclipse.storage.iterate((value, key) => {
+			if (key.indexOf('-GameFile') <= -1) {
 				json[key] = value;
 			}
 		});
@@ -14,9 +10,8 @@ export default class {
 	}
 
 	static async import(json) {
-		let keys = Object.keys(json);
-		for (var i in keys) {
-			await eclipse.storage.setItem(keys[i], json[keys[i]]);
-		}
+		Object.keys(json).forEach(async key => {
+			await global.eclipse.storage.setItem(key, json[key]);
+		});
 	}
 }

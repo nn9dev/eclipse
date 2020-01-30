@@ -9,6 +9,7 @@ export default class {
 	async add(url: string) {
 		let res = await this.list();
 		res.push(url);
+		res = [...new Set(res)];
 		await this.storage.setItem('repos', res);
 	}
 

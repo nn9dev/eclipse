@@ -1,104 +1,77 @@
 import React from 'react';
 import { Device } from 'framework7';
-import {
-	App,
-	Appbar,
-	Panel,
-	View,
-} from 'framework7-react';
+import { App, Panel, View } from 'framework7-react';
 
 import routes from '../js/routes';
 
 export default class extends React.Component {
-
 	constructor() {
 		super();
-
-		let url = new URL(location.href);
-		let theme = url.searchParams.get('theme');
-		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-		let detectedTheme = (Device.ios) ? 'ios' : (Device.android || Device.androidChrome) ? 'md' : 'aurora';
-		
 		this.state = {
 			// Framework7 Parameters
 			f7params: {
 				id: 'com.zenithdevs.eclipseemu',
 				name: 'Eclipse',
-				version: window.appVersion,
-				get theme() {
-					return (!!theme) ? theme : detectedTheme;
-				},
+				version: global.appVersion,
 				autoDarkTheme: true,
-				data: () => {
-					return {
-						user: {
-							firstName: 'John',
-							lastName: 'Doe',
-						},
-					};
+				routes,
+				get theme() {
+					const currentURL = new URL(global.location.href);
+					const detected = Device.desktop ? 'aurora' : 'auto';
+					const query = currentURL.searchParams.get('theme');
+					return ['ios', 'md', 'aurora'].indexOf(query) > -1 ? query : detected;
 				},
 				touch: {
 					fastClicks: true,
-					tapHold: true //enable tap hold events
+					tapHold: true
 				},
 				panel: {
-					// swipe: 'left',
-					leftBreakpoint: 980,
+					leftBreakpoint: 980
 				},
-				routes: routes,
-				serviceWorker: (url.host === `localhost:${url.port}`) ? {} : {
-					path: '/service-worker.js',
-				},
-				input: {
-					scrollIntoViewOnFocus: false,
-					scrollIntoViewCentered: false,
-				},
-			},
-			username: '',
-			password: '',
-		}
+				get serviceWorker() {
+					if (global.location.origin !== `localhost`) {
+						return {
+							path: '/service-worker.js'
+						};
+					}
+					return null;
+				}
+			}
+		};
+	}
+
+	componentDidMount() {
+		this.$f7ready(f7 => {
+			// Call F7 APIs here
+			console.log(this.$f7.statusbar);
+			this.$f7.statusbar.show();
+			global.f7 = f7;
+		});
+		global.window.onpagehide = () => {
+			console.log('howdy?');
+			if (global.eclipse.cloud.dropbox.dbx.accessToken) {
+				global.eclipse.cloud.dropbox.setData().then(() => {
+					global.f7.toast
+						.create({
+							text: 'Saved to Dropbox.',
+							closeTimeout: 1000
+						})
+						.open();
+				});
+			}
+		};
 	}
 
 	render() {
+		const { f7params } = this.state;
 		return (
-			<App params={this.state.f7params} colorTheme="red"> 
-			  	{ 
-				  	(Device.electron) ? (
-						<Appbar className="if-aurora">
-							<div className="left"></div>
-							<div className="center">
-								<p>Eclipse</p>
-							</div>
-						</Appbar>
-					) : null
-				}
-				<div className="statusbar"></div>
-				<Panel left resizable={this.state.f7params.theme === 'aurora'} visibleBreakpoint={960}>
+			<App params={f7params} colorTheme="red">
+				<div className="statusbar" />
+				<Panel left resizable={f7params.theme === 'aurora'} visibleBreakpoint={960}>
 					<View className="safe-areas" url="/menu/" />
 				</Panel>
 				<View main className="safe-areas" url="/" />
 			</App>
 		);
-	}
-
-	componentDidMount() {
-		this.$f7ready((f7) => {
-			// Call F7 APIs here
-			console.log(this.$f7.statusbar);
-			this.$f7.statusbar.show();
-			globalThis.f7 = f7;
-		});
-		window.onpagehide = () => {
-			console.log('howdy?');
-			if (!!eclipse.cloud.dropbox.dbx.accessToken) {
-				eclipse.cloud.dropbox.setData().then(res => {
-					f7.toast.create({
-						text: 'Saved to Dropbox.',
-						closeTimeout: 1000,
-					}).open();
-				});
-			}
-			// return 'false';
-		};
 	}
 }

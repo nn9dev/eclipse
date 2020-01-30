@@ -1,5 +1,5 @@
 .emulation-popup .page {
-	background-color: var(--f7-theme-color);
+	background-color: rgb(197, 51, 51);
 	--eclipse-controls-height: calc(280px + var(--f7-safe-area-bottom));
 }
 
@@ -108,7 +108,7 @@ div.controls p.system {
 	display: block;
 	position: fixed;
 	bottom: calc(var(--eclipse-controls-height) - 44px);
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.8);
 	color: #fff;
 	font-weight: 500;
 	line-height: 30px;
@@ -205,7 +205,7 @@ div.controls .top-controls .shoulder.right-shoulder {
 	}
 
 	div.controls .top-controls .shoulder.left-shoulder,
-	div.controls .top-controls .shoulder.right-shoulder  {
+	div.controls .top-controls .shoulder.right-shoulder {
 		border-radius: 50px;
 	}
 

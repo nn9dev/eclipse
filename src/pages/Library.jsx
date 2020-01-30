@@ -1,5 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import {
 	Page,
@@ -13,107 +13,150 @@ import {
 	Searchbar,
 	Card,
 	Col,
-	Block,
+	Block
 } from 'framework7-react';
-// import 'core-js/stable';
+
 import 'regenerator-runtime/runtime';
 
-import { Archive } from 'libarchive.js/main.js';
-import Dom7 from 'dom7';
+import { Archive } from 'libarchive.js/main';
 
 export default class extends React.Component {
-
 	constructor() {
 		super();
 		this.state = {
-			games: [],
-		}
-	}
-	
-	render() {
-		return (
-			<Page name="home">
-				{/* Top Navbar */}
-				<Navbar sliding={false} large={!this.$theme.md} largeTransparent={!this.$theme.md}>
-					<NavLeft>
-						<Link iconIos="f7:bars" iconAurora="f7:bars" iconMd="material:menu" panelOpen="left" />
-					</NavLeft>
-					<NavTitle sliding>Library</NavTitle>
-					<NavRight>
-						{(this.$f7.theme != 'aurora') ? <Link searchbarEnable=".searchbar-demo" iconIos="f7:search" iconAurora="f7:search" iconMd="material:search"></Link> : null}
-						<Link 
-							className="add-game-button" 
-							iconIos="f7:plus" 
-							iconAurora="f7:plus" 
-							iconMd="material:add" 
-							onClick={this.addButton.bind(this)}
-						/>
-					</NavRight>
-					{(!this.$theme.md) ? <NavTitleLarge>Library</NavTitleLarge> : null}
-					<Searchbar
-						className="searchbar-demo"
-						expandable
-						searchContainer=".search-list"
-						searchIn=".item-title"
-						disableButton={!this.$theme.aurora}
-					></Searchbar>
-				</Navbar>
-				{/* Page content */}
-				{this.state.games.length > 0 ? 
-					(<div className="list no-hairlines" style={{ margin: '0px', marginBottom: '16px', padding: '0px 8px'}}>
-						<ul className="row no-gap" style={{ backgroundColor: 'transparent'}}>
-							{this.state.games.map((game, i) => (
-								<Col key={i.toString()} width="50" medium="33" large="25" xlarge="20">
-									<Link href={`/game/${game.id}/play/`} style={{ display: 'block', color: 'inherit' }}>
-										<Card className="game-card" noOutline noShadow>
-											<div className="boxart" data-id={game.id} style={{ backgroundImage: 'url(' + (!!game.boxart ? game.boxart : 'static/img/default-cover.png') + ')'}} onContextMenu={this.gameMenu.bind(this)}></div>
-											<p className="name">{ game.name }</p>
-											<p className="system">{ game.system }</p>
-										</Card>
-									</Link>
-								</Col>
-							))}
-							<Col width="50" medium="33" large="25" xlarge="20"></Col>
-							<Col width="50" medium="33" large="25" xlarge="20"></Col>
-							<Col width="50" medium="33" large="25" xlarge="20"></Col>
-							<Col width="50" medium="33" large="25" xlarge="20"></Col>
-							<Col width="50" medium="33" large="25" xlarge="20"></Col>
-						</ul>
-					</div>) : (
-						<PageContent style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0px',  height: 'calc(100% - calc(var(--f7-navbar-height) + var(--f7-navbar-large-title-height)))' }}>
-							<Block strong inset style={{textAlign: "center", backgroundColor: 'transparent'}}>
-								<h1>No Games</h1>
-								<p>You can add some games to your library by pressing + in the top right corner.</p>
-							</Block>
-						</PageContent>
-					)
-				}
-			</Page>
-		);
+			games: []
+		};
 	}
 
 	componentDidMount() {
+		// Setup libArchive
 		Archive.init({
 			workerUrl: './static/libarchive/worker-bundle.js'
 		});
-		eclipse.games.list().then(games => this.setState({ games }));
-		[...document.querySelectorAll('.game-card .boxart')].forEach(el => {
-			el.addEventListener('taphold', (evt) => {
-				console.log('ok');
-				this.gameMenu(evt);
-			});
+
+		// Bind add button
+		global.document
+			.querySelector('.add-game-button')
+			.addEventListener('click', () => this.addButton());
+
+		// List all games
+		global.eclipse.games.list().then(games => this.setState({ games }));
+	}
+
+	componentDidUpdate() {
+		// Bind Game Cards
+		[...global.document.querySelectorAll('.game-card .boxart')].forEach(el => {
+			const openGameMenu = evt => this.gameMenu(evt);
+
+			// Unbind Previous
+			el.removeEventListener('taphold', openGameMenu);
+			el.removeEventListener('taphold', openGameMenu);
+
+			// Bind Again
+			el.addEventListener('taphold', openGameMenu);
+			el.addEventListener('contextmenu', openGameMenu);
+			this.$f7.lazy.loadImage(el);
 		});
 	}
-	
+
+	// MARK: Games API
+	// TODO: Migrate file handling and API results to ../js/eclipse/openvgdb.js
+
+	getFileData(file) {
+		return new Promise((resolve, reject) => {
+			// eslint-disable-next-line no-undef
+			const reader = new FileReader();
+			reader.onload = () => resolve(reader.result);
+			reader.onerror = err => reject(err);
+			reader.readAsBinaryString(file);
+		});
+	}
+
+	async handleUploadedGames(files) {
+		const db = await global.eclipse.openvgdb.init();
+		const games = await Promise.all(
+			files.map(async file => {
+				const name = this.$f7.utils.removeDiacritics(file.name);
+				const game = await this.gameFromFileName(name, db);
+				const data = await this.getFileData(file);
+				return {
+					file: data,
+					...game
+				};
+			})
+		);
+		await Promise.all(games.map(async game => global.eclipse.games.add(game)));
+		this.$f7.preloader.hide();
+		const res = await global.eclipse.games.list();
+		this.setState({ games: res });
+	}
+
+	async handleGameURL(url) {
+		await global.eclipse.openvgdb.init();
+		const fileName = url.pathname.split('/').pop();
+		const game = await this.gameFromFileName(fileName);
+		console.log(game);
+		global.eclipse.games.add({
+			url: url.href,
+			...game
+		});
+		this.$f7.preloader.hide();
+		const res = await global.eclipse.games.list();
+		this.setState({ games: res });
+	}
+
+	async gameFromFileName(name) {
+		// Get file extension & system
+		const ext = name.split('.').pop();
+		const system = global.eclipse.system({ fileType: ext });
+
+		// Clean file name & split into parts
+		const parts = name
+			.replace(/_/g, ' ')
+			.replace(/-/g, ' ')
+			.replace('%20', ' ')
+			.replace(`.${ext}`, '')
+			.toLowerCase()
+			.split(' ')
+			.map(res => {
+				return res.replace(/\[.*?\]/, '').replace(/\(.*?\)/, '');
+			})
+			.filter(a => a !== '');
+
+		// Convert into SQL query & run
+		const query = `system IS ${parts
+			.map(part => `name LIKE '%${part}%' AND system IS '${system.name.short}'`)
+			.join('\nOR ')}`;
+		const sqlResponses = await global.eclipse.openvgdb.run(query);
+
+		// Reduce More
+		const games = sqlResponses.filter(item => {
+			const regex = new RegExp(`(?=.*${parts.join(')(?=.*')})`, 'i');
+			return regex.test(this.$f7.utils.removeDiacritics(item.name));
+		});
+
+		// Return
+		if (games.length > 0) {
+			return games[0];
+		}
+
+		return {
+			boxart: '',
+			name: name.replace(`.${ext}`, ''),
+			system: system.name.short
+		};
+	}
+
+	// MARK: Add Button
+
 	addButton() {
 		const app = this.$f7;
-
-		let addGame = app.actions.create({
+		const addGame = app.actions.create({
 			buttons: [
 				[
 					{
 						text: 'Add Game',
-						label: true,
+						label: true
 					},
 
 					// Game Hub
@@ -124,74 +167,17 @@ export default class extends React.Component {
 						onClick: () => this.$f7router.navigate('/game-hub/')
 					},
 
-					// Upload Games
-
-					{
-						text: 'Upload',
-						color: 'blue',
-						onClick: () => {
-
-							// Get acceted files
-							let systems = eclipse.systems.flatMap(res => res.fileTypes);
-							let archiveTypes = ['zip', '7z', 'rar', 'tar'];
-							let acceptsString = [...archiveTypes, ...systems].map(type => `.${type}`).join(', ');
-
-							// Create upload element
-							let input = document.createElement('input');
-							input.setAttribute('type', 'file');
-							input.setAttribute('accept', acceptsString);
-							input.setAttribute('multiple', true);
-							
-							// Handle file upload
-							input.onchange = async (evt) => {
-								this.$f7.preloader.show();
-								let files = await Promise.all([...evt.target.files].map(async (file) => {
-									let filetype = file.name.split('.').pop();
-
-									// Check if file was an archive
-									if (archiveTypes.indexOf(filetype) > -1) {
-
-										// Is an archive, unarcive.
-										let archive = await Archive.open(file);
-										let files = await archive.getFilesArray();
-
-										// Check if there are any supported files, without expanding the zip
-										let supported = files.filter(res => {
-											let type = res.file._name.split('.').pop();
-											return systems.indexOf(type) > -1;
-										});
-
-										// Check if there are supported games
-										if (supported.length > 0) {
-											let extractedFiles = await archive.extractFiles();
-											let supportedFiles = supported.map(res => extractedFiles[res.file._name]).filter(v => !!v);
-											console.log({supported, supportedFiles, extractedFiles, files});
-											return supportedFiles;
-										}
-										return;
-									}
-									return file;
-								}));
-								this.handleUploadedGames(files.flat());
-							}
-
-							// Open
-							input.click();
-						}
-					},
-
 					// URL
 
 					{
 						text: 'URL',
 						color: 'blue',
 						onClick: () => {
-							app.dialog.prompt('Enter the direct URL for a game', async (link) => {
+							app.dialog.prompt('Enter the direct URL for a game', async link => {
 								try {
-									let url = new URL(link);
+									const url = new URL(link);
 									app.preloader.show();
-
-									let res = await this.handleGameURL(url.href);
+									const res = await this.handleGameURL(url);
 									console.log(res);
 									app.preloader.hide();
 								} catch (error) {
@@ -200,180 +186,297 @@ export default class extends React.Component {
 								}
 							});
 						}
+					},
+
+					// Upload Games
+
+					{
+						text: 'Files',
+						color: 'blue',
+						onClick: () => {
+							// Get acceted files
+							const systems = global.eclipse.systems.flatMap(res => res.fileTypes);
+							const archiveTypes = ['zip', '7z', 'rar', 'tar'];
+							const acceptsString = [...archiveTypes, ...systems]
+								.map(type => `.${type}`)
+								.join(', ');
+
+							// Create upload element
+							const input = global.document.createElement('input');
+							input.setAttribute('type', 'file');
+							input.setAttribute('accept', acceptsString);
+							input.setAttribute('multiple', true);
+
+							// Handle file upload
+							input.onchange = async evt => {
+								this.$f7.preloader.show();
+								const files = await Promise.all(
+									[...evt.target.files].map(async file => {
+										const filetype = file.name.split('.').pop();
+
+										// Check if file was an archive
+										if (archiveTypes.indexOf(filetype) > -1) {
+											// Is an archive, unarcive.
+											const archive = await Archive.open(file);
+											const archivedFiles = await archive.getFilesArray();
+
+											// Check if there are any supported files, without expanding the zip
+											const supported = archivedFiles.filter(res => {
+												const type = res.file._name.split('.').pop();
+												return systems.indexOf(type) > -1;
+											});
+
+											// Check if there are supported games
+											if (supported.length > 0) {
+												const extractedFiles = await archive.extractFiles();
+												const supportedFiles = supported
+													.map(res => extractedFiles[res.file._name])
+													.filter(v => !!v);
+												console.log({
+													supported,
+													supportedFiles,
+													extractedFiles,
+													files: archivedFiles
+												});
+												return supportedFiles;
+											}
+											return null;
+										}
+										return file;
+									})
+								);
+								this.handleUploadedGames(files.flat());
+							};
+
+							// Open
+							input.click();
+						}
 					}
 				],
 				[
 					{
 						text: 'Cancel',
 						color: 'blue',
-						bold: true,
+						bold: true
 					}
-				],
+				]
 			],
 			// Need to specify popover target
-			// targetEl: document.querySelector('.add-game-button'),
+			targetEl: global.document.querySelector('.add-game-button')
 		});
-	
+
 		// Open
 		addGame.open();
-	}
-
-	async handleUploadedGames(files) {
-		let db = await eclipse.openvgdb.init();
-		let games = await Promise.all(
-			files.map(
-				async (file) => {
-					let name = this.$f7.utils.removeDiacritics(file.name);
-					let game = await this.gameFromFileName(name, db);
-					let data = await this.getFileData(file);
-					return {
-						file: data,
-						...game,
-					};
-				}
-			)
-		);
-		for (var i in games) {
-			await eclipse.games.add(games[i]);
-		}
-		this.$f7.preloader.hide();
-		let res = await eclipse.games.list();
-		this.setState({ games: res });
-	}
-
-	getFileData(file) {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.onload = () => resolve(reader.result)
-			reader.onerror = (err) => reject(err);
-			reader.readAsBinaryString(file);
-		});
-	}
-
-	async handleGameURL(url) {
-		let db = await eclipse.openvgdb.init();
-		let fileName = url.split('/').pop();
-		let game = await this.gameFromFileName(fileName, db);
-		eclipse.games.add({
-			url,
-			...game,
-		});
-		this.$f7.preloader.hide();
-		let res = await eclipse.games.list();
-		this.setState({ games: res });
-		// games[0];
-	}
-
-	async gameFromFileName(name, db) {
-		// Get file extension & system
-		let ext = name.split('.').pop();
-		let system = eclipse.system({ fileType: ext });
-		
-		// Clean file name & split into parts
-		var parts = name.replace(/_/g, ' ').replace(/-/g, ' ').replace('%20', ' ').replace(`.${ext}`, '').toLowerCase().split(' ').map(res => {
-			return res.replace(/\[.*?\]/, "").replace(/\(.*?\)/, "")
-		}).filter(a => a != '');
-
-		// Convert into SQL query & run
-		let query = `system IS ${parts.map(part => `name LIKE '%${part}%' AND system IS '${system.name.short}'`).join('\nOR ')}`;
-		let sqlResponses = await eclipse.openvgdb.run({
-			query,
-			db,
-		});
-
-		// Reduce More
-		let games = sqlResponses.filter(item => {
-			var regex = new RegExp(`(?=.*${parts.join(')(?=.*')})`, 'i');
-			return regex.test(this.$f7.utils.removeDiacritics(item.name));
-		});
-
-		// Return
-		return (games.length > 0) ? games[0] : {
-			boxart: '',
-			name: name.replace(`.${ext}`, ''),
-			system: system.name.short,
-		};
 	}
 
 	async gameMenu(evt) {
 		evt.preventDefault();
 		console.log(evt);
-		let games = await eclipse.games.get({ id: evt.target.dataset.id });
-		let game = games[0];
+		const games = await global.eclipse.games.get({ id: evt.target.dataset.id });
+		const game = games[0];
 		console.log(game);
-		let system = await eclipse.system({ short: game.system });
+		const system = await global.eclipse.system({ short: game.system });
 		console.log(system);
-		f7.actions.create({
-			buttons: [
-				[
-					{
-						text: game.name,
-						label: true,
-					},
-					{
-						text: 'Rename',
-						color: 'blue',
-						onClick: () => {
-							f7.dialog.prompt(`Rename "${game.name}"`, 'Eclipse', async renamed => {
-								console.log(renamed);
-								let g = game;
-								g.name = renamed;
-								await eclipse.games.update(g);
-								let games = await eclipse.games.list();
-								this.setState({
-									games
-								});
-							}, undefined, `${game.name}`);
+		this.$f7.actions
+			.create({
+				buttons: [
+					[
+						{
+							text: game.name,
+							label: true
+						},
+						{
+							text: 'Rename',
+							color: 'blue',
+							onClick: () => {
+								this.$f7.dialog.prompt(
+									`Rename "${game.name}"`,
+									'Eclipse',
+									async renamed => {
+										console.log(renamed);
+										const g = game;
+										g.name = renamed;
+										await global.eclipse.games.update(g);
+										const list = await global.eclipse.games.list();
+										this.setState({
+											games: list
+										});
+									},
+									null,
+									`${game.name}`
+								);
+							}
+						},
+						{
+							text: 'Change Boxart',
+							color: 'blue'
+						},
+						{
+							text: game.url != null ? 'Edit URL' : null,
+							color: 'blue',
+							onClick: () => {
+								this.$f7.dialog.prompt(
+									`Edit URL for "${game.name}"`,
+									'Eclipse',
+									renamed => {
+										console.log(renamed);
+									},
+									() => {},
+									`${game.url}`
+								);
+							}
+						},
+						{
+							text: !game.file ? 'Download' : null,
+							color: 'blue'
+						},
+						{
+							text: system.methods.storeSave ? 'Saves' : null,
+							color: 'blue'
+						},
+						{
+							text: system.methods.loadCheats ? 'Cheats' : null,
+							color: 'blue'
+						},
+						{
+							text: 'Delete',
+							color: 'red',
+							onClick: () => {
+								this.$f7.dialog.confirm(
+									`Are you sure you want to delete ${game.name}?`,
+									async () => {
+										await global.eclipse.games.remove(game.id);
+										const list = await global.eclipse.games.list();
+										this.setState({
+											games: list
+										});
+									}
+								);
+							}
 						}
-					},
-					{
-						text: 'Change Boxart',
-						color: 'blue',
-					},
-					(game.url != null) ? ({
-						text: 'Edit URL',
-						color: 'blue',
-						onClick: () => {
-							this.$f7.dialog.prompt(`Edit URL for "${game.name}"`, 'Eclipse', renamed => {
-								console.log(renamed)
-							}, _ => {}, `${game.url}`);
+					].filter(v => !!v.text),
+					[
+						{
+							text: 'Cancel',
+							color: 'blue',
+							bold: true
 						}
-					}) : null,
-					(game.file == null) ? ({
-						text: 'Download',
-						color: 'blue',
-					}) : null,
-					(system.methods.storeSave) ? ({
-						text: 'Saves',
-						color: 'blue',
-					}) : null,
-					(system.methods.loadCheats) ? ({
-						text: 'Cheats',
-						color: 'blue',
-					}) : null,
-					{
-						text: 'Delete',
-						color: 'red',
-						onClick: () => {
-							this.$f7.dialog.confirm(`Are you sure you want to delete ${game.name}?`, async () => {
-								await eclipse.games.remove(game.id);
-								let games = await eclipse.games.list();
-								this.setState({
-									games
-								});
-							});
-						}
-					},
-				].filter(v => !!v),
-				[
-					{
-						text: 'Cancel',
-						color: 'blue',
-						bold: true,
-					}
+					]
 				],
-			],
-			// Need to specify popover target
-		}).open();
+				// Need to specify popover target
+				targetEl: evt.target
+			})
+			.open();
+	}
+
+	render() {
+		const { games } = this.state;
+
+		return (
+			<Page name="home">
+				{/* Top Navbar */}
+				<Navbar large={!this.$theme.md} largeTransparent={!this.$theme.md} sliding={false}>
+					<NavLeft>
+						<Link
+							iconIos="f7:bars"
+							iconAurora="f7:bars"
+							iconMd="material:menu"
+							panelOpen="left"
+						/>
+					</NavLeft>
+					<NavTitle sliding>Library</NavTitle>
+					{!this.$theme.md ? <NavTitleLarge>Library</NavTitleLarge> : null}
+					<NavRight>
+						<Link
+							searchbarEnable=".search-games-library"
+							iconIos="f7:search"
+							iconAurora="f7:search"
+							iconMd="material:search"
+						/>
+						<Link
+							className="add-game-button"
+							iconIos="f7:plus"
+							iconAurora="f7:plus"
+							iconMd="material:add"
+						/>
+					</NavRight>
+					<Searchbar
+						className="search-games-library"
+						searchContainer=".search-games-library-list"
+						searchIn=".name"
+						expandable
+						disableButton={!this.$theme.aurora}
+					/>
+				</Navbar>
+
+				{/* Page content */}
+
+				{games.length > 0 ? (
+					<div
+						className="list search-games-library-list no-hairlines"
+						style={{ margin: '0px', marginBottom: '16px', padding: '0px 8px' }}
+					>
+						<ul className="row no-gap" style={{ backgroundColor: 'transparent' }}>
+							{games.map((game, i) => (
+								<Col
+									key={i.toString()}
+									width="50"
+									medium="33"
+									large="25"
+									xlarge="20"
+								>
+									<Link
+										href={`/game/${game.id}/play/`}
+										style={{ display: 'block', color: 'inherit' }}
+									>
+										<Card className="game-card" noOutline noShadow>
+											<div
+												className="boxart lazy lazy-fade-in"
+												data-id={game.id}
+												data-background={
+													game.boxart
+														? game.boxart
+														: 'static/img/default-cover.png'
+												}
+											/>
+											<p className="name">{game.name}</p>
+											<p className="system">{game.system}</p>
+										</Card>
+									</Link>
+								</Col>
+							))}
+							<Col width="50" medium="33" large="25" xlarge="20" />
+							<Col width="50" medium="33" large="25" xlarge="20" />
+							<Col width="50" medium="33" large="25" xlarge="20" />
+							<Col width="50" medium="33" large="25" xlarge="20" />
+							<Col width="50" medium="33" large="25" xlarge="20" />
+						</ul>
+					</div>
+				) : (
+					<PageContent
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							padding: '0px',
+							height:
+								'calc(100% - calc(var(--f7-navbar-height) + var(--f7-navbar-large-title-height)))'
+						}}
+					>
+						<Block
+							strong
+							inset
+							style={{ textAlign: 'center', backgroundColor: 'transparent' }}
+						>
+							<h1>No Games</h1>
+							<p>
+								You can add some games to your library by pressing + in the top
+								right corner.
+							</p>
+						</Block>
+					</PageContent>
+				)}
+			</Page>
+		);
 	}
 }

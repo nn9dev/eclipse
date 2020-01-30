@@ -10,6 +10,16 @@
 	--f7-page-bg-color:rgba(3, 3, 3, 0.85);
 } */
 
+.aurora .panel .page {
+	--f7-page-bg-color: #f6f6f6;
+}
+
+@media (prefers-color-scheme: dark) {
+	.aurora .panel .page {
+		--f7-page-bg-color: #171717;
+	}
+}
+
 .aurora .panel.panel-left .list {
 	--f7-list-bg-color: transparent;
 }
