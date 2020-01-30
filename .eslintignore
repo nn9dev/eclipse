@@ -1,2 +1,5 @@
 src/serviceWorker.js
-src/**/__tests__/**
+tests/
+build/
+docs/
+node_modules/
