@@ -31,7 +31,7 @@ export default class extends React.Component {
 				get serviceWorker() {
 					if (global.location.origin !== `localhost`) {
 						return {
-							path: '/service-worker.js'
+							path: './service-worker.js'
 						};
 					}
 					return null;
