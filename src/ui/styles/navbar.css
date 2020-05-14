@@ -1,0 +1,97 @@
+nav {
+	position: fixed;
+	top: 0px;
+	background-color: var(--eclipse-blur-bg-color);
+	-webkit-backdrop-filter: blur(var(--eclipse-blur-strength));
+	backdrop-filter: blur(var(--eclipse-blur-strength));
+	left: 0px;
+	right: 0px;
+	border-bottom: 0.5px solid rgba(131, 131, 131, 0.2);
+	padding: 0px 16px;
+	padding-top: var(--safe-area-top);
+	max-height: 90px;
+	z-index: 99999999;
+}
+
+nav .nav-inner {
+	display: flex;
+	height: 44px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav .nav-inner a i, nav .nav-inner button i {
+	font-size: 24px;
+}
+
+nav .nav-inner button {
+	color: var(--eclipse-tint-color);
+	appearance: none;
+	border: none;
+	background: transparent;
+	padding: 0px;
+	cursor: pointer;
+}
+
+nav .title {
+	height: 44px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	text-align: center;
+	pointer-events: none;
+	margin: 0px;
+	line-height: 44px;
+	font-size: 17px;
+	font-weight: 600;
+	padding-top: var(--safe-area-top);
+}
+
+nav .searchbar {
+	height: 36px;
+	background-color: var(--eclipse-searchbar-bg);
+	display: block;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav .searchbar i {
+	font-size: 18px;
+	padding: 0px 8px;
+
+}
+
+nav .searchbar input {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	border: none;
+	font-size: 15px;
+	padding: 0px 0px;
+	color: var(--eclipse-primary-text-color);
+	font-family: var(--eclipse-font-family);
+}
+
+nav .searchbar i,
+nav .searchbar input::placeholder,
+nav .searchbar input::-webkit-input-placeholder {
+	color: var(--eclipse-secondary-text-color);
+}
+
+@supports not ((backdrop-filter: blur(var(--eclipse-blur-strength))) or (--webkit-backdrop-filter: blur(var(--eclipse-blur-strength)))) {
+	nav {
+		background-color: #fff;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		nav {
+			background-color: #000;
+		}
+	}
+}

@@ -1,0 +1,44 @@
+:root {
+	/* Safe Areas */
+	--safe-area-top: max(env(safe-area-inset-top), 0px);
+	--safe-area-bottom: max(env(safe-area-inset-bottom), 16px);
+	--safe-area-left: max(env(safe-area-inset-left), 16px);
+	--safe-area-right: max(env(safe-area-inset-right), 16px);
+
+	/* General */
+	--eclipse-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+	sans-serif;
+	--eclipse-blur-strength: 20px;
+
+	/* Sizing */
+	--eclipse-brkpt-lg: 1024px;
+	--eclipse-brkpt-md: 768px;
+
+	/* Colors */
+	--eclipse-blur-bg-color: rgba(255, 255, 255, 0.8);
+	--eclipse-tint-color: rgb(88, 86, 214);
+	--eclipse-danger-tint-color: rgb(255, 59, 48);
+	--eclipse-primary-text-color: rgb(28, 28, 30);
+	--eclipse-secondary-text-color: rgba(99, 99, 102);
+	--eclipse-primary-bg-color: #fff;
+	--eclipse-secondary-bg-color: #f7f7f7;
+	--eclipse-overlay-bg-color: rgba(0, 0, 0, 0.4);
+	--eclipse-searchbar-bg: rgba(118, 118, 128, .12);
+	--eclipse-list-seperator-color: rgba(60, 60, 67, .19);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--eclipse-tint-color: rgb(94, 92, 230);
+		--eclipse-blur-bg-color: rgba(30, 30, 30, 0.75);
+		--eclipse-danger-tint-color: rgb(255, 69, 58);
+		--eclipse-primary-text-color: rgb(242, 242, 247);
+		--eclipse-secondary-text-color: rgb(174, 174, 178);
+		--eclipse-primary-bg-color: #1C1C1E;
+		--eclipse-secondary-bg-color: #000;
+		--eclipse-overlay-bg-color: rgba(0, 0, 0, 0.6);
+		--eclipse-searchbar-bg: rgba(118, 118, 128, .24);
+		--eclipse-list-seperator-color: rgba(84, 84, 88, .34);
+	}
+}

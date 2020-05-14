@@ -1,0 +1,247 @@
+div.emulator {
+	background-color: #000;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+}
+
+div.emulator .controls {
+	background-color: var(--eclipse-tint-color);
+	position: absolute;
+	bottom: 0px;
+	display: block;
+	left: 0px;
+	right: 0px;
+	padding: 0px var(--safe-area-left);
+	padding-bottom: var(--safe-area-bottom);
+	pointer-events: none;
+}
+
+div.emulator div.screen-container p.temp-message {
+	font-family: monospace;
+	position: absolute;
+	top: var(--safe-area-top);
+	right: var(--safe-area-right);
+}
+
+div.emulator div.screen-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: calc(100vh - 300px);
+}
+
+div.emulator div.screen-container canvas.screen {
+	background-color: #fff;
+}
+
+div.emulator .controls .emu-name {
+	background-color: rgba(0,0,0,0.4);
+	width: 100vw;
+	position: absolute;
+	left: 0px;
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 27.5px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+div[data-ck-control], div.dpad .center, button.menu-button {
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	background-color: #fff;
+	color: #929292;
+	overflow: hidden;
+	text-transform: uppercase;
+	font-size: 12px;
+	opacity: 0.9;
+	font-weight: 500;
+	pointer-events: none;
+}
+
+button.menu-button {
+	display: block;
+	bottom: var(--safe-area-bottom);
+	border: none;
+	position: absolute;
+	left: var(--safe-area-left);
+	z-index: 999999999999;
+	padding: 0px;
+	pointer-events: initial;
+	font-family: var(--eclipse-font-family);
+}
+
+div[data-ck-control="l_shoulder"], div[data-ck-control="r_shoulder"] {
+	width: 100px;
+	height: 35px;
+}
+
+div[data-ck-control="l_shoulder"] {
+	border-radius: 0 0 15px 0;
+} 
+
+div[data-ck-control="r_shoulder"] {
+	border-radius: 0 0 0 15px;
+}
+
+div[data-ck-control="start"], div[data-ck-control="select"], button.menu-button {
+	width: 70px;
+	height: 30px;
+	margin-left: 8px;
+	margin-right: 8px;
+	/* font-size: 14px; */
+} 
+
+
+div.dpad, div.facebuttons {
+	width: 150px;
+	height: 150px;
+	display: grid;
+	grid-template-columns: repeat(3, 50px, 1fr);
+}
+
+/* D-pad/Facebutton Control Styles */
+div[data-ck-control="down, left"], div[data-ck-control="b, y"] {
+	grid-column: 1;
+	grid-row: 3;
+}
+
+div[data-ck-control="left"], div[data-ck-control="y"] {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+div[data-ck-control="up, left"], div[data-ck-control="x, y"] {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+div[data-ck-control="up"], div[data-ck-control="x"] {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+div[data-ck-control="up, right"], div[data-ck-control="x, a"] {
+	grid-column: 3;
+	grid-row: 1;
+}
+
+div[data-ck-control="right"], div[data-ck-control="a"] {
+	grid-column: 3;
+	grid-row: 2;
+}
+
+div[data-ck-control="down, right"], div[data-ck-control="a, b"] {
+	grid-column: 3;
+	grid-row: 3;
+}
+
+div[data-ck-control="down"], div[data-ck-control="b"] {
+	grid-column: 2;
+	grid-row: 3;
+}
+
+div[data-ck-control="down, left"], div[data-ck-control="b, y"],
+div[data-ck-control="up, left"], div[data-ck-control="x, y"],
+div[data-ck-control="up, right"], div[data-ck-control="x, a"],
+div[data-ck-control="down, right"], div[data-ck-control="a, b"] {
+	opacity: 0;
+}
+
+div.dpad .center {
+	border-radius: 0px;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+
+div[data-ck-control="up"] {
+	border-radius: 15px 15px 0px 0px;
+}
+
+div[data-ck-control="left"] {
+	border-radius: 15px 0px 0px 15px;
+}
+
+div[data-ck-control="right"] {
+	border-radius: 0px 15px 15px 0px;
+}
+
+div[data-ck-control="down"] {
+	border-radius: 0px 0px 15px 15px;
+}
+
+div.shoulder, div.startselect, div.controls .middle {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+div.controls .middle {
+	/* margin-right: 16px;
+	margin-left: 16px; */
+	margin-top: 24px;
+	margin-bottom: 24px;
+}
+
+div.shoulder {
+	margin-left: -16px;
+	margin-right: -16px;
+	width: 100vw;
+}
+
+div.startselect {
+	justify-content: center;
+	pointer-events: none;
+	/* margin-bottom: var(--safe-area-bottom); */
+}
+
+
+@media (orientation: landscape) {
+	div.emulator .controls .emu-name {
+		display: none;
+	}
+
+	div.emulator div.screen-container {
+		height: 100vh;
+	}
+
+	.emulator div.controls {
+		background-color: rgba(0,0,0,0);
+	}
+	
+	.emulator div.controls .shoulder {
+		margin-left: 0px;
+		margin-right: 0px;
+		width: 100%;
+		margin-top: 25vh;
+	}
+
+	.emulator div.controls .startselect {
+		margin-top: auto;
+		justify-content: space-between;
+		width: calc(100vw - 300px);
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.emulator div[data-ck-control="l_shoulder"], .emulator div[data-ck-control="r_shoulder"] {
+		border-radius: 17.5px;
+	}
+
+	.emulator div[data-ck-control], .emulator div.dpad .center, .emulator button.menu-button {
+		opacity: 0.5;
+	}
+
+	.emulator div[data-ck-control="down, left"], .emulator div[data-ck-control="b, y"],
+	.emulator div[data-ck-control="up, left"], .emulator div[data-ck-control="x, y"],
+	.emulator div[data-ck-control="up, right"], .emulator div[data-ck-control="x, a"],
+	.emulator div[data-ck-control="down, right"], .emulator div[data-ck-control="a, b"] {
+		opacity: 0;
+	}
+}

@@ -1,0 +1,45 @@
+section.games {
+	display: grid;
+	grid-template-columns: repeat(2, calc(50% - var(--safe-area-left) / 2));
+	gap: 16px;
+	padding-top: 16px;
+}
+
+a.game {
+	display: block;
+}
+
+a.game .boxart {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 3px;
+	display: block;
+	width: 100%;
+	padding-top: 100%;
+}
+
+a.game .title {
+	margin-top: 4px;
+	margin-bottom: 0px;
+	color: var(--eclipse-primary-text-color);
+}
+
+a.game .system {
+	font-size: 14px;
+	margin: 0px;
+	color: var(--eclipse-secondary-text-color);
+}
+
+a.game .title, 
+a.game .system {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@media screen and (min-width: 768px) {
+	section.games {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+}

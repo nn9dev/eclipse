@@ -1,0 +1,40 @@
+input[type="checkbox"].toggle {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	height: 31px;
+	width: 51px;
+	display: block;
+	background: rgba(120,120,128,0.32);
+	border-radius: 15.5px;
+	border: 1px solid rgba(144,144,144,0.0);
+	transition: background 200ms ease-in-out;
+}
+
+input[type="checkbox"].toggle::after {
+	transition-property: all;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 250ms;
+	content: ' ';
+	display: block;
+	width: 25px;
+	height: 25px;
+	position: relative;
+	top: 2px;
+	z-index: 1;
+	border: 0 solid rgba(0,0,0,0.04);
+	margin-left: 2px;
+	border-radius: 100px;
+	background-color: #fff;
+	box-shadow: 0 3px 8px 0 rgba(0,0,0,0.15), 0 3px 1px 0 rgba(0,0,0,0.06);
+}
+
+input[type="checkbox"].toggle:checked {
+	background-color: #32D74B;
+}
+
+input[type="checkbox"].toggle:checked::after {
+	/* right: 1.5px; */
+	margin-left: 22px;
+	border: none;
+}

@@ -1,0 +1,1 @@
+Fixed a bug on iPhone X-like devices where the screen would become small in landscape mode.

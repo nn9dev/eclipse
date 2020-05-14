@@ -1,0 +1,123 @@
+h3.list-title {
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: 500;
+	color: var(--eclipse-secondary-text-color);
+	margin-bottom: 0px;
+	margin-top: 32px;
+}
+
+p.list-footer {
+	font-size: 12px;
+	color: var(--eclipse-secondary-text-color);
+	margin-top: -8px;
+	margin-bottom: 32px;
+}
+
+ul.list {
+	margin-top: 4px;
+	display: block;
+	position: relative;
+	max-width: 100vw;
+	width: calc(100vw);
+	list-style: none;
+	padding: 0px;
+	/* padding: 0px 16px; */
+	background-color: var(--eclipse-primary-bg-color);
+	left: calc(-1 * var(--safe-area-left));
+	border-top: 0.1px solid var(--eclipse-list-seperator-color);
+	border-bottom: 0.1px solid var(--eclipse-list-seperator-color);
+}
+
+ul.list .list-item .item-media {
+	margin-right: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	/* width: 32px;
+	height: 32px; */
+}
+
+ul.list .list-item.has-subtitle {
+	height: 50px;
+}
+
+ul.list .list-item .item-media div, 
+ul.list .list-item .item-media img {
+	border-radius: 9px;
+	border: solid 1px rgba(131, 131, 131, 0.1);
+	max-width: 32px;
+	max-height: 32px;
+}
+
+ul.list .list-item .item-media img.lg {
+	max-width: 38px;
+	max-height: 38px;
+}
+
+ul.list .list-item .item-media i {
+	font-size: 20px;
+	color: var(--eclipse-secondary-text-color);
+}
+
+ul.list .list-item {
+	padding: 0px 16px;
+	padding-right: 0px;
+	min-height: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	color: inherit;
+}
+
+ul.list .list-item .item-inner {
+	height: 100%;
+	width: 100%;
+	display: block;
+	/* line-height: 44px; */
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 0.1px solid var(--eclipse-list-seperator-color);
+}
+
+
+ul.list .list-item .item-inner .title {
+	margin: 0;
+}
+
+ul.list .list-item .item-inner .subtitle {
+	margin: 0;
+	font-size: 12px;
+	color: var(--eclipse-secondary-text-color);
+}
+
+ul.list .list-item .item-inner .item-after {
+	display: flex;
+	align-items: center;
+	color: var(--eclipse-secondary-text-color);
+	padding-right: 16px;
+}
+
+ul.list .list-item .item-inner .item-after i.chevron {
+	font-size: 16px;
+	padding-left: 8px;
+	padding-right: -8px;
+	opacity: 0.6;
+}
+
+/* 
+ul.list .list-item .item-inner::after {
+	position: relative;
+	content: ' ';
+	display: block;
+	height: 0.5px;
+	top: 0px;
+	background-color: var(--eclipse-list-seperator-color);
+	width: 100%;
+} */
+
+ul.list .list-item:last-child .item-inner {
+	border: none;
+}
