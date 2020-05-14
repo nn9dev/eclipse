@@ -7,6 +7,8 @@ import Repos from './views/repos';
 import Settings from './views/settings';
 import Skins from './views/skins';
 
+const url = new URL(window.location.href);
+
 export default function App() {
 	return (
 		<Router>

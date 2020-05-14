@@ -16,10 +16,10 @@ This repo will serve as the beta version until v3.0.0 releases, where it will be
 ## Development
 
 #### Scripts
-* 🔥 `yarn start` - run development server
-* 🔧 `yarn test` - run tests
-* 🔧 `yarn build` - build web app using development mode (faster build without minification and optimization)
-* 🔧 `yarn build:beta` - build web app for beta
+* 🔥 `npm run start` - run development server
+* 🔧 `npm run test` - run tests
+* 🔧 `npm run build` - build web app using development mode (faster build without minification and optimization)
+* 🔧 `npm run build:beta` - build web app for beta
 
 #### PWA
 This is a PWA. Don't forget to check what is inside of your `service-worker.js`. It is also recommended that you disable service worker (or enable "Update on reload") in browser dev tools during development.
