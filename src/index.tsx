@@ -12,15 +12,13 @@ console.log(window.eclipse);
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<App standalone={
+			// @ts-ignore
+			!!navigator.standalone
+		}/>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
-
-// @ts-ignore
-if (navigator.standalone) {
-	document.querySelector('.app')?.classList.add('standalone');
-}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

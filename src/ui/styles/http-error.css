@@ -1,0 +1,34 @@
+.http-error {
+	/* padding-top: 92px; */
+	max-width: 600px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	line-height: 1.5;
+}
+
+.http-error h1, .http-error h3 {
+	margin: 0px;
+	color: var(--eclipse-primary-text-color);
+}
+
+.http-error h3 {
+	margin-top: 16px;
+}
+
+.http-error p {
+	color: var(--eclipse-secondary-text-color);
+	margin-top: 4px;
+	margin-bottom: 16px;
+}
+
+.http-error .list {
+	margin-top: 16px;
+	width: 100%;
+	border: solid 0.1px var(--eclipse-seperator-color);
+	overflow: hidden;
+	border-radius: 9px; 
+	position: initial;
+}
