@@ -18,14 +18,14 @@ export default function App(props: {
 		<Router>
 			<div className={`app${props.standalone ? ' standalone' : ''}`}>
 			<div className="statusbar" />
-			{url.protocol !== 'http:' || url.hostname !== 'eclipseemu.me' ? 
+			{!(url.protocol === 'http:' && (url.hostname === 'eclipseemu.me' || url.hostname === 'zenithdevs.github.io')) ? 
 				[
-					<Route exact path="/" component={Library} />,
-					<Route exact path="/about" component={About} />,
-					<Route exact path="/repos" component={Repos} />,
-					<Route exact path="/skins" component={Skins} />,
-					<Route exact path="/game/:id" component={Game} />,
-					<Route exact path="/settings" component={Settings} />,
+					<Route key={window.eclipse.utils.uuid()} exact path="/" component={Library} />,
+					<Route key={window.eclipse.utils.uuid()} exact path="/repos" component={Repos} />,
+					<Route key={window.eclipse.utils.uuid()} exact path="/about" component={About} />,
+					<Route key={window.eclipse.utils.uuid()} exact path="/skins" component={Skins} />,
+					<Route key={window.eclipse.utils.uuid()} exact path="/game/:id" component={Game} />,
+					<Route key={window.eclipse.utils.uuid()} exact path="/settings" component={Settings} />,
 				] :
 				(
 					<HTTPBad />

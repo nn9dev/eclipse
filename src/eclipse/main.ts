@@ -1,5 +1,5 @@
 //@ts-nocheck
-import games from './games';
+import Games from './games';
 import skins from './skins';
 import repos from './repos';
 import cores from './cores';
@@ -8,7 +8,7 @@ import settings from './settings';
 
 const Eclipse = {
 	version: '3.0.0',
-	games,
+	games: new Games(),
 	skins,
 	repos,
 	cores,

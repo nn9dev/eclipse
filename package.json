@@ -10,16 +10,23 @@
 		"@types/node": "^12.12.39",
 		"@types/react": "^16.9.35",
 		"@types/react-dom": "^16.9.8",
+		"@types/sql.js": "^1.0.3",
+		"adm-zip": "^0.4.14",
+		"copy-webpack-plugin": "^6.0.1",
+		"node-fetch": "^2.6.0",
 		"react": "^16.13.1",
+		"react-app-rewired": "^2.1.6",
 		"react-dom": "^16.13.1",
 		"react-scripts": "3.4.1",
+		"sql.js": "^1.2.2",
 		"typescript": "^3.7.5"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build && node utils/move.js",
-		"build:beta": "react-scripts build && node utils/move.js --beta",
-		"test": "react-scripts test",
+		"start": "react-app-rewired start",
+		"build": "react-app-rewired build && node utils/postbuild.js",
+		"build:beta": "react-app-rewired build && node utils/postbuild.js --beta",
+		"gamesdb": "node utils/genGamesDB.js",
+		"test": "react-app-rewired test",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {

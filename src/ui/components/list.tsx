@@ -12,8 +12,8 @@ export function List(props) {
 
 export function ListItem(props) {
 	const content = [
-		props.media ? <div className="item-media">{props.media}</div> : null,
-		<div className="item-inner">
+		props.media ? <div key={window.eclipse.utils.uuid()} className="item-media">{props.media}</div> : null,
+		<div key={window.eclipse.utils.uuid()} className="item-inner">
 			<div className="item-title">
 				<p className="title">{props.title}</p>
 				<p className="subtitle">{props.subtitle}</p>
@@ -57,5 +57,5 @@ export function ListFooter(props) {
 }
 
 export function RadioList() {
-
+	
 }
