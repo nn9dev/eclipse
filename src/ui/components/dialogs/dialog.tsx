@@ -1,42 +1,45 @@
 import React from 'react';
 
-enum DialogActionStyle {
-	default = 'default',
-	cancel = 'cancel',
-	destructive = 'destructive',
-};
+type DialogButtonProps = {
+	title: string;
+	type?: 'default'|'cancel'|'destructive';
+	isEnabled?: boolean;
+	onClick: () => void;
+}
 
 type DialogProps = {
+	id?: string;
 	title: string;
 	message: string;
-	textField?: HTMLInputElement;
-	progressBar?: HTMLProgressElement;
-	buttons?: {
-		title: string;
-		style: DialogActionStyle;
-		isEnabled?: boolean;
-		onClick: () => void;
-	}[];
+	textField?: any;
+	progressBar?: any;
+	children: any;
 };
 
-export default function Dialog(props: DialogProps) {
-	const { title, message, textField, progressBar, buttons } = props;
+export function DialogButton({title, type, isEnabled, onClick}: DialogButtonProps) {
 	return (
-		<div className="dialog">
-			<p>{title}</p>
-			<p>{message}</p>
-			{progressBar}
-			{textField}
-			<div className="buttons">
-				{
-					(buttons ?? []).map((btn) => (
-						<button 
-							className={`alert-btn alert-btn-${btn.style}`.trim()}
-							disabled={btn.isEnabled} 
-							onClick={btn.onClick}
-						>{btn.title}</button>
-					))
-				}
+		<button 
+			className={`alert-btn alert-btn-${type ?? 'default'}`}
+			disabled={isEnabled ?? false} 
+			onClick={onClick}
+		>{title}</button>
+	)
+}
+
+export function Dialog(props: DialogProps) {
+	const { id, title, message, textField, progressBar, children } = props;
+	return (
+		<div className="dialog-background" id={id}>
+			<div className="dialog">
+				<div className="content">
+					<p className="title">{title}</p>
+					<p className="message">{message}</p>
+					{progressBar}
+					{textField}
+				</div>
+				<div className="buttons">
+					{children}
+				</div>
 			</div>
 		</div>
 	)

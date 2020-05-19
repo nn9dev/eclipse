@@ -1,10 +1,33 @@
-h3.list-title {
+/*
+
+List Text
+
+*/
+.list-title-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 32px;
+	margin-bottom: 4px;
+}
+
+.list-title-container button {
+	appearance: none;
+	color: var(--eclipse-tint-color);
+	border: none;
+	background: transparent;
+	padding: 0px;
+	font-size: 14px;
+	font-family: inherit;
+	font-weight: 600;
+}
+
+.list-title-container h3.list-title {
 	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: 500;
 	color: var(--eclipse-secondary-text-color);
-	margin-bottom: 0px;
-	margin-top: 32px;
+	margin: 0;
 }
 
 p.list-footer {
@@ -14,6 +37,11 @@ p.list-footer {
 	margin-bottom: 32px;
 }
 
+/*
+
+List
+
+*/
 ul.list {
 	margin-top: 4px;
 	display: block;
@@ -50,6 +78,18 @@ ul.list .list-item .item-media img {
 	max-width: 32px;
 	max-height: 32px;
 }
+
+ul.list .list-item .item-media div.game-boxart {
+	max-width: 38px;
+	max-height: 38px;
+	width: 38px;
+	height: 38px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 3px;
+} 
+
 
 ul.list .list-item .item-media img.lg {
 	max-width: 38px;
@@ -106,17 +146,6 @@ ul.list .list-item .item-inner .item-after i.chevron {
 	padding-right: -8px;
 	opacity: 0.6;
 }
-
-/* 
-ul.list .list-item .item-inner::after {
-	position: relative;
-	content: ' ';
-	display: block;
-	height: 0.5px;
-	top: 0px;
-	background-color: var(--eclipse-list-seperator-color);
-	width: 100%;
-} */
 
 ul.list .list-item:last-child .item-inner {
 	border: none;

@@ -46,17 +46,17 @@ export default function Settings() {
 				<ListItem 
 					title="Audio" 
 					media={<i className="f7-icons">speaker_2_fill</i>}
-					after={<Toggle name="audio" onChange={console.log} />}
+					after={<Toggle name="audio" defaultChecked onChange={console.log} />}
 				/>
 				<ListItem 
 					title="Touch Controls" 
 					media={<i className="f7-icons">eye_fill</i>}
-					after={<Toggle name="fillScreen" onChange={console.log} />}
+					after={<Toggle name="fillScreen" defaultChecked onChange={console.log} />}
 				/>
 				<ListItem 
 					title="Fill Screen" 
 					media={<i className="f7-icons">tv_fill</i>}
-					after={<Toggle name="fillScreen" onChange={console.log} />}
+					after={<Toggle name="fillScreen" defaultChecked onChange={console.log} />}
 				/>
 			</List>
 

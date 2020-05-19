@@ -20,6 +20,11 @@ nav .nav-inner {
 	align-items: center;
 }
 
+nav .nav-inner .left,
+nav .nav-inner .right {
+	display: flex;
+}
+
 nav .nav-inner a i, nav .nav-inner button i {
 	font-size: 24px;
 }
@@ -31,6 +36,16 @@ nav .nav-inner button {
 	background: transparent;
 	padding: 0px;
 	cursor: pointer;
+	font-size: inherit;
+	/* line-height: 24px; */
+}
+
+nav .nav-inner .left button {
+	margin-right: 16px;
+}
+
+nav .nav-inner .right button {
+	margin-left: 16px;
 }
 
 nav .title {

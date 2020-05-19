@@ -1,7 +1,22 @@
 @import './theme.css';
+*:not(input, textarea, .selectable) {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body,
+html {
+  width: 100vw;
+  height: 100vh;
+}
 
 html {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.0);
+	/* position: fixed; */
 }
 
 body {
@@ -11,6 +26,12 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	color: var(--eclipse-primary-text-color);
 	background-color: var(--eclipse-secondary-bg-color);
+}
+
+body.disable-scroll {
+	position: fixed;
+	overflow: hidden;
+	/* pointer-events: none; */
 }
 
 .app {
@@ -59,6 +80,15 @@ main.has-navbar {
 
 main.has-searchbar {
 	padding-top: 90px;
+}
+
+.header-banner {
+	padding-top: min(300px, 56.25%);
+	width: 100vw;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	left: calc(var(--safe-area-left) * -1);
 }
 
 @media (orientation: portrait) {
@@ -112,12 +142,36 @@ main.has-searchbar {
 	/* font-size: 16px; */
 }
 
+.empty-list {
+	text-align: center;
+	width: calc(100vw - (var(--safe-area-left) * 4));
+	padding: 32px var(--safe-area-left);
+	display: block;
+	border-radius: 12px;
+	background-color: var(--eclipse-primary-bg-color);
+}
+
+.empty-list h3 {
+	color: var(--eclipse-primary-text-color);
+	margin: 0px;
+	margin-bottom: 8px;
+}
+
+.empty-list p {
+	margin: 0px;
+	color: var(--eclipse-secondary-text-color);
+}
+
 @import 'navbar.css';
 @import 'games.css';
 @import 'emulation.css';
 @import 'list.css';
 @import 'toggle.css';
 @import 'http-error.css';
+@import 'dialog.css';
+@import 'featured-header.css';
+@import 'styled-button.css';
+@import 'action-sheet.css';
 
 a:active,
 a:focus,

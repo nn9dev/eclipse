@@ -1,14 +1,19 @@
-//@ts-nocheck
 import React from 'react';
 
-export default function Toggle(props) {
+type ToggleProps = {
+	name: string;
+	defaultChecked: boolean;
+	onChange: (arg0: any) => void;
+} 
+
+export default function Toggle({ name, onChange, defaultChecked}: ToggleProps) {
 	return (
 		<input 
 			type="checkbox" 
 			className="toggle"
-			name={props.name} 
-			onChange={props.onChange}
-			defaultChecked={props.defaultChecked}
+			name={name} 
+			onChange={onChange}
+			defaultChecked={defaultChecked}
 		/>
 	);
 }

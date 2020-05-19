@@ -1,0 +1,35 @@
+button.styled-btn {
+	appearance: none;
+	font-family: inherit;
+	font-size: 14px;
+	text-transform: uppercase;
+	border-radius: 20px;
+	font-weight: 600;
+	background-color: var(--eclipse-tint-color);
+	color: #fff;
+	padding: 6px 20px;
+	border: none;
+	cursor: pointer;
+}
+
+button.styled-btn.simple {
+	border-radius: unset;
+	background: transparent;
+	padding: 0px;
+	margin: 0px;
+	text-transform: initial;
+	color: var(--eclipse-tint-color);
+}
+
+button.styled-btn.simple i {
+	font-size: 24px;
+	/* pointer-events: none; */
+}
+
+button.styled-btn.danger {
+	--eclipse-tint-color: var(--eclipse-danger-tint-color);
+}
+
+button.styled-btn:disabled {
+	opacity: 0.5;
+}

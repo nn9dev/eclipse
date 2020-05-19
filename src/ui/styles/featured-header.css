@@ -1,0 +1,65 @@
+.featured-header {
+	width: 100vw;
+	position: relative;
+	left: calc(var(--safe-area-left) * -1);
+	padding: 32px 0px;
+	padding-bottom: 0px;
+	background-image: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(131,131,131,0.1) 100%);
+}
+
+.featured-header h3 {
+	margin: 0px var(--safe-area-left);
+	margin-bottom: 8px;
+	color: var(--eclipse-secondary-text-color);
+	font-weight: 600;
+	/* text-transform: uppercase; */
+	/* font-size: 1px; */
+}
+
+.featured-header .featured-header-items {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	padding: 0px var(--safe-area-left);
+	padding-right: 32px;
+	padding-bottom: 32px;
+}
+
+.featured-header .featured-header-items .featured-card {
+	flex: 0 0 auto;
+	margin-right: 16px;
+	width: 300px;
+	display: block;
+	border-radius: 9px;
+	overflow: hidden;
+	background-color: var(--eclipse-primary-bg-color);
+}
+
+.featured-header .featured-header-items .gutter {
+	padding: 1px;
+}
+
+.featured-header .featured-header-items .featured-card .banner {
+	pointer-events: none;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding-top: var(--eclipse-featured-banner-ar);
+}
+
+.featured-header .featured-header-items .featured-card .title {
+	pointer-events: none;
+	margin: 0px 16px;
+	color: var(--eclipse-primary-text-color);
+	margin-top: 12px;
+}
+
+.featured-header .featured-header-items .featured-card .caption {
+	pointer-events: none;
+	margin: 0px 16px;
+	color: var(--eclipse-secondary-text-color);
+	font-size: 13px;
+	/* text-transform: uppercase; */
+	font-weight: 500;
+	margin-bottom: 12px;
+}

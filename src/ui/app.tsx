@@ -1,13 +1,17 @@
 import React from 'react';
 import { MemoryRouter as Router, Route } from 'react-router-dom';
+import Page from './components/page';
+import { List, ListItem } from './components/list';
+
+// Pages
 import About from './views/about';
 import Game from './views/game';
 import Library from './views/library';
-import Repos from './views/repos';
+import Repos from './views/repos/repos';
+import Repo from './views/repos/repo';
 import Settings from './views/settings';
-import Skins from './views/skins';
-import Page from './components/page';
-import { List, ListItem } from './components/list';
+import Skins from './views/skins/skins';
+import SkinsCollection from './views/skins/collection';
 
 const url = new URL(window.location.href);
 
@@ -18,15 +22,18 @@ export default function App(props: {
 		<Router>
 			<div className={`app${props.standalone ? ' standalone' : ''}`}>
 			<div className="statusbar" />
+			<div className="dialog-zone" />
 			{!(url.protocol === 'http:' && (url.hostname === 'eclipseemu.me' || url.hostname === 'zenithdevs.github.io')) ? 
-				[
-					<Route key={window.eclipse.utils.uuid()} exact path="/" component={Library} />,
-					<Route key={window.eclipse.utils.uuid()} exact path="/repos" component={Repos} />,
-					<Route key={window.eclipse.utils.uuid()} exact path="/about" component={About} />,
-					<Route key={window.eclipse.utils.uuid()} exact path="/skins" component={Skins} />,
-					<Route key={window.eclipse.utils.uuid()} exact path="/game/:id" component={Game} />,
-					<Route key={window.eclipse.utils.uuid()} exact path="/settings" component={Settings} />,
-				] :
+				<>
+					<Route exact path="/" component={Library} />
+					<Route exact path="/repos" component={Repos} />
+					<Route exact path="/repos/:url" component={Repo} />
+					<Route exact path="/about" component={About} />
+					<Route exact path="/skins" component={Skins} />
+					<Route exact path="/skins/:id" component={SkinsCollection} />
+					<Route exact path="/game/:id" component={Game} />
+					<Route exact path="/settings" component={Settings} />
+				</> :
 				(
 					<HTTPBad />
 				)

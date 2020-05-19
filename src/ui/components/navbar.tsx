@@ -1,8 +1,16 @@
-//@ts-nocheck
 import React from 'react';
 import { withRouter } from 'react-router';
 
-function Navbar(props) {
+type NavbarProps = {
+	history: any;
+	title: string;
+	back?: boolean;
+	left?: any;
+	right?: any;
+	search?: (arg0: any) => void;
+};
+
+function Navbar(props: NavbarProps) {
 	return (
 		<nav>
 			<div className="nav-inner">
@@ -24,4 +32,5 @@ function Navbar(props) {
 	);
 }
 
+// @ts-ignore
 export default withRouter(Navbar);

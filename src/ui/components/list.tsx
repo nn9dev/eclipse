@@ -1,29 +1,38 @@
-//@ts-nocheck
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export function List(props) {
+export function List({ children }: { children: any }) {
 	return (
 		<ul className="list">
-			{props.children}
+			{children}
 		</ul>
 	);
 }
 
-export function ListItem(props) {
-	const content = [
-		props.media ? <div key={window.eclipse.utils.uuid()} className="item-media">{props.media}</div> : null,
-		<div key={window.eclipse.utils.uuid()} className="item-inner">
-			<div className="item-title">
-				<p className="title">{props.title}</p>
-				<p className="subtitle">{props.subtitle}</p>
+export function ListItem(props: {
+	media?: any;
+	title: string;
+	subtitle?: string;
+	after?: any;
+	link?: string;
+	external?: boolean;
+	onClick?: (event: any) => void;
+}) {
+	const content = (
+		<>
+			{props.media ? <div className="item-media">{props.media}</div> : null}
+			<div className="item-inner">
+				<div className="item-title">
+					<p className="title">{props.title}</p>
+					<p className="subtitle">{props.subtitle}</p>
+				</div>
+				<div className="item-after">
+					{props.after}
+					{props.link ? <i className="f7-icons chevron">chevron_right</i> : null}
+				</div>
 			</div>
-			<div className="item-after">
-				{props.after}
-				{props.link ? <i className="f7-icons chevron">chevron_right</i> : null}
-			</div>
-		</div>
-	];
+		</>
+	);
 
 	const className = `list-item ${props.subtitle ? 'has-subtitle' : ''}`.trim();
 
@@ -44,18 +53,21 @@ export function ListItem(props) {
 	);
 }
 
-export function ListTitle(props) {
+export function ListTitle({ title, button }: { title: string, button?: JSX.Element }) {
 	return (
-		<h3 className="list-title">{props.title}</h3>
+		<div className="list-title-container">
+			<h3 className="list-title">{title}</h3>
+			{button}
+		</div>
 	);
 }
 
-export function ListFooter(props) {
+export function ListFooter({ children }: { children: string }) {
 	return (
-		<p className="list-footer">{props.children}</p>
+		<p className="list-footer">{children}</p>
 	);
 }
 
 export function RadioList() {
-	
+
 }

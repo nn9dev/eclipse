@@ -1,6 +1,7 @@
-declare module '*';
-
 import Eclipse from './eclipse/main';
+import Dialogs from './ui/components/dialogs/index';
+
+declare module '*';
 
 interface Game {
 	id: string;
@@ -16,7 +17,8 @@ interface Game {
 
 declare global {
     interface Window { 
-		eclipse: typeof Eclipse; 
+		eclipse: typeof Eclipse;
+		Dialogs: typeof Dialogs; 
 	}
 }
 

@@ -1,0 +1,126 @@
+.dialog-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 999999999999999999;
+	background-color: var(--eclipse-overlay-bg-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dialog-background .dialog {
+	width: 270px;
+	border-radius: 13px;
+	text-align: center;
+	background-color: var(--eclipse-blur-bg-color);
+	-webkit-backdrop-filter: blur(var(--eclipse-blur-strength));
+	backdrop-filter: blur(var(--eclipse-blur-strength));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.dialog-background .dialog .content {
+	width: 236px;
+	padding: 20px 0px;
+}
+
+.dialog-background .dialog .content .title {
+	font-weight: 600;
+	font-size: 17px;
+	line-height: 22px;
+	margin: 0px;
+	margin-bottom: 2px;
+}
+
+.dialog-background .dialog .content .message {
+	margin: 0px;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+/* 
+
+	Input
+
+*/
+.dialog-background .dialog .content input {
+	appearance: none;
+	display: block;
+	width: 220px;
+	height: 30px;
+	border: 0.5px solid var(--eclipse-list-seperator-color);
+	background-color: rgba(131,131,136, 0.1);
+	font-family: inherit;
+	font-size: 14px;
+	color: inherit;
+	border-radius: 5px;
+	padding: 0px 8px;
+	margin-top: 8px;
+}
+
+/*
+
+	Buttons
+
+*/
+
+.dialog .buttons {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.dialog-background .dialog .buttons button.alert-btn {
+	height: 44px;
+	appearance: none;
+	color: var(--eclipse-tint-color);
+	font-family: inherit;
+	font-size: inherit;
+	width: 100%;
+	border: none;
+	background-color: transparent;
+	border-top: solid 0.1px var(--eclipse-list-seperator-color);
+	grid-column-start: 1;
+	grid-column-end: span col2-end;
+	cursor: pointer;
+	transition: background-color ease-in-out 75ms;
+}
+
+.dialog-background .dialog .buttons button.alert-btn:active {
+	filter: brightness(1.1);
+	background-color: rgba(141,141,146, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+	.dialog-background .dialog .buttons button.alert-btn:active {
+		background-color: rgba(75,75,81, 0.5);
+	}
+}
+
+.dialog-background .dialog .buttons button.alert-btn:first-child:nth-last-child(2) {
+	/* width: 50%; */
+	border-right: solid 0.1px var(--eclipse-list-seperator-color);
+	grid-column-start: 1;
+	grid-column-end: span 1;
+}
+
+.dialog-background .dialog .buttons button.alert-btn:last-child:nth-child(2) {
+	grid-row-start: 1;
+	grid-row-end: span 1;
+	grid-column-start: 2;
+	grid-column-end: span 2;
+}
+
+.dialog-background .dialog .buttons button.alert-btn.alert-btn-cancel {
+	font-weight: 600;
+}
+
+.dialog-background .dialog .buttons button.alert-btn.alert-btn-destructive {
+	color: var(--eclipse-danger-tint-color);
+}

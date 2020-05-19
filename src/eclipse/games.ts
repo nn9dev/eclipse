@@ -2,14 +2,16 @@ import initSQL from 'sql.js';
 import { SqlJs } from 'sql.js/module';
 
 export default class Games {
-
+	private eclipse: any;
 	private db?: SqlJs.Database;
 	private readonly regions = new Map([
 		['Europe', ['en-AU', 'en-BZ', 'en-CA', 'en-CB', 'en-GB', 'en-IE', 'en-JM', 'en-NZ', 'en-PH', 'en-TT', 'en-ZA', 'en-ZW']],
 		['Japan', ['ja', 'ja-JP']],
 	]);
 
-	// constructor() {}
+	constructor(eclipse: any) {
+		this.eclipse = eclipse;
+	}
 
 	get preferredRegion(): string {
 		// We base it off of languge.

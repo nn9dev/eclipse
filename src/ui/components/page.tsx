@@ -1,24 +1,24 @@
-//@ts-nocheck
 import React from 'react';
 
-export default function Page(props) {
+type PageProps = { children: any };
+
+export default function Page({ children }: PageProps) {
 	let navbars = [];
-	const hasNav = (props.children && props.children.constructor.name !== 'Object') ? 
+	const hasNav = (children && children.constructor.name !== 'Object') ? 
 		(() => {
-			navbars = props.children.filter(v => {
+			navbars = children.filter((v: any) => {
 				try {
-					return v.type.displayName === 'withRouter(Navbar)' || v.type.displayName === 'withRouter()'
+					return (v.props.back || v.props.left || v.props.right || v.props.search) && v.props.title;
 				} catch {
 					return false;
 				}
 			});
 			return navbars.length > 0
 		})() : false;
-	const hasSearchbar = navbars.filter((v) => v.props.search).length > 0;
-	console.log({ children: props.children, hasNav, hasSearchbar });
+	const hasSearchbar = navbars.filter((v: any) => v.props.search).length > 0;
 	return (
 		<main className={`${hasNav ? 'has-navbar' : ''} ${hasSearchbar ? 'has-searchbar' : ''}`.trim()}>
-			{props.children}
+			{children}
 		</main>
 	);
 }
